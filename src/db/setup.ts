@@ -10,6 +10,7 @@ export async function setupDatabase(url: string) {
       "id" text PRIMARY KEY,
       "email" text NOT NULL UNIQUE,
       "stripe_account_id" text,
+      "stripe_account_status" text DEFAULT 'inactive',
       "created_at" timestamp DEFAULT now() NOT NULL
     );
 
@@ -29,7 +30,9 @@ export async function setupDatabase(url: string) {
       "buyer_id" text NOT NULL REFERENCES "users"("id"),
       "snippet_id" uuid NOT NULL REFERENCES "snippets"("id"),
       "amount" integer NOT NULL,
-      "stripe_payment_intent_id" text NOT NULL,
+      "status" text DEFAULT 'pending' NOT NULL,
+      "stripe_payment_intent_id" text,
+      "stripe_session_id" text,
       "created_at" timestamp DEFAULT now() NOT NULL
     );
   `)

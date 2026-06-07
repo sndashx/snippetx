@@ -1,5 +1,5 @@
 import { db } from "@/db"
-import { snippets, users } from "@/db/schema"
+import { snippets, users, orders } from "@/db/schema"
 import { createClient } from "@/lib/supabase/server"
 import { stripe, PLATFORM_FEE_PERCENT } from "@/lib/stripe"
 import { APP_URL } from "@/lib/constants"
@@ -47,6 +47,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Seller not connected to Stripe" }, { status: 500 })
   }
 
+  const [order] = await db
+    .insert(orders)
+    .values({
+      buyerId: user.id,
+      sellerId: snippet.sellerId,
+      snippetId: snippet.id,
+      amount: snippet.price,
+      platformFee: Math.round(snippet.price * (PLATFORM_FEE_PERCENT / 100)),
+      status: "pending",
+    })
+    .returning()
+
   const sessionParams = {
     payment_method_types: ["card"] as string[],
     line_items: [
@@ -66,6 +78,7 @@ export async function POST(req: Request) {
     success_url: `${APP_URL}/snippets/${snippet.id}?purchased=true`,
     cancel_url: `${APP_URL}/snippets/${snippet.id}`,
     metadata: {
+      orderId: order.id,
       snippetId: snippet.id,
       buyerId: user.id,
       sellerId: snippet.sellerId,

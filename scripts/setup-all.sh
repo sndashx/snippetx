@@ -40,6 +40,35 @@ fi
 
 echo ""
 echo "╔══════════════════════════════════════╗"
+echo "║  1b   Pushing Drizzle Schema         ║"
+echo "╚══════════════════════════════════════╝"
+echo ""
+
+# Re-source env vars (Neon setup just updated .env.local)
+set -a
+source "$ENV_FILE"
+set +a
+
+if [ -n "$DATABASE_URL" ] \
+  && [ "$DATABASE_URL" != "postgresql://user:pass@ep-something.us-east-2.aws.neon.tech/snippetx" ] \
+  && [[ "$DATABASE_URL" != *"REPLACE_WITH"* ]]; then
+  echo "Pushing schema to database..."
+  cd "$PROJECT_DIR"
+  if npx drizzle-kit push 2>&1; then
+    echo ""
+    echo "✓ Schema push: SUCCESS"
+  else
+    PUSH_EXIT=$?
+    echo ""
+    echo "✗ Schema push: FAILED (exit $PUSH_EXIT)"
+    echo "  Re-run manually: cd $PROJECT_DIR && npx drizzle-kit push"
+  fi
+else
+  echo "⊘ Schema push: SKIPPED (DATABASE_URL not configured or is a placeholder)"
+fi
+
+echo ""
+echo "╔══════════════════════════════════════╗"
 echo "║  2/5  Supabase (Auth + Realtime)     ║"
 echo "╚══════════════════════════════════════╝"
 echo ""

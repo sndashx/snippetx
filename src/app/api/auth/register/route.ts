@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server"
+import { createClient, createAdminClient } from "@/lib/supabase/server"
 import { db } from "@/db"
 import { users } from "@/db/schema"
 import { eq } from "drizzle-orm"
@@ -12,13 +12,16 @@ export async function POST(req: Request) {
   }
 
   const supabase = await createClient()
+  const adminSupabase = await createAdminClient()
 
-  const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await adminSupabase.auth.admin.createUser({
     email,
     password,
+    email_confirm: true,
   })
 
   if (error) {
+    console.error("Supabase signup error:", error);
     return NextResponse.json({ error: error.message }, { status: 400 })
   }
 

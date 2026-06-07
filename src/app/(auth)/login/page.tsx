@@ -2,43 +2,53 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Code2 } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
+import { Code2 } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { FormField } from "@/components/ui/form-field"
+import { loginSchema, type LoginInput } from "@/lib/validations/auth"
 
 export default function LoginPage() {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [submitError, setSubmitError] = useState("")
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setLoading(true)
-    setError("")
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: "", password: "" },
+  })
 
-    const form = new FormData(e.currentTarget)
+  async function onSubmit(values: LoginInput) {
+    setSubmitError("")
 
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: form.get("email"),
-          password: form.get("password"),
-        }),
+        body: JSON.stringify(values),
       })
 
       if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.error || "Login failed")
+        const text = await res.text()
+        try {
+          const data = JSON.parse(text)
+          throw new Error(data.error || "Login failed")
+        } catch {
+          throw new Error(`Login failed with status ${res.status}: ${text || "No error message provided"}`)
+        }
       }
 
       router.push("/browse")
       router.refresh()
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Login failed")
-    } finally {
-      setLoading(false)
+      setSubmitError(err instanceof Error ? err.message : "Login failed")
     }
   }
 
@@ -56,36 +66,42 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium">
-              Email
-            </label>
-            <input
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+          <FormField label="Email" htmlFor="email" error={errors.email?.message} required>
+            <Input
               id="email"
-              name="email"
               type="email"
-              required
               placeholder="you@example.com"
-              className="flex h-10 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring/50 focus:border-ring"
+              autoComplete="email"
+              aria-invalid={!!errors.email}
+              {...register("email")}
             />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              placeholder="••••••••"
-              className="flex h-10 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring/50 focus:border-ring"
-            />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" className="w-full" size="lg" disabled={loading}>
-            {loading ? "Signing in..." : "Sign In"}
+          </FormField>
+
+           <FormField label="Password" htmlFor="password" error={errors.password?.message} required>
+             <Input
+               id="password"
+               type="password"
+               placeholder="••••••••"
+               autoComplete="current-password"
+               aria-invalid={!!errors.password}
+               {...register("password")}
+             />
+           </FormField>
+           <div className="flex justify-end">
+             <Link href="/forgot-password" className="text-sm font-medium text-foreground hover:underline">
+               Forgot password?
+             </Link>
+           </div>
+
+          {submitError && (
+            <p className="text-sm text-destructive" role="alert">
+              {submitError}
+            </p>
+          )}
+
+          <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+            {isSubmitting ? "Signing in..." : "Sign In"}
           </Button>
         </form>
 

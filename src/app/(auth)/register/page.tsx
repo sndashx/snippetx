@@ -2,49 +2,56 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Code2 } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
+import { Code2 } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { FormField } from "@/components/ui/form-field"
+import { registerSchema, type RegisterInput } from "@/lib/validations/auth"
 
 export default function RegisterPage() {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [submitError, setSubmitError] = useState("")
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setLoading(true)
-    setError("")
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: { email: "", password: "", confirmPassword: "" },
+  })
 
-    const form = new FormData(e.currentTarget)
-
-    if (form.get("password") !== form.get("confirmPassword")) {
-      setError("Passwords do not match")
-      setLoading(false)
-      return
-    }
+  async function onSubmit(values: RegisterInput) {
+    setSubmitError("")
 
     try {
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: form.get("email"),
-          password: form.get("password"),
+          email: values.email,
+          password: values.password,
         }),
       })
 
       if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.error || "Registration failed")
+        const text = await res.text()
+        try {
+          const data = JSON.parse(text)
+          throw new Error(data.error || "Registration failed")
+        } catch {
+          throw new Error(`Registration failed with status ${res.status}: ${text || "No error message provided"}`)
+        }
       }
 
       router.push("/browse")
       router.refresh()
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Registration failed")
-    } finally {
-      setLoading(false)
+      setSubmitError(err instanceof Error ? err.message : "Registration failed")
     }
   }
 
@@ -62,51 +69,53 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium">
-              Email
-            </label>
-            <input
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+          <FormField label="Email" htmlFor="email" error={errors.email?.message} required>
+            <Input
               id="email"
-              name="email"
               type="email"
-              required
               placeholder="you@example.com"
-              className="flex h-10 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring/50 focus:border-ring"
+              autoComplete="email"
+              aria-invalid={!!errors.email}
+              {...register("email")}
             />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium">
-              Password
-            </label>
-            <input
+          </FormField>
+
+          <FormField label="Password" htmlFor="password" error={errors.password?.message} required>
+            <Input
               id="password"
-              name="password"
               type="password"
-              required
-              minLength={8}
               placeholder="••••••••"
-              className="flex h-10 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring/50 focus:border-ring"
+              autoComplete="new-password"
+              aria-invalid={!!errors.password}
+              {...register("password")}
             />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="confirmPassword" className="text-sm font-medium">
-              Confirm Password
-            </label>
-            <input
+          </FormField>
+
+          <FormField
+            label="Confirm Password"
+            htmlFor="confirmPassword"
+            error={errors.confirmPassword?.message}
+            required
+          >
+            <Input
               id="confirmPassword"
-              name="confirmPassword"
               type="password"
-              required
-              minLength={8}
               placeholder="••••••••"
-              className="flex h-10 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring/50 focus:border-ring"
+              autoComplete="new-password"
+              aria-invalid={!!errors.confirmPassword}
+              {...register("confirmPassword")}
             />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" className="w-full" size="lg" disabled={loading}>
-            {loading ? "Creating account..." : "Create Account"}
+          </FormField>
+
+          {submitError && (
+            <p className="text-sm text-destructive" role="alert">
+              {submitError}
+            </p>
+          )}
+
+          <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+            {isSubmitting ? "Creating account..." : "Create Account"}
           </Button>
         </form>
 

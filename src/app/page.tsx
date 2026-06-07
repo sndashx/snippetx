@@ -1,6 +1,10 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Code2, DollarSign, Shield, Zap, ArrowRight, Search } from "lucide-react"
+import { ModeToggle } from "@/components/mode-toggle"
+import { Code2, DollarSign, Shield, Zap, ArrowRight, Search, Sparkles, Terminal, Cpu } from "lucide-react"
+import { motion } from "framer-motion"
 
 const featuredSnippets = [
   {
@@ -9,6 +13,7 @@ const featuredSnippets = [
     price: 12,
     author: "johndoe",
     language: "TypeScript",
+    category: "Frontend",
   },
   {
     title: "Auth Middleware Suite",
@@ -16,6 +21,7 @@ const featuredSnippets = [
     price: 19,
     author: "sarahdev",
     language: "JavaScript",
+    category: "Backend",
   },
   {
     title: "Tailwind Component Library",
@@ -23,133 +29,198 @@ const featuredSnippets = [
     price: 29,
     author: "uiwizard",
     language: "TypeScript",
+    category: "UI/UX",
   },
 ]
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-            <Code2 className="size-5" />
-            SnippetX
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/60 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+          <Link href="/" className="flex items-center gap-2 font-bold tracking-tighter text-xl transition-opacity hover:opacity-80">
+            <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground neon-glow">
+              <Code2 className="size-5" />
+            </div>
+            <span>SnippetX</span>
           </Link>
-          <nav className="hidden items-center gap-6 sm:flex">
-            <Link href="/browse" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Browse
-            </Link>
-            <Link href="/sell" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Sell
-            </Link>
-            <Button variant="default" size="sm">
-              Sign In
-            </Button>
-          </nav>
+          <div className="flex items-center gap-6">
+            <nav className="hidden items-center gap-8 sm:flex">
+              <Link href="/browse" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Browse
+              </Link>
+              <Link href="/sell" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Sell
+              </Link>
+            </nav>
+            <div className="flex items-center gap-3">
+              <ModeToggle />
+              <Button variant="default" size="sm" className="rounded-full px-5 font-medium transition-all hover:neon-glow" render={<Link href="/login" />}>
+                Sign In
+              </Button>
+            </div>
+          </div>
         </div>
       </header>
 
       <main className="flex-1">
-        <section className="mx-auto max-w-6xl px-4 pt-24 pb-16 text-center sm:pt-32 sm:pb-20">
-          <div className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1 text-xs text-muted-foreground">
-            <Zap className="size-3" />
-            Production-ready code snippets marketplace
-          </div>
-          <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            Buy & sell code snippets
-            <br />
-            <span className="text-muted-foreground">that actually ship</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            SnippetX is a marketplace for high-quality, production-ready code.
-            Save hours of development time and earn from your expertise.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button size="lg" className="w-full sm:w-auto">
-              Browse Marketplace
-              <ArrowRight className="size-4" />
-            </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto">
-              <DollarSign className="size-4" />
-              Start Selling
-            </Button>
+        {/* Hero Section */}
+        <section className="relative overflow-hidden px-6 pt-32 pb-24 sm:pt-48 sm:pb-32">
+          {/* Background Glows */}
+          <div className="absolute -top-24 -left-24 size-96 rounded-full bg-primary/20 blur-[120px]" />
+          <div className="absolute top-1/2 -right-24 size-96 rounded-full bg-primary/10 blur-[120px]" />
+          
+          <div className="mx-auto max-w-5xl text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm"
+            >
+              <Sparkles className="size-3 text-primary" />
+              <span>The New Standard for Production Code</span>
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl"
+            >
+              Ship faster with <br />
+              <span className="bg-gradient-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
+                Elite Snippets
+              </span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+            >
+              Stop reinventing the wheel. Access a curated vault of production-ready 
+              components and logic used by top-tier engineering teams.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            >
+              <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full transition-all hover:neon-glow" render={<Link href="/browse" />}>
+                Explore the Vault
+                <ArrowRight className="ml-2 size-4" />
+              </Button>
+              <Button variant="outline" size="lg" className="h-12 px-8 text-base font-semibold rounded-full backdrop-blur-sm transition-all hover:bg-muted" render={<Link href="/sell/new" />}>
+                <DollarSign className="mr-2 size-4" />
+                Monetize Your Code
+              </Button>
+            </motion.div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-4 pb-24">
-          <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-xl font-semibold tracking-tight">Featured snippets</h2>
+        {/* Featured Section */}
+        <section className="mx-auto max-w-7xl px-6 pb-32">
+          <div className="mb-12 flex items-end justify-between">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tight">Featured Assets</h2>
+              <p className="text-muted-foreground">Hand-picked snippets for maximum impact.</p>
+            </div>
             <Link
               href="/browse"
-              className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="group flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
             >
-              View all <ArrowRight className="size-3.5" />
+              View all assets <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredSnippets.map((snippet) => (
-              <article
+          
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredSnippets.map((snippet, i) => (
+              <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 key={snippet.title}
-                className="group relative rounded-xl border border-border bg-card p-5 transition-all hover:shadow-sm"
+                className="group relative rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 glass"
               >
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">
                     {snippet.language}
                   </span>
+                  <span className="text-xs font-medium text-muted-foreground">{snippet.category}</span>
                 </div>
-                <h3 className="mb-1.5 font-semibold tracking-tight">{snippet.title}</h3>
-                <p className="mb-4 text-sm text-muted-foreground">{snippet.description}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">by {snippet.author}</span>
-                  <span className="text-lg font-bold tracking-tight">${snippet.price}</span>
+                <h3 className="mb-2 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                  {snippet.title}
+                </h3>
+                <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                  {snippet.description}
+                </p>
+                <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                  <div className="flex items-center gap-2">
+                    <div className="size-6 rounded-full bg-muted border border-border" />
+                    <span className="text-xs font-medium text-muted-foreground">@{snippet.author}</span>
+                  </div>
+                  <span className="text-xl font-bold tracking-tighter">${snippet.price}</span>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </section>
 
-        <section className="border-t border-border bg-muted/30">
-          <div className="mx-auto max-w-6xl px-4 py-20 text-center">
-            <h2 className="text-xl font-semibold tracking-tight">How it works</h2>
-            <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <div className="space-y-3">
-                <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Search className="size-5" />
+        {/* Value Props */}
+        <section className="border-t border-border bg-muted/20">
+          <div className="mx-auto max-w-7xl px-6 py-24">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Engineered for Speed</h2>
+              <p className="mt-4 text-muted-foreground">Everything you need to go from idea to production.</p>
+            </div>
+            <div className="grid gap-12 sm:grid-cols-3">
+              {[
+                { 
+                  icon: Search, 
+                  title: "Curated Discovery", 
+                  desc: "Stop digging through GitHub. Find exactly what you need in seconds with our advanced filter engine." 
+                },
+                { 
+                  icon: Shield, 
+                  title: "Production Grade", 
+                  desc: "Every snippet is vetted for security, performance, and maintainability. No more spaghetti code." 
+                },
+                { 
+                  icon: Cpu, 
+                  title: "Instant Integration", 
+                  desc: "Clean, modular code designed to be dropped into any project without breaking your architecture." 
+                },
+              ].map((prop, i) => (
+                <div key={i} className="group relative p-8 rounded-2xl border border-border bg-card transition-all hover:border-primary/30 glass">
+                  <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                    <prop.icon className="size-6" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold tracking-tight">{prop.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {prop.desc}
+                  </p>
                 </div>
-                <h3 className="font-semibold tracking-tight">1. Find</h3>
-                <p className="text-sm text-muted-foreground">
-                  Browse curated snippets by language, framework, or use case.
-                </p>
-              </div>
-              <div className="space-y-3">
-                <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Shield className="size-5" />
-                </div>
-                <h3 className="font-semibold tracking-tight">2. Buy</h3>
-                <p className="text-sm text-muted-foreground">
-                  One-time purchase. No subscriptions. Instant download after payment.
-                </p>
-              </div>
-              <div className="space-y-3">
-                <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Code2 className="size-5" />
-                </div>
-                <h3 className="font-semibold tracking-tight">3. Ship</h3>
-                <p className="text-sm text-muted-foreground">
-                  Copy, paste, and deploy. Production-ready code in seconds.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 text-sm text-muted-foreground">
-          <span>&copy; {new Date().getFullYear()} SnippetX</span>
-          <div className="flex items-center gap-4">
+      <footer className="border-t border-border bg-background">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 font-semibold tracking-tight">
+            <Code2 className="size-4" />
+            <span>SnippetX</span>
+          </div>
+          <div className="flex items-center gap-6">
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <span className="hidden sm:inline opacity-50">|</span>
+            <span>&copy; {new Date().getFullYear()} SnippetX</span>
           </div>
         </div>
       </footer>
