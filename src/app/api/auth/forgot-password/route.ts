@@ -5,7 +5,6 @@ import { eq, sql } from "drizzle-orm"
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { sendPasswordResetEmail } from "@/lib/emails/password-reset"
-import { APP_URL } from "@/lib/constants"
 
 const schema = z.object({
   email: z.string().email(),
@@ -38,8 +37,10 @@ export async function POST(req: Request) {
       expiresAt: sql`now() + interval '1 hour'`,
     })
 
-    // Send custom branded email
-    const resetUrl = `${APP_URL}/reset-password?token=${token}`
+    // Derive base URL from the request origin, so it works in all environments
+    const origin = req.headers.get("origin") || req.headers.get("host") || ""
+    const baseUrl = origin.startsWith("http") ? origin : `https://${origin}`
+    const resetUrl = `${baseUrl}/reset-password?token=${token}`
 
     await sendPasswordResetEmail({
       to: email,
