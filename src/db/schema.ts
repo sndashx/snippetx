@@ -6,6 +6,7 @@ import {
   integer,
   jsonb,
   primaryKey,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
@@ -102,31 +103,22 @@ export const wishlists = pgTable("wishlists", {
   snippetId: uuid("snippet_id")
     .references(() => snippets.id)
     .notNull(),
+  wishedPrice: integer("wished_price").notNull(),
+  lastNotifiedPrice: integer("last_notified_price"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (t) => ({
   pk: primaryKey({ columns: [t.userId, t.snippetId] }),
 }));
 
-export const bundles = pgTable("bundles", {
+export const passwordResets = pgTable("password_resets", {
   id: uuid("id").defaultRandom().primaryKey(),
-  sellerId: uuid("seller_id")
-    .references(() => users.id)
-    .notNull(),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
-  price: integer("price").notNull(),
+  email: text("email").notNull(),
+  token: text("token").notNull().unique(),
+  used: boolean("used").default(false).notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const bundleItems = pgTable("bundle_items", {
-  bundleId: uuid("bundle_id")
-    .references(() => bundles.id)
-    .notNull(),
-  snippetId: uuid("snippet_id")
-    .references(() => snippets.id)
-    .notNull(),
-}, (t) => ({
-  pk: primaryKey({ columns: [t.bundleId, t.snippetId] }),
-}));
+
 

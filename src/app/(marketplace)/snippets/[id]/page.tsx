@@ -7,6 +7,8 @@ import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { PurchaseButton } from "@/components/purchase-button"
 import { SnippetDetailsClient } from "@/components/snippet-details/snippet-details-client"
+import { ReviewsSection } from "@/components/reviews/reviews-section"
+import { WishlistButton } from "@/components/wishlist-button"
 
 export default async function SnippetPage(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params
@@ -18,7 +20,7 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
     price: number
     language: string
     filePath: string
-    author: string
+    author: string | null
     authorId: string
     createdAt: Date
   } | null = null
@@ -32,7 +34,7 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
         price: snippets.price,
         language: snippets.language,
         filePath: snippets.filePath,
-        author: users.email,
+        author: users.displayName,
         authorId: users.id,
         createdAt: snippets.createdAt,
       })
@@ -122,9 +124,18 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
 
         <div className="lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-2xl border border-border bg-card p-8 shadow-xl glass">
-            <div className="mb-2 text-4xl font-bold tracking-tighter">${snippet.price}</div>
-            <div className="mb-8 text-sm text-muted-foreground">
-              by {snippet.author.split("@")[0]}
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="mb-2 text-4xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(2)}</div>
+                <div className="mb-8 text-sm text-muted-foreground">
+                  by {snippet.author || "sn-x.com"}
+                </div>
+              </div>
+              <WishlistButton
+                snippetId={snippet.id}
+                price={snippet.price}
+                isAuthenticated={!!user}
+              />
             </div>
 
             <PurchaseButton
@@ -155,6 +166,14 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-16 border-t border-border pt-12">
+        <ReviewsSection
+          snippetId={snippet.id}
+          isPurchased={hasPurchased}
+          currentUserId={user?.id ?? null}
+        />
       </div>
     </div>
   )

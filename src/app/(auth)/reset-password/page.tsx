@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { Suspense, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
-import { Code2 } from "lucide-react"
+import { Code2, AlertCircle } from "lucide-react"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -23,9 +23,21 @@ const resetPasswordSchema = z.object({
 type ResetPasswordInput = z.infer<typeof resetPasswordSchema>
 
 export default function ResetPasswordPage() {
+  return (
+    <Suspense>
+      <ResetPasswordForm />
+    </Suspense>
+  )
+}
+
+function ResetPasswordForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const token = searchParams.get("token")
+
   const [submitError, setSubmitError] = useState("")
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [invalidToken, setInvalidToken] = useState(!token)
 
   const {
     register,
@@ -36,25 +48,42 @@ export default function ResetPasswordPage() {
     defaultValues: { password: "", confirmPassword: "" },
   })
 
+  if (invalidToken) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center px-4">
+        <div className="w-full max-w-sm space-y-6 text-center">
+          <Link href="/" className="inline-flex items-center gap-2 font-semibold tracking-tight text-lg justify-center">
+            <Code2 className="size-6" />
+            SnippetX
+          </Link>
+          <div className="rounded-2xl border border-border bg-card p-8 shadow-sm">
+            <AlertCircle className="size-10 mx-auto mb-4 text-destructive" />
+            <h1 className="text-xl font-bold">Invalid reset link</h1>
+            <p className="mt-2 text-sm text-muted-foreground">
+              This reset link is missing or invalid. Request a new one.
+            </p>
+            <Button className="mt-6 w-full" render={<Link href="/forgot-password" />}>
+              Request New Link
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   async function onSubmit(values: ResetPasswordInput) {
     setSubmitError("")
-    setSubmitSuccess(false)
 
     try {
       const res = await fetch("/api/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: values.password }),
+        body: JSON.stringify({ token, password: values.password }),
       })
 
       if (!res.ok) {
-        const text = await res.text()
-        try {
-          const data = JSON.parse(text)
-          throw new Error(data.error || "Password reset failed")
-        } catch {
-          throw new Error(`Request failed with status ${res.status}`)
-        }
+        const data = await res.json()
+        throw new Error(data.error || "Password reset failed")
       }
 
       setSubmitSuccess(true)
@@ -76,7 +105,7 @@ export default function ResetPasswordPage() {
           </Link>
           <h1 className="mt-4 text-2xl font-bold tracking-tight">Create new password</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Please enter your new password below.
+            Enter your new password below.
           </p>
         </div>
 

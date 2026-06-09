@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
-import { Code2 } from "lucide-react"
+import { Code2, GitBranch, Bird, Globe } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,11 +19,23 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
-    defaultValues: { email: "", password: "", confirmPassword: "" },
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      displayName: "",
+      bio: "",
+      website: "",
+      github: "",
+      twitter: "",
+    },
   })
+
+  const showSocialFields = watch("displayName") || watch("bio") || watch("website") || watch("github") || watch("twitter")
 
   async function onSubmit(values: RegisterInput) {
     setSubmitError("")
@@ -35,6 +47,11 @@ export default function RegisterPage() {
         body: JSON.stringify({
           email: values.email,
           password: values.password,
+          displayName: values.displayName,
+          bio: values.bio,
+          website: values.website,
+          github: values.github,
+          twitter: values.twitter,
         }),
       })
 
@@ -56,8 +73,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-4">
-      <div className="w-full max-w-sm space-y-6">
+    <div className="flex min-h-screen flex-col items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 font-semibold tracking-tight text-lg">
             <Code2 className="size-6" />
@@ -70,6 +87,7 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+          {/* Required Fields */}
           <FormField label="Email" htmlFor="email" error={errors.email?.message} required>
             <Input
               id="email"
@@ -79,6 +97,18 @@ export default function RegisterPage() {
               aria-invalid={!!errors.email}
               {...register("email")}
             />
+          </FormField>
+
+          <FormField label="Display Name" htmlFor="displayName" error={errors.displayName?.message} required>
+            <Input
+              id="displayName"
+              type="text"
+              placeholder="Your name or handle"
+              autoComplete="name"
+              aria-invalid={!!errors.displayName}
+              {...register("displayName")}
+            />
+            <p className="mt-1 text-xs text-muted-foreground">How you'll appear on the marketplace (2-50 chars)</p>
           </FormField>
 
           <FormField label="Password" htmlFor="password" error={errors.password?.message} required>
@@ -107,6 +137,71 @@ export default function RegisterPage() {
               {...register("confirmPassword")}
             />
           </FormField>
+
+          {/* Optional Profile Fields */}
+          <div className="border-t border-border/50 pt-4">
+            <h3 className="mb-4 text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <span className="size-1.5 rounded-full bg-primary" />
+              Optional — Build your seller profile
+            </h3>
+
+            <FormField label="Bio" htmlFor="bio" error={errors.bio?.message}>
+              <Input
+                id="bio"
+                type="text"
+                placeholder="I build React components and TypeScript tools..."
+                autoComplete="off"
+                aria-invalid={!!errors.bio}
+                {...register("bio")}
+              />
+              <p className="mt-1 text-xs text-muted-foreground">Brief intro for buyers (max 500 chars)</p>
+            </FormField>
+
+            <FormField label="Website" htmlFor="website" error={errors.website?.message}>
+              <div className="relative">
+                <Globe className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                <Input
+                  id="website"
+                  type="url"
+                  placeholder="https://your-site.com"
+                  autoComplete="url"
+                  aria-invalid={!!errors.website}
+                  className="pl-10"
+                  {...register("website")}
+                />
+              </div>
+            </FormField>
+
+            <FormField label="GitHub" htmlFor="github" error={errors.github?.message}>
+              <div className="relative">
+                <GitBranch className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                <Input
+                  id="github"
+                  type="url"
+                  placeholder="https://github.com/yourname"
+                  autoComplete="url"
+                  aria-invalid={!!errors.github}
+                  className="pl-10"
+                  {...register("github")}
+                />
+              </div>
+            </FormField>
+
+            <FormField label="X (Twitter)" htmlFor="twitter" error={errors.twitter?.message}>
+              <div className="relative">
+                <Bird className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                <Input
+                  id="twitter"
+                  type="url"
+                  placeholder="https://x.com/yourname"
+                  autoComplete="url"
+                  aria-invalid={!!errors.twitter}
+                  className="pl-10"
+                  {...register("twitter")}
+                />
+              </div>
+            </FormField>
+          </div>
 
           {submitError && (
             <p className="text-sm text-destructive" role="alert">

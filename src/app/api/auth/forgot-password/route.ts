@@ -1,6 +1,11 @@
-import { createClient } from "@/lib/supabase/server"
+import { randomBytes } from "node:crypto"
+import { db } from "@/db"
+import { users, passwordResets } from "@/db/schema"
+import { eq, sql } from "drizzle-orm"
 import { NextResponse } from "next/server"
 import { z } from "zod"
+import { sendPasswordResetEmail } from "@/lib/emails/password-reset"
+import { APP_URL } from "@/lib/constants"
 
 const schema = z.object({
   email: z.string().email(),
@@ -11,22 +16,42 @@ export async function POST(req: Request) {
     const body = await req.json()
     const { email } = schema.parse(body)
 
-    const supabase = await createClient()
+    // Check if user exists
+    const [user] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, email.toLowerCase()))
+      .limit(1)
 
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/reset-password`,
-    })
-
-    if (error) {
-      console.error("Supabase resetPasswordForEmail error:", error)
-      return NextResponse.json({ error: error.message }, { status: 400 })
+    if (!user) {
+      // Don't reveal whether the user exists
+      return NextResponse.json({ message: "If an account exists, a reset link has been sent." }, { status: 200 })
     }
 
-    return NextResponse.json({ message: "Reset link sent" }, { status: 200 })
+    // Generate a secure random token
+    const token = randomBytes(32).toString("hex")
+
+    // Store token with 1-hour expiry
+    await db.insert(passwordResets).values({
+      email: email.toLowerCase(),
+      token,
+      expiresAt: sql`now() + interval '1 hour'`,
+    })
+
+    // Send custom branded email
+    const resetUrl = `${APP_URL}/reset-password?token=${token}`
+
+    await sendPasswordResetEmail({
+      to: email,
+      resetUrl,
+    })
+
+    return NextResponse.json({ message: "If an account exists, a reset link has been sent." }, { status: 200 })
   } catch (err) {
     if (err instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 })
     }
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    console.error("Forgot password error:", err)
+    return NextResponse.json({ error: "Something went wrong" }, { status: 500 })
   }
 }

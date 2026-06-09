@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { CodePreview } from "@/components/ui/code-preview/code-preview"
+import { MonacoEditor } from "@/components/ui/monaco-editor/monaco-editor"
 import { Loader2 } from "lucide-react"
 
 export function SnippetDetailsClient({ 
@@ -47,5 +47,5 @@ export function SnippetDetailsClient({
     )
   }
 
-  return <CodePreview code={code} language={language} isPurchased={isPurchased} />
+  return <MonacoEditor code={code} language={language} isPurchased={isPurchased} height={500} />
 }

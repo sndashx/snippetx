@@ -1,11 +1,11 @@
 import { createClient, createAdminClient } from "@/lib/supabase/server"
 import { db } from "@/db"
-import { users } from "@/db/schema"
+import { users, profiles } from "@/db/schema"
 import { eq } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json()
+  const { email, password, displayName, bio, website, github, twitter } = await req.json()
 
   if (!email || !password) {
     return NextResponse.json({ error: "Email and password required" }, { status: 400 })
@@ -37,6 +37,16 @@ export async function POST(req: Request) {
       await db.insert(users).values({
         id: data.user.id,
         email: data.user.email!,
+        displayName: displayName || null,
+      })
+
+      // Create profile with social links
+      await db.insert(profiles).values({
+        userId: data.user.id,
+        bio: bio || null,
+        website: website || null,
+        github: github || null,
+        twitter: twitter || null,
       })
     }
   }

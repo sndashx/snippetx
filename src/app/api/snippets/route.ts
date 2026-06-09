@@ -22,7 +22,7 @@ export async function GET(req: Request) {
         description: snippets.description,
         price: snippets.price,
         language: snippets.language,
-        author: users.email,
+        author: users.displayName,
         createdAt: snippets.createdAt,
       })
       .from(snippets)

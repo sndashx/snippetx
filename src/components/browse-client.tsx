@@ -27,7 +27,7 @@ type Snippet = {
   description: string
   price: number
   language: string
-  author: string
+  author: string | null
   createdAt: string
 }
 
@@ -188,10 +188,10 @@ export function BrowseClient({ lang }: { lang?: string }) {
                         <div className="flex items-center gap-2">
                           <div className="size-5 rounded-full bg-muted border border-border" />
                           <span className="text-xs font-medium text-muted-foreground">
-                            @{snippet.author.split("@")[0]}
+                            @{snippet.author || "sn-x.com"}
                           </span>
                         </div>
-                        <span className="text-xl font-bold tracking-tighter">${snippet.price}</span>
+                        <span className="text-xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(2)}</span>
                       </CardFooter>
                     </Card>
                   </Link>

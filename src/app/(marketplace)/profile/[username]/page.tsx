@@ -210,7 +210,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
                           @{user.email.split("@")[0]}
                         </span>
                       </div>
-                      <span className="text-xl font-bold tracking-tighter">${snippet.price}</span>
+                      <span className="text-xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(2)}</span>
                     </div>
                   </div>
                 </Link>
