@@ -3,8 +3,9 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Code2, DollarSign, Shield, Zap, ArrowRight, Search, Sparkles, Terminal, Cpu } from "lucide-react"
+import { Code2, DollarSign, Shield, Zap, ArrowRight, Search, Sparkles, Terminal, Cpu, Rocket, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
+import { IntegrationBanner, IntegrationBadge } from "@/components/integration-banner"
 
 const featuredSnippets = [
   {
@@ -24,12 +25,13 @@ const featuredSnippets = [
     category: "Backend",
   },
   {
-    title: "Tailwind Component Library",
-    description: "60+ responsive UI components built with Tailwind CSS v4 and shadcn/ui.",
+    title: "Enterprise CodeRabbit PR & Release Note Automation",
+    description: "Plug-and-play workflow that auto-generates clean, standardized PR summaries and release notes on every merge.",
     price: 29,
-    author: "uiwizard",
-    language: "TypeScript",
-    category: "UI/UX",
+    author: "sn-x.com",
+    language: "YAML",
+    category: "DevOps",
+    featured: true,
   },
 ]
 
@@ -75,10 +77,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm"
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary backdrop-blur-sm"
             >
-              <Sparkles className="size-3 text-primary" />
-              <span>The New Standard for Production Code</span>
+              <Sparkles className="size-3" />
+              <span>From code snippets to <strong>shipped features</strong></span>
             </motion.div>
             
             <motion.h1 
@@ -87,9 +89,9 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl"
             >
-              Ship faster with <br />
+              Production code.<br />
               <span className="bg-gradient-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
-                Elite Snippets
+                Shipped in hours.
               </span>
             </motion.h1>
             
@@ -99,8 +101,9 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             >
-              Stop reinventing the wheel. Access a curated vault of production-ready 
-              components and logic used by top-tier engineering teams.
+              Access a curated vault of production-ready code assets. Buy the snippet, or let us{" "}
+              <span className="font-semibold text-foreground">integrate it end-to-end within 24 hours</span>{" "}
+              for a flat fee. No context-switching, no boilerplate.
             </motion.p>
             
             <motion.div 
@@ -118,6 +121,31 @@ export default function Home() {
                 Monetize Your Code
               </Button>
             </motion.div>
+
+            {/* Trust/credibility row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-muted-foreground"
+            >
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="size-3.5 text-green-500" />
+                Snippet-only from $8
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="size-3.5 text-green-500" />
+                Full integration $250 flat
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="size-3.5 text-green-500" />
+                Delivered in 24 hours
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle className="size-3.5 text-green-500" />
+                Production-ready code
+              </span>
+            </motion.div>
           </div>
         </section>
 
@@ -126,7 +154,7 @@ export default function Home() {
           <div className="mb-12 flex items-end justify-between">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tight">Featured Assets</h2>
-              <p className="text-muted-foreground">Hand-picked snippets for maximum impact.</p>
+              <p className="text-muted-foreground">Hand-picked solutions. Download raw or get it integrated.</p>
             </div>
             <Link
               href="/browse"
@@ -144,8 +172,18 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 key={snippet.title}
-                className="group relative rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 glass"
+                className={`group relative rounded-2xl border transition-all ${
+                  snippet.featured
+                    ? "border-amber-500/30 bg-gradient-to-b from-amber-500/[0.04] to-card hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
+                    : "border-border bg-card hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+                } p-6 glass`}
               >
+                {snippet.featured && (
+                  <div className="absolute -top-2.5 right-4 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-lg">
+                    <Rocket className="size-3" />
+                    Featured Service
+                  </div>
+                )}
                 <div className="mb-4 flex items-center justify-between">
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">
                     {snippet.language}
@@ -165,46 +203,92 @@ export default function Home() {
                   </div>
                   <span className="text-xl font-bold tracking-tighter">${snippet.price}</span>
                 </div>
+                {/* Integration badge on every card */}
+                <div className="mt-3">
+                  <IntegrationBadge compact />
+                </div>
               </motion.article>
             ))}
           </div>
         </section>
 
-        {/* Value Props */}
+        {/* Integration Service Section (replaces old "Value Props") */}
         <section className="border-t border-border bg-muted/20">
           <div className="mx-auto max-w-7xl px-6 py-24">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Engineered for Speed</h2>
-              <p className="mt-4 text-muted-foreground">Everything you need to go from idea to production.</p>
+            <div className="mb-12 text-center">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-medium text-amber-500">
+                <Zap className="size-3" />
+                <span>Introducing: Done-for-you Integration</span>
+              </div>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Buy the Code. Or Let Us Build It.
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+                Not every team has the cycles to wire up a new tool. For a flat $250, our engineers
+                deliver a fully integrated, production-ready implementation within 24 hours.
+              </p>
             </div>
-            <div className="grid gap-12 sm:grid-cols-3">
-              {[
-                { 
-                  icon: Search, 
-                  title: "Curated Discovery", 
-                  desc: "Stop digging through GitHub. Find exactly what you need in seconds with our advanced filter engine." 
-                },
-                { 
-                  icon: Shield, 
-                  title: "Production Grade", 
-                  desc: "Every snippet is vetted for security, performance, and maintainability. No more spaghetti code." 
-                },
-                { 
-                  icon: Cpu, 
-                  title: "Instant Integration", 
-                  desc: "Clean, modular code designed to be dropped into any project without breaking your architecture." 
-                },
-              ].map((prop, i) => (
-                <div key={i} className="group relative p-8 rounded-2xl border border-border bg-card transition-all hover:border-primary/30 glass">
-                  <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
-                    <prop.icon className="size-6" />
+
+            <div className="mx-auto max-w-4xl">
+              <div className="grid gap-6 sm:grid-cols-3">
+                {[
+                  {
+                    icon: Terminal,
+                    title: "You Buy",
+                    desc: "Purchase any asset on the marketplace. Whether it's a $12 hook or a $29 workflow — same flat integration fee.",
+                    highlight: false,
+                  },
+                  {
+                    icon: Rocket,
+                    title: "We Build",
+                    desc: "Our team forks your repo, wires the asset into your stack, configures env vars, CI/CD, and tests. You get a PR within 24 hours.",
+                    highlight: true,
+                  },
+                  {
+                    icon: Zap,
+                    title: "You Ship",
+                    desc: "Review, approve, merge. What used to take days now takes one click. Your feature ships same-week.",
+                    highlight: false,
+                  },
+                ].map((step, i) => (
+                  <div
+                    key={i}
+                    className={`group relative rounded-2xl border p-8 transition-all ${
+                      step.highlight
+                        ? "border-amber-500/30 bg-gradient-to-b from-amber-500/[0.06] to-card hover:border-amber-500/50"
+                        : "border-border bg-card hover:border-primary/30"
+                    } glass`}
+                  >
+                    <div
+                      className={`mb-4 flex size-12 items-center justify-center rounded-xl transition-transform group-hover:scale-110 ${
+                        step.highlight
+                          ? "bg-amber-500/20 text-amber-500"
+                          : "bg-primary/10 text-primary"
+                      }`}
+                    >
+                      <step.icon className="size-6" />
+                    </div>
+                    <h3 className="mb-2 text-lg font-bold tracking-tight">{step.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+                    {step.highlight && (
+                      <div className="mt-4 inline-flex items-center gap-1 rounded-full bg-amber-500/15 px-2.5 py-1 border border-amber-500/20">
+                        <span className="text-[10px] font-bold text-amber-500">$250 FLAT — 24H DELIVERY</span>
+                      </div>
+                    )}
                   </div>
-                  <h3 className="mb-2 text-lg font-bold tracking-tight">{prop.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {prop.desc}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <Button
+                  size="lg"
+                  className="h-12 px-8 text-base font-semibold rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700 shadow-lg shadow-amber-500/25 transition-all hover:shadow-amber-500/40"
+                  render={<Link href="/browse" />}
+                >
+                  <Rocket className="mr-2 size-4" />
+                  Find an Asset to Integrate
+                </Button>
+              </div>
             </div>
           </div>
         </section>

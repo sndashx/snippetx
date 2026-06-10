@@ -5,9 +5,10 @@ import Link from "next/link"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Code2, ArrowRight, Loader2, Search, Shield } from "lucide-react"
+import { Code2, ArrowRight, Loader2, Search, Shield, Rocket } from "lucide-react"
 import { useSnippets } from "@/lib/hooks/use-snippets"
 import { motion, AnimatePresence } from "framer-motion"
+import { IntegrationBadge } from "@/components/integration-banner"
 
 const LANGUAGES = [
   "TypeScript",
@@ -180,9 +181,12 @@ export function BrowseClient({ lang }: { lang?: string }) {
                         <h3 className="mb-2 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
                           {snippet.title}
                         </h3>
-                        <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                        <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                           {snippet.description}
                         </p>
+                        <div className="mt-3">
+                          <IntegrationBadge compact />
+                        </div>
                       </CardContent>
                       <CardFooter className="flex items-center justify-between p-6 pt-0 border-t border-border/50 bg-muted/30">
                         <div className="flex items-center gap-2">

@@ -2,13 +2,14 @@ import { db } from "@/db"
 import { snippets, users, orders } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
 import { notFound } from "next/navigation"
-import { Code2, ArrowLeft, Shield, Download, Clock } from "lucide-react"
+import { Code2, ArrowLeft, Shield, Download, Clock, Rocket } from "lucide-react"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { PurchaseButton } from "@/components/purchase-button"
 import { SnippetDetailsClient } from "@/components/snippet-details/snippet-details-client"
 import { ReviewsSection } from "@/components/reviews/reviews-section"
 import { WishlistButton } from "@/components/wishlist-button"
+import { IntegrationBanner, IntegrationBadge } from "@/components/integration-banner"
 
 export default async function SnippetPage(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params
@@ -143,6 +144,10 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
               hasPurchased={hasPurchased}
               orderId={orderId}
             />
+
+            <div className="mt-6">
+              <IntegrationBanner />
+            </div>
 
             <div className="mt-8 space-y-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-3">

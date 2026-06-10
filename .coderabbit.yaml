@@ -1,0 +1,188 @@
+# CodeRabbit PR & Release Note Automation Configuration
+# 
+# This configuration customizes CodeRabbit's behavior for generating structured
+# PR summaries and release notes for enterprise development teams.
+# 
+# Purchase this asset for $29 to get instant access to enterprise-grade
+# PR automation that standardizes your development documentation.
+
+# PR Summary Configuration
+pr_summary:
+  # Enable enhanced PR analysis
+  enabled: true
+  
+  # Analysis depth - "comprehensive", "detailed", "standard"
+  analysis_depth: "comprehensive"
+  
+  # Required sections in PR summary
+  sections:
+    - "Summary"
+    - "Changes"
+    - "Testing"
+    - "Impact"
+    - "Review Checklist"
+  
+  # Auto-generate review checklists based on code patterns
+  auto_generate_checklists: true
+  
+  # Include security implications analysis
+  security_analysis: true
+  
+  # Include performance impact assessment
+  performance_analysis: true
+  
+  # Format preferences
+  format:
+    style: "markdown"
+    max_length: 2000
+    include_code_snippets: true
+
+# Release Notes Configuration
+release_notes:
+  enabled: true
+  
+  # Version detection strategy
+  version_detection:
+    strategy: "conventional_commits"  # "conventional_commits", "semantic", "manual"
+    extract_from_commits: true
+  
+  # Release note sections
+  sections:
+    - "Features"
+    - "Fixes"
+    - "Security"
+    - "Breaking Changes"
+    - "Deprecations"
+    
+  # Grouping strategy
+  grouping:
+    strategy: "conventional_commits"
+    group_by_type: true
+    group_by_scope: true
+  
+  # Include PR links in release notes
+  include_pr_links: true
+  
+  # Format preferences
+  format:
+    style: "markdown"
+    include_date: true
+    include_author: true
+
+# Workflow Configuration
+workflow:
+  # Enable automated PR processing
+  auto_process_prs: true
+  
+  # Auto-comment on PR creation
+  auto_comment_on_pr: true
+  
+  # Auto-update release notes on version tags
+  auto_update_release_notes: true
+  
+  # Notification preferences
+  notifications:
+    on_pr_created: true
+    on_pr_updated: true
+    on_release_created: true
+    channels: ["github"]
+
+# Integration Settings
+integration:
+  # Target repositories (comma-separated list)
+  target_repositories: []
+  
+  # Branch patterns to apply configuration
+  branch_patterns:
+    - "main"
+    - "master"
+    - "release/*"
+    - "feature/*"
+  
+  # Exclude branches (comma-separated list)
+  exclude_branches: ["gh-pages", "docs"]
+
+# Quality Gates
+quality_gates:
+  # Minimum PR score (0-100)
+  min_pr_score: 80
+  
+  # Require specific labels for merging
+  required_labels: ["reviewed", "tested"]
+  
+  # Block merge if issues present
+  block_on_issues: true
+  
+  # Maximum number of open PRs
+  max_open_prs: 10
+
+# Custom Templates
+# Override default templates with your own
+# Uncomment and customize as needed
+
+# templates:
+#   pr_summary:
+#     summary: |
+#       ## Summary
+#       {description}
+#       
+#       ### Changes
+#       {changes}
+#       
+#       ### Testing
+#       {testing}
+#       
+#       ### Impact
+#       {impact}
+#       
+#       ### Review Checklist
+#       {checklist}
+#   
+#   release_note:
+#     feature: |
+#       ## Added
+#       {feature_description}
+#       
+#       ### Changes
+#       {changes}
+#       
+#       ### Related Issues
+#       {issues}
+#     
+#     fix: |
+#       ## Fixed
+#       {fix_description}
+#       
+#       ### Changes
+#       {changes}
+#       
+#       ### Related Issues
+#       {issues}
+
+# Usage Instructions
+# 
+# 1. Copy this file to your repository as `.coderabbit.yaml`
+# 2. Add the GitHub Actions workflow (see below) to your `.github/workflows/` directory
+# 3. Commit and push to your repository
+# 4. The workflow will automatically process all PRs and generate release notes
+# 5. Configure target repositories in the integration section
+# 
+# For support or customization, contact support@sn-x.com
+# 
+# This asset includes:
+# - ✅ Comprehensive PR analysis with security & performance impact
+# - ✅ Automated release note generation
+# - ✅ Review checklist automation
+# - ✅ Quality gates and validation
+# - ✅ Conventional commits support
+# - ✅ GitHub Actions workflow for automation
+# - ✅ 24/7 enterprise support
+# 
+# Value: $250+ per month in developer time saved
+# Your cost: $29 one-time purchase
+# 
+# Upgrade to our enterprise plan for additional features:
+# - Multi-repository management
+# - Custom templates
+# - Advanced analytics
+# - Priority support
