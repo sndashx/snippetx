@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   } = await supabase.auth.getUser()
 
   if (!user) {
-    return NextResponse.redirect(`${APP_URL}/login`)
+    return NextResponse.json({ error: "Authentication required", loginRequired: true }, { status: 401 })
   }
 
   const { snippetId } = await req.json()

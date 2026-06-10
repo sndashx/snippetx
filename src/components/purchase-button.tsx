@@ -14,9 +14,11 @@ export function PurchaseButton({
   orderId: string | null
 }) {
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   async function handlePurchase() {
     setLoading(true)
+    setError(null)
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -24,9 +26,21 @@ export function PurchaseButton({
         body: JSON.stringify({ snippetId }),
       })
       const data = await res.json()
+
+      if (!res.ok) {
+        if (data.loginRequired) {
+          window.location.href = "/login"
+          return
+        }
+        throw new Error(data.error || "Purchase failed")
+      }
+
       if (data.url) {
         window.location.href = data.url
       }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Something went wrong"
+      setError(message)
     } finally {
       setLoading(false)
     }
@@ -44,17 +58,22 @@ export function PurchaseButton({
   }
 
   return (
-    <Button
-      className="w-full"
-      size="lg"
-      onClick={handlePurchase}
-      disabled={loading}
-    >
-      {loading ? (
-        <Loader2 className="size-4 animate-spin" />
-      ) : (
-        "Purchase Snippet"
+    <div className="w-full space-y-2">
+      <Button
+        className="w-full"
+        size="lg"
+        onClick={handlePurchase}
+        disabled={loading}
+      >
+        {loading ? (
+          <Loader2 className="size-4 animate-spin" />
+        ) : (
+          "Purchase Snippet"
+        )}
+      </Button>
+      {error && (
+        <p className="text-sm text-red-500 text-center">{error}</p>
       )}
-    </Button>
+    </div>
   )
 }
