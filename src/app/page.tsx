@@ -191,48 +191,61 @@ export default function Home() {
           
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredSnippets.map((snippet, i) => (
-              <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                key={snippet.title}
-                className={`group relative rounded-2xl border transition-all ${
-                  snippet.featured
-                    ? "border-amber-500/30 bg-gradient-to-b from-amber-500/[0.04] to-card hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
-                    : "border-border bg-card hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                } p-6 glass`}
+              <Link
+                key={snippet.id}
+                href={`/snippets/${snippet.id}`}
+                className="block"
               >
-                {snippet.featured && (
-                  <div className="absolute -top-2.5 right-4 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-lg">
-                    <Rocket className="size-3" />
-                    Featured Service
+                <motion.article
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`group relative rounded-2xl border transition-all ${
+                    snippet.featured
+                      ? "border-amber-500/30 bg-gradient-to-b from-amber-500/[0.04] to-card hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
+                      : "border-border bg-card hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+                  } p-6 glass`}
+                >
+                  {snippet.featured && (
+                    <div className="absolute -top-2.5 right-4 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-lg">
+                      <Rocket className="size-3" />
+                      Featured Service
+                    </div>
+                  )}
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">
+                      {snippet.language}
+                    </span>
+                    <span className="text-xs font-medium text-muted-foreground">by {snippet.author}</span>
                   </div>
-                )}
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">
-                    {snippet.language}
-                  </span>
-                  <span className="text-xs font-medium text-muted-foreground">by {snippet.author}</span>
-                </div>
-                <h3 className="mb-2 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
-                  {snippet.title}
-                </h3>
-                <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                  {snippet.description}
-                </p>
-                <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                  <div className="flex items-center gap-2">
-                    <div className="size-6 rounded-full bg-muted border border-border" />
-                    <span className="text-xs font-medium text-muted-foreground">@{snippet.author}</span>
+                  <h3 className="mb-2 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                    {snippet.title}
+                  </h3>
+                  <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                    {snippet.description}
+                  </p>
+                  <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                    <div className="flex items-center gap-2">
+                      <div className="size-6 rounded-full bg-muted border border-border" />
+                      <span
+                        className="text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          window.location.href = `/profile/${snippet.author}`
+                        }}
+                      >
+                        @{snippet.author}
+                      </span>
+                    </div>
+                    <span className="text-xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(0)}</span>
                   </div>
-                  <span className="text-xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(0)}</span>
-                </div>
-                {/* Integration badge on every card */}
-                <div className="mt-3">
-                  <IntegrationBadge compact />
-                </div>
-              </motion.article>
+                  <div className="mt-3">
+                    <IntegrationBadge compact />
+                  </div>
+                </motion.article>
+              </Link>
             ))}
           </div>
         </section>
