@@ -120,5 +120,82 @@ export const passwordResets = pgTable("password_resets", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const teams = pgTable("teams", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  description: text("description"),
+  logoUrl: text("logo_url"),
+  ownerId: uuid("owner_id")
+    .references(() => users.id)
+    .notNull(),
+  subscriptionPlan: text("subscription_plan")
+    .default("pro")
+    .notNull(),
+  subscriptionStatus: text("subscription_status")
+    .default("active")
+    .notNull(),
+  subscriptionExpiresAt: timestamp("subscription_expires_at"),
+  maxMembers: integer("max_members").default(5).notNull(),
+  maxSnippets: integer("max_snippets").default(50).notNull(),
+  maxStorage: integer("max_storage").default(10240).notNull(), // in MB
+  monthlyPrice: integer("monthly_price").default(2999).notNull(), // in cents
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const teamMembers = pgTable("team_members", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  teamId: uuid("team_id")
+    .references(() => teams.id)
+    .notNull(),
+  userId: uuid("user_id")
+    .references(() => users.id)
+    .notNull(),
+  role: text("role").default("member").notNull(), // owner, admin, member
+  joinedAt: timestamp("joined_at").defaultNow().notNull(),
+});
+
+export const teamSubscriptions = pgTable("team_subscriptions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  teamId: uuid("team_id")
+    .references(() => teams.id)
+    .notNull(),
+  stripeSubscriptionId: text("stripe_subscription_id").notNull().unique(),
+  stripeCustomerId: text("stripe_customer_id").notNull(),
+  status: text("status").default("active").notNull(), // active, past_due, canceled
+  currentPeriodStart: timestamp("current_period_start").notNull(),
+  currentPeriodEnd: timestamp("current_period_end").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const premiumVetting = pgTable("premium_vetting", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id")
+    .references(() => users.id)
+    .notNull(),
+  status: text("status").default("pending").notNull(), // pending, approved, rejected
+  verificationType: text("verification_type").notNull(), // identity, business, portfolio
+  submissionDate: timestamp("submission_date").defaultNow().notNull(),
+  reviewDate: timestamp("review_date"),
+  reviewerId: uuid("reviewer_id").references(() => users.id),
+  notes: text("notes"),
+  documents: jsonb("documents"), // URLs to verification documents
+  completedAt: timestamp("completed_at"),
+});
+
+export const verifiedBadges = pgTable("verified_badges", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id")
+    .references(() => users.id)
+    .notNull(),
+  badgeType: text("badge_type").notNull(), // verified_seller, premium_support, expert
+  issuedAt: timestamp("issued_at").defaultNow().notNull(),
+  expiresAt: timestamp("expires_at"),
+  issuerId: uuid("issuer_id").references(() => users.id),
+  requirements: jsonb("requirements"), // JSON object with badge requirements
+});
+
 
 
