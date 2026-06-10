@@ -1,7 +1,6 @@
 import { db } from "@/db"
 import { users, snippets } from "@/db/schema"
 import { createAdminClient } from "@/lib/supabase/server"
-import { uploadSnippet } from "@/lib/r2"
 import { eq } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
@@ -175,13 +174,8 @@ export async function POST() {
 
     for (const snippet of SNIPPET_DATA) {
       try {
-        const content = `// ${snippet.title}\n// ${snippet.description}\n// Language: ${snippet.language}\n// Price: $${snippet.price / 100}\n\n// This is a production-ready code snippet.\n// Purchase to download the full implementation.`
-        
-        const buffer = Buffer.from(content, "utf-8")
-        const timestamp = Date.now() + Math.random() * 1000 // Ensure unique timestamps
+        const timestamp = Date.now() + Math.random() * 1000
         const key = `snippets/${adminUserId}/${timestamp}-${snippet.fileName}`
-
-        await uploadSnippet(key, buffer, "text/plain")
 
         const [newSnippet] = await db.insert(snippets).values({
           sellerId: adminUserId,
