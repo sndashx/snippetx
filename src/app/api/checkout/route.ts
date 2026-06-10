@@ -59,8 +59,15 @@ export async function POST(req: Request) {
     })
     .returning()
 
-  const sessionParams = {
-    payment_method_types: ["card"] as string[],
+  let isPlatformSeller = false
+  try {
+    const platformAccount = await stripe.accounts.retrieve("self")
+    isPlatformSeller = seller.stripeAccountId === platformAccount.id
+  } catch {
+  }
+
+  const checkoutParams: Stripe.Checkout.SessionCreateParams = {
+    payment_method_types: ["card"],
     line_items: [
       {
         price_data: {
@@ -74,7 +81,7 @@ export async function POST(req: Request) {
         quantity: 1,
       },
     ],
-    mode: "payment" as const,
+    mode: "payment",
     success_url: `${APP_URL}/snippets/${snippet.id}?purchased=true`,
     cancel_url: `${APP_URL}/snippets/${snippet.id}`,
     metadata: {
@@ -83,17 +90,22 @@ export async function POST(req: Request) {
       buyerId: user.id,
       sellerId: snippet.sellerId,
     },
-    application_fee_amount: Math.round(snippet.price * (PLATFORM_FEE_PERCENT / 100)),
-    transfer_data: {
-      destination: seller.stripeAccountId,
-    },
   }
 
-  const session = await stripe.checkout.sessions.create({
-    ...sessionParams,
-    application_fee_amount: sessionParams.application_fee_amount,
-    transfer_data: sessionParams.transfer_data,
-  } as Stripe.Checkout.SessionCreateParams)
+  if (!isPlatformSeller) {
+    const connectParams = checkoutParams as Stripe.Checkout.SessionCreateParams & {
+      application_fee_amount: number
+      transfer_data: { destination: string }
+    }
+    connectParams.application_fee_amount = Math.round(
+      snippet.price * (PLATFORM_FEE_PERCENT / 100)
+    )
+    connectParams.transfer_data = {
+      destination: seller.stripeAccountId,
+    }
+  }
+
+  const session = await stripe.checkout.sessions.create(checkoutParams)
 
   return NextResponse.json({ url: session.url })
 }
