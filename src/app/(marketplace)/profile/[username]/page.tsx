@@ -29,7 +29,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
         createdAt: users.createdAt,
       })
       .from(users)
-      .where(eq(users.email, username))
+      .where(eq(users.displayName, username))
       .limit(1)
 
     user = results[0] ?? null
