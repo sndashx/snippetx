@@ -11,7 +11,12 @@
     "dev": "tsc --watch",
     "start": "node dist/index.js"
   },
-  "keywords": ["snippetx", "cli", "snippet", "install"],
+  "keywords": [
+    "snippetx",
+    "cli",
+    "snippet",
+    "install"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -21,8 +26,11 @@
     "inquirer": "^9.0.0"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.9",
     "typescript": "^5.0.0"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "type": "module"
 }

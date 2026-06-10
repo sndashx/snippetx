@@ -1,7 +1,7 @@
 import { db } from "@/db"
 import { premiumVetting, verifiedBadges, users } from "@/db/schema"
 import { createClient } from "@/lib/supabase/server"
-import { eq } from "drizzle-orm"
+import { eq, and } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
@@ -77,7 +77,14 @@ export async function GET(req: Request) {
   const status = searchParams.get("status")
 
   try {
-    let query = db
+    // Build query with filters
+    const conditions = []
+    if (status) {
+      conditions.push(eq(premiumVetting.status, status))
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined
+    const vettings = await db
       .select({
         id: premiumVetting.id,
         userId: premiumVetting.userId,
@@ -89,12 +96,7 @@ export async function GET(req: Request) {
         completedAt: premiumVetting.completedAt,
       })
       .from(premiumVetting)
-
-    if (status) {
-      query = query.where(eq(premiumVetting.status, status))
-    }
-
-    const vettings = await query
+      .where(whereClause)
 
     return NextResponse.json(vettings)
   } catch (error) {
@@ -139,7 +141,8 @@ export async function PATCH(req: Request) {
           reviewerId: user.id,
           notes: reviewerNotes,
           completedAt: new Date(),
-        })\n        .where(eq(premiumVetting.id, vettingId))
+        })
+        .where(eq(premiumVetting.id, vettingId))
 
       // Create verified badge
       const badgeType = vetting[0].verificationType === "business" ? "verified_seller" : "expert"
@@ -166,7 +169,8 @@ export async function PATCH(req: Request) {
           reviewDate: new Date(),
           reviewerId: user.id,
           notes: reviewerNotes,
-        })\n        .where(eq(premiumVetting.id, vettingId))
+        })
+        .where(eq(premiumVetting.id, vettingId))
 
       return NextResponse.json({ success: true })
     }

@@ -197,5 +197,21 @@ export const verifiedBadges = pgTable("verified_badges", {
   requirements: jsonb("requirements"), // JSON object with badge requirements
 });
 
+export const bounties = pgTable("bounties", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  creatorId: uuid("creator_id")
+    .references(() => users.id)
+    .notNull(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  language: text("language").notNull(),
+  budget: integer("budget").notNull(), // in cents
+  status: text("status").default("open").notNull(), // open, in_progress, completed, closed
+  assigneeId: uuid("assignee_id").references(() => users.id),
+  deadline: timestamp("deadline"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 
 
