@@ -2,16 +2,21 @@ import { db } from "@/db"
 import { snippets, users } from "@/db/schema"
 import { createClient } from "@/lib/supabase/server"
 import { uploadSnippet } from "@/lib/r2"
-import { and, desc, eq } from "drizzle-orm"
+import { and, desc, eq, sql } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
   const lang = searchParams.get("lang")
+  const featured = searchParams.get("featured")
+  const limit = Math.min(parseInt(searchParams.get("limit") || "50"), 100)
 
   const conditions = []
   if (lang) {
     conditions.push(eq(snippets.language, lang))
+  }
+  if (featured === "true") {
+    conditions.push(eq(snippets.featured, true))
   }
 
   try {
@@ -23,13 +28,14 @@ export async function GET(req: Request) {
         price: snippets.price,
         language: snippets.language,
         author: users.displayName,
+        featured: snippets.featured,
         createdAt: snippets.createdAt,
       })
       .from(snippets)
       .innerJoin(users, eq(snippets.sellerId, users.id))
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .orderBy(desc(snippets.createdAt))
-      .limit(50)
+      .limit(limit)
 
     return NextResponse.json(allSnippets)
   } catch (error) {

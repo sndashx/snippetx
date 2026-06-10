@@ -47,6 +47,7 @@ export const snippets = pgTable("snippets", {
   fileSize: integer("file_size"),
   previewImage: text("preview_image"),
   tags: jsonb("tags").$type<string[]>().default([]).notNull(),
+  featured: boolean("featured").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

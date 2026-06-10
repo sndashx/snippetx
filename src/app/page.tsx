@@ -6,36 +6,61 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { Code2, DollarSign, Shield, Zap, ArrowRight, Search, Sparkles, Terminal, Cpu, Rocket, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import { IntegrationBanner, IntegrationBadge } from "@/components/integration-banner"
+import { useState, useEffect } from "react"
 
-const featuredSnippets = [
+interface FeaturedSnippet {
+  id: string
+  title: string
+  description: string
+  price: number
+  language: string
+  author: string | null
+  featured: boolean
+}
+
+const fallbackSnippets: FeaturedSnippet[] = [
   {
+    id: "fallback-1",
     title: "React Hook Form Validation Kit",
     description: "Reusable form validation schemas and components for React Hook Form + Zod.",
-    price: 12,
-    author: "johndoe",
+    price: 1200,
     language: "TypeScript",
-    category: "Frontend",
+    author: "SNIPPETxADMIN",
+    featured: true,
   },
   {
+    id: "fallback-2",
     title: "Auth Middleware Suite",
     description: "Pre-built authentication middleware for Express/Fastify with JWT & OAuth support.",
-    price: 19,
-    author: "sarahdev",
+    price: 1900,
     language: "JavaScript",
-    category: "Backend",
+    author: "SNIPPETxADMIN",
+    featured: true,
   },
   {
-    title: "Enterprise CodeRabbit PR & Release Note Automation",
-    description: "Plug-and-play workflow that auto-generates clean, standardized PR summaries and release notes on every merge.",
-    price: 29,
-    author: "sn-x.com",
-    language: "YAML",
-    category: "DevOps",
+    id: "fallback-3",
+    title: "FastAPI Starter Kit",
+    description: "Production-ready FastAPI application with SQLAlchemy, Alembic migrations, JWT auth, and Docker support.",
+    price: 1800,
+    language: "Python",
+    author: "SNIPPETxADMIN",
     featured: true,
   },
 ]
 
 export default function Home() {
+  const [featuredSnippets, setFeaturedSnippets] = useState<FeaturedSnippet[]>(fallbackSnippets)
+
+  useEffect(() => {
+    fetch("/api/snippets?featured=true&limit=3")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setFeaturedSnippets(data)
+        }
+      })
+      .catch(() => {})
+  }, [])
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <header className="sticky top-0 z-50 border-b border-border bg-background/60 backdrop-blur-xl">
@@ -188,7 +213,7 @@ export default function Home() {
                   <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">
                     {snippet.language}
                   </span>
-                  <span className="text-xs font-medium text-muted-foreground">{snippet.category}</span>
+                  <span className="text-xs font-medium text-muted-foreground">by {snippet.author}</span>
                 </div>
                 <h3 className="mb-2 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
                   {snippet.title}
@@ -201,7 +226,7 @@ export default function Home() {
                     <div className="size-6 rounded-full bg-muted border border-border" />
                     <span className="text-xs font-medium text-muted-foreground">@{snippet.author}</span>
                   </div>
-                  <span className="text-xl font-bold tracking-tighter">${snippet.price}</span>
+                  <span className="text-xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(0)}</span>
                 </div>
                 {/* Integration badge on every card */}
                 <div className="mt-3">
