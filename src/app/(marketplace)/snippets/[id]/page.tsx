@@ -23,9 +23,10 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
     filePath: string
     author: string | null
     authorId: string
+    authorJoined: Date
     createdAt: Date
   } | null = null
-
+  
   try {
     const results = await db
       .select({
@@ -37,6 +38,7 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
         filePath: snippets.filePath,
         author: users.displayName,
         authorId: users.id,
+        authorJoined: users.createdAt,
         createdAt: snippets.createdAt,
       })
       .from(snippets)
@@ -121,6 +123,48 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
               isPurchased={hasPurchased} 
             />
           </div>
+
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold tracking-tight">What's Included</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-xl border border-border bg-card p-4">
+                <div className="mb-2 flex items-center gap-2 text-primary">
+                  <Code2 className="size-4" />
+                  <span className="text-sm font-semibold">Complete Code</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Production-ready {snippet.language} snippet with comments and documentation
+                </p>
+              </div>
+              <div className="rounded-xl border border-border bg-card p-4">
+                <div className="mb-2 flex items-center gap-2 text-primary">
+                  <Download className="size-4" />
+                  <span className="text-sm font-semibold">Instant Access</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Download immediately after purchase. No waiting, no delays.
+                </p>
+              </div>
+              <div className="rounded-xl border border-border bg-card p-4">
+                <div className="mb-2 flex items-center gap-2 text-primary">
+                  <Shield className="size-4" />
+                  <span className="text-sm font-semibold">Quality Guaranteed</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  All snippets are tested and verified by our team before listing.
+                </p>
+              </div>
+              <div className="rounded-xl border border-border bg-card p-4">
+                <div className="mb-2 flex items-center gap-2 text-primary">
+                  <Rocket className="size-4" />
+                  <span className="text-sm font-semibold">Seller Support</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Get help from the seller if you have questions about implementation.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="lg:sticky lg:top-24 lg:self-start">
@@ -149,6 +193,27 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
               <IntegrationBanner />
             </div>
 
+            <div className="mt-6 pt-6 border-t border-border">
+              <h3 className="mb-4 text-sm font-semibold text-foreground">Seller Info</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-3">
+                  <div className="size-8 rounded-full bg-muted border border-border flex items-center justify-center text-xs font-bold">
+                    {(snippet.author || "S")[0].toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="font-medium">{snippet.author || "sn-x.com"}</p>
+                    <p className="text-xs text-muted-foreground">
+                      Member since {new Date(snippet.authorJoined).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <div className="size-2 rounded-full bg-green-500" />
+                  <span>Usually responds within 24 hours</span>
+                </div>
+              </div>
+            </div>
+
             <div className="mt-8 space-y-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-3">
                 <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -167,6 +232,12 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
                   <Code2 className="size-4" />
                 </div>
                 <span>Production-ready code</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-green-500/10 text-green-500">
+                  <Shield className="size-4" />
+                </div>
+                <span>14-day money-back guarantee</span>
               </div>
             </div>
           </div>
