@@ -108,7 +108,7 @@ export default function RegisterPage() {
               aria-invalid={!!errors.displayName}
               {...register("displayName")}
             />
-            <p className="mt-1 text-xs text-muted-foreground">How you'll appear on the marketplace (2-50 chars)</p>
+            <p className="mt-1 text-xs text-muted-foreground">How you&apos;ll appear on the marketplace (2-50 chars)</p>
           </FormField>
 
           <FormField label="Password" htmlFor="password" error={errors.password?.message} required>

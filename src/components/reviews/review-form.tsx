@@ -60,8 +60,9 @@ export function ReviewForm({ snippetId, onSubmitReview, isPurchased, initialRati
       setRating(0) // Reset rating
       setSubmitError("")
       router.refresh() // Refresh page to show new review
-    } catch (error: any) {
-      setSubmitError(error.message || "Failed to submit review. Please try again.")
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error)
+      setSubmitError(message || "Failed to submit review. Please try again.")
     }
   }
 

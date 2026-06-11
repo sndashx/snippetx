@@ -46,8 +46,9 @@ export function ReviewsSection({ snippetId, isPurchased, currentUserId }: Review
       }
       const data = await res.json()
       setReviews(data)
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err)
+      setError(message)
     } finally {
       setLoading(false)
     }

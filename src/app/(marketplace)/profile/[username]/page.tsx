@@ -182,7 +182,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
             <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-border py-24 text-center">
               <Code2 className="mb-4 size-12 text-muted-foreground/50" />
               <h3 className="text-xl font-bold">No snippets yet</h3>
-              <p className="mt-2 text-muted-foreground">This seller hasn't published any snippets yet.</p>
+              <p className="mt-2 text-muted-foreground">This seller hasn&apos;t published any snippets yet.</p>
             </div>
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

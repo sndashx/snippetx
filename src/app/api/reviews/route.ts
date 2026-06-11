@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     return NextResponse.json(newReview[0], { status: 201 })
   } catch (error: unknown) {
     console.error("Failed to create review:", error)
-    if (error instanceof Error && "code" in error && (error as any).code === "23505") { 
+    if (error instanceof Error && "code" in error && (error as { code: string }).code === "23505") { 
       return NextResponse.json({ error: "You have already reviewed this snippet." }, { status: 409 })
     }
     return NextResponse.json({ error: "Failed to create review" }, { status: 500 })
