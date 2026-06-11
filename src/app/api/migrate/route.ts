@@ -21,8 +21,9 @@ export async function GET() {
     // Test connection first
     const testResult = await pool.query("SELECT 1 as test")
     results.push(`db connected: ${JSON.stringify(testResult.rows)}`)
-  } catch (e: any) {
-    results.push(`connection test failed: ${e.message}`)
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e)
+    results.push(`connection test failed: ${message}`)
     await pool.end()
     return NextResponse.json({ results })
   }
@@ -30,15 +31,17 @@ export async function GET() {
   try {
     await pool.query(`CREATE TABLE IF NOT EXISTS "password_resets" ("id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL, "email" text NOT NULL, "token" text NOT NULL, "used" boolean DEFAULT false NOT NULL, "expires_at" timestamp NOT NULL, "created_at" timestamp DEFAULT now() NOT NULL)`)
     results.push("password_resets table created")
-  } catch (e: any) {
-    results.push(`password_resets error: ${e.message}`)
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e)
+    results.push(`password_resets error: ${message}`)
   }
 
   try {
     await pool.query(`CREATE UNIQUE INDEX IF NOT EXISTS "password_resets_token_idx" ON "password_resets" ("token")`)
     results.push("token index created")
-  } catch (e: any) {
-    results.push(`token index: ${e.message}`)
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e)
+    results.push(`token index: ${message}`)
   }
 
   await pool.end()
