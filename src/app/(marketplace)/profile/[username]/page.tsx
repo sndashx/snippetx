@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { Code2, ArrowLeft, Shield, Download, Clock, Star, Globe, ExternalLink, GitBranch, MessageSquareCode } from "lucide-react"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
+import { snippetPath } from "@/lib/seo"
 import { PurchaseButton } from "@/components/purchase-button"
 import { SnippetDetailsClient } from "@/components/snippet-details/snippet-details-client"
 
@@ -187,7 +188,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
           ) : (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {userSnippets.map((snippet, i) => (
-                <Link key={snippet.id} href={`/snippets/${snippet.id}`}>
+                <Link key={snippet.id} href={snippetPath(snippet.id, snippet.title)}>
                   <div className="group h-full overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 glass">
                     <div className="p-6">
                       <div className="mb-4 flex items-center justify-between">

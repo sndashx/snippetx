@@ -8,6 +8,7 @@ import { Code2, ArrowRight, Loader2, Search, Shield } from "lucide-react"
 import { useSnippets } from "@/lib/hooks/use-snippets"
 import { motion, AnimatePresence } from "framer-motion"
 import { IntegrationBadge } from "@/components/integration-banner"
+import { snippetPath } from "@/lib/seo"
 
 const LANGUAGES = [
   "TypeScript",
@@ -134,7 +135,7 @@ export function BrowseClient({ lang, q }: { lang?: string; q?: string }) {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.2, delay: i * 0.05 }}
               >
-                <Link href={`/snippets/${snippet.id}`}>
+                <Link href={snippetPath(snippet.id, snippet.title)}>
                   <Card className="group h-full overflow-hidden border-border bg-card transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 glass">
                       <CardContent className="p-6">
                         <div className="mb-4 flex items-center justify-between">

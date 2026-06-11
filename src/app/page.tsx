@@ -6,6 +6,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { Code2, DollarSign, Shield, Zap, ArrowRight, Search, Sparkles, Terminal, Cpu, Rocket, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import { IntegrationBanner, IntegrationBadge } from "@/components/integration-banner"
+import { snippetPath } from "@/lib/seo"
 import { useState, useEffect } from "react"
 
 interface FeaturedSnippet {
@@ -193,7 +194,7 @@ export default function Home() {
             {featuredSnippets.map((snippet, i) => (
               <Link
                 key={snippet.id}
-                href={`/snippets/${snippet.id}`}
+                href={snippetPath(snippet.id, snippet.title)}
                 className="block"
               >
                 <motion.article

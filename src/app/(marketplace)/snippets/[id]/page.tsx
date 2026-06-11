@@ -1,58 +1,85 @@
 import { db } from "@/db"
-import { snippets, users, orders } from "@/db/schema"
+import { orders } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
-import { notFound } from "next/navigation"
-import { Code2, ArrowLeft, Shield, Download, Clock, Rocket } from "lucide-react"
+import { notFound, redirect } from "next/navigation"
+import type { Metadata } from "next"
+import { Code2, ArrowLeft, Shield, Download, Clock, Rocket, Star } from "lucide-react"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { PurchaseButton } from "@/components/purchase-button"
 import { SnippetDetailsClient } from "@/components/snippet-details/snippet-details-client"
 import { ReviewsSection } from "@/components/reviews/reviews-section"
 import { WishlistButton } from "@/components/wishlist-button"
-import { IntegrationBanner, IntegrationBadge } from "@/components/integration-banner"
+import { IntegrationBanner } from "@/components/integration-banner"
+import { JsonLd } from "@/components/json-ld"
+import { RelatedSnippets } from "@/components/related-snippets"
+import { getSnippet, getRelatedSnippets } from "./snippet-data"
+import { extractId, snippetPath, snippetUrl, truncateForMeta } from "@/lib/seo"
+import { APP_URL } from "@/lib/constants"
+
+// This page reads auth cookies and shows per-user purchase state, so it must
+// render dynamically. SEO (generateMetadata + JSON-LD) works fine on dynamic
+// pages; static caching would leak per-user purchase state.
+
+export async function generateMetadata(props: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const { id: rawParam } = await props.params
+  const id = extractId(rawParam)
+  if (!id) return { title: "Snippet not found" }
+
+  const snippet = await getSnippet(id)
+  if (!snippet) return { title: "Snippet not found" }
+
+  const canonical = snippetPath(snippet.id, snippet.title)
+  const title = `${snippet.title} — ${snippet.language} Snippet`
+  const description = truncateForMeta(
+    `${snippet.description} Production-ready ${snippet.language} code by ${snippet.author || "SnippetX"}. Instant download for $${(snippet.price / 100).toFixed(2)}.`,
+  )
+
+  // Note: the colocated opengraph-image.tsx is auto-injected by Next.js with
+  // its correct content-hashed URL — we intentionally do NOT set og images
+  // manually here (doing so would override the auto URL with a broken one).
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    keywords: [
+      snippet.language,
+      `${snippet.language} snippet`,
+      `${snippet.language} code`,
+      snippet.title,
+      "buy code",
+      "code marketplace",
+    ],
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url: snippetUrl(snippet.id, snippet.title),
+      siteName: "SnippetX",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  }
+}
 
 export default async function SnippetPage(props: { params: Promise<{ id: string }> }) {
-  const { id } = await props.params
+  const { id: rawParam } = await props.params
+  const id = extractId(rawParam)
+  if (!id) notFound()
 
-  let snippet: {
-    id: string
-    title: string
-    description: string
-    price: number
-    language: string
-    filePath: string
-    author: string | null
-    authorId: string
-    authorJoined: Date
-    createdAt: Date
-  } | null = null
-  
-  try {
-    const results = await db
-      .select({
-        id: snippets.id,
-        title: snippets.title,
-        description: snippets.description,
-        price: snippets.price,
-        language: snippets.language,
-        filePath: snippets.filePath,
-        author: users.displayName,
-        authorId: users.id,
-        authorJoined: users.createdAt,
-        createdAt: snippets.createdAt,
-      })
-      .from(snippets)
-      .innerJoin(users, eq(snippets.sellerId, users.id))
-      .where(eq(snippets.id, id))
-      .limit(1)
-
-    snippet = results[0] ?? null
-  } catch (error) {
-    console.error("Failed to fetch snippet:", error)
-    notFound()
-  }
-
+  const snippet = await getSnippet(id)
   if (!snippet) notFound()
+
+  // Redirect bare-UUID or stale-slug URLs to the canonical slugged path (301-style).
+  const canonicalPath = snippetPath(snippet.id, snippet.title)
+  if (`/snippets/${rawParam}` !== canonicalPath) {
+    redirect(canonicalPath)
+  }
 
   let user: { id: string } | null = null
   try {
@@ -81,8 +108,62 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
     }
   }
 
+  const related = await getRelatedSnippets(snippet.id, snippet.language, snippet.authorId)
+
+  // ---- Structured data (JSON-LD) ----
+  const productJsonLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: snippet.title,
+    description: truncateForMeta(snippet.description, 500),
+    category: `${snippet.language} code snippet`,
+    brand: { "@type": "Brand", name: "SnippetX" },
+    url: snippetUrl(snippet.id, snippet.title),
+    offers: {
+      "@type": "Offer",
+      price: (snippet.price / 100).toFixed(2),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: snippetUrl(snippet.id, snippet.title),
+      seller: { "@type": "Organization", name: "SnippetX" },
+    },
+  }
+  if (snippet.ratingCount > 0) {
+    productJsonLd.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: snippet.ratingAvg.toFixed(1),
+      reviewCount: snippet.ratingCount,
+      bestRating: 5,
+      worstRating: 1,
+    }
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: APP_URL },
+      { "@type": "ListItem", position: 2, name: "Browse", item: `${APP_URL}/browse` },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: snippet.language,
+        item: `${APP_URL}/snippets/lang/${snippet.language.toLowerCase()}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: snippet.title,
+        item: snippetUrl(snippet.id, snippet.title),
+      },
+    ],
+  }
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-12">
+      <JsonLd data={productJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
+
       <Link
         href="/browse"
         className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -95,9 +176,12 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
         <div className="space-y-10">
           <div>
             <div className="mb-4 flex items-center gap-2">
-              <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">
+              <Link
+                href={`/snippets/lang/${snippet.language.toLowerCase()}`}
+                className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+              >
                 {snippet.language}
-              </span>
+              </Link>
               <span className="text-xs text-muted-foreground flex items-center gap-1">
                 <Clock className="size-3" />
                 {snippet.createdAt.toLocaleDateString("en-US", {
@@ -106,6 +190,12 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
                   year: "numeric",
                 })}
               </span>
+              {snippet.ratingCount > 0 && (
+                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                  <Star className="size-3 fill-amber-400 text-amber-400" />
+                  {snippet.ratingAvg.toFixed(1)} ({snippet.ratingCount})
+                </span>
+              )}
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
               {snippet.title}
@@ -117,15 +207,15 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
 
           <div className="space-y-4">
             <h2 className="text-xl font-bold tracking-tight">Code Preview</h2>
-            <SnippetDetailsClient 
-              id={snippet.id} 
-              language={snippet.language} 
-              isPurchased={hasPurchased} 
+            <SnippetDetailsClient
+              id={snippet.id}
+              language={snippet.language}
+              isPurchased={hasPurchased}
             />
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-xl font-bold tracking-tight">What's Included</h2>
+            <h2 className="text-xl font-bold tracking-tight">What&apos;s Included</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border border-border bg-card p-4">
                 <div className="mb-2 flex items-center gap-2 text-primary">
@@ -251,6 +341,8 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
           currentUserId={user?.id ?? null}
         />
       </div>
+
+      <RelatedSnippets items={related} />
     </div>
   )
 }
