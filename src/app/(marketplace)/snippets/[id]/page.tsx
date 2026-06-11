@@ -190,7 +190,7 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
             />
 
             <div className="mt-6">
-              <IntegrationBanner />
+              <IntegrationBanner snippetId={snippet.id} snippetTitle={snippet.title} />
             </div>
 
             <div className="mt-6 pt-6 border-t border-border">
