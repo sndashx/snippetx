@@ -5,9 +5,9 @@ export const dynamic = "force-dynamic"
 export default async function BrowsePage({
   searchParams,
 }: {
-  searchParams: Promise<{ lang?: string }>
+  searchParams: Promise<{ lang?: string; q?: string }>
 }) {
-  const { lang } = await searchParams
+  const { lang, q } = await searchParams
 
-  return <BrowseClient lang={lang} />
+  return <BrowseClient lang={lang} q={q} />
 }
