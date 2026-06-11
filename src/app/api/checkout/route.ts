@@ -92,20 +92,33 @@ export async function POST(req: Request) {
     },
   }
 
+  // Only add Connect params if seller is not the platform itself
   if (!isPlatformSeller) {
-    const connectParams = checkoutParams as Stripe.Checkout.SessionCreateParams & {
-      application_fee_amount: number
-      transfer_data: { destination: string }
-    }
-    connectParams.application_fee_amount = Math.round(
+    (checkoutParams as any).application_fee_amount = Math.round(
       snippet.price * (PLATFORM_FEE_PERCENT / 100)
     )
-    connectParams.transfer_data = {
+    ;(checkoutParams as any).transfer_data = {
       destination: seller.stripeAccountId,
     }
   }
 
-  const session = await stripe.checkout.sessions.create(checkoutParams)
+  try {
+    const session = await stripe.checkout.sessions.create(checkoutParams)
 
-  return NextResponse.json({ url: session.url })
+    if (!session.url) {
+      console.error("Stripe Checkout Session created but no URL returned")
+      return NextResponse.json(
+        { error: "Failed to create checkout session" },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({ url: session.url })
+  } catch (error) {
+    console.error("Stripe checkout session creation failed:", error)
+    return NextResponse.json(
+      { error: "Failed to create checkout session. Please try again." },
+      { status: 500 }
+    )
+  }
 }

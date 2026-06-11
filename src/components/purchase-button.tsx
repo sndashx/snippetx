@@ -25,7 +25,14 @@ export function PurchaseButton({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ snippetId }),
       })
-      const data = await res.json()
+      
+      let data
+      try {
+        data = await res.json()
+      } catch {
+        // If response is not JSON (e.g., HTML error page), show generic error
+        throw new Error("Server error. Please try again.")
+      }
 
       if (!res.ok) {
         if (data.loginRequired) {
@@ -37,6 +44,8 @@ export function PurchaseButton({
 
       if (data.url) {
         window.location.href = data.url
+      } else {
+        throw new Error("No checkout URL received")
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Something went wrong"
