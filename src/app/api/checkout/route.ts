@@ -94,10 +94,16 @@ export async function POST(req: Request) {
 
   // Only add Connect params if seller is not the platform itself
   if (!isPlatformSeller) {
-    (checkoutParams as any).application_fee_amount = Math.round(
+    (checkoutParams as Stripe.Checkout.SessionCreateParams & {
+      application_fee_amount: number
+      transfer_data: { destination: string }
+    }).application_fee_amount = Math.round(
       snippet.price * (PLATFORM_FEE_PERCENT / 100)
     )
-    ;(checkoutParams as any).transfer_data = {
+    ;(checkoutParams as Stripe.Checkout.SessionCreateParams & {
+      application_fee_amount: number
+      transfer_data: { destination: string }
+    }).transfer_data = {
       destination: seller.stripeAccountId,
     }
   }
