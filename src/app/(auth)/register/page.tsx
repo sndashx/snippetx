@@ -12,6 +12,8 @@ import { Input } from "@/components/ui/input"
 import { FormField } from "@/components/ui/form-field"
 import { registerSchema, type RegisterInput } from "@/lib/validations/auth"
 
+export const dynamic = "force-dynamic"
+
 export default function RegisterPage() {
   const router = useRouter()
   const [submitError, setSubmitError] = useState("")
