@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { CommandPalette } from "@/components/ui/command-palette/command-palette";
 import { JsonLd } from "@/components/json-ld";
 import { APP_URL } from "@/lib/constants";
@@ -17,29 +18,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: "SnippetX — Buy & Sell Production-Ready Code Snippets",
-    template: "%s — SnippetX",
+    default: "NUMINA — Frontier Agentic AI Research Lab",
+    template: "%s — NUMINA",
   },
   description:
-    "SnippetX is a marketplace for developers to buy and sell high-quality, production-ready code snippets. Save hours of development time.",
+    "NUMINA builds frontier agentic language models and conducts foundational AI research. We design systems that perceive, reason, and act.",
   keywords: [
-    "code snippets",
-    "buy code",
-    "sell code",
-    "developer marketplace",
-    "production-ready code",
-    "TypeScript snippets",
-    "React components",
-    "Python scripts",
+    "agentic AI",
+    "large language models",
+    "AI research",
+    "AI agents",
+    "frontier models",
+    "artificial intelligence lab",
+    "machine learning research",
   ],
   alternates: {
     canonical: "/",
   },
-  applicationName: "SnippetX",
-  authors: [{ name: "SnippetX" }],
+  applicationName: "NUMINA",
+  authors: [{ name: "NUMINA" }],
   robots: {
     index: true,
     follow: true,
@@ -53,41 +58,33 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "SnippetX — Code Snippet Marketplace",
+    title: "NUMINA — Frontier Agentic AI Research Lab",
     description:
-      "Buy & sell production-ready code snippets. Save hours of development time.",
+      "Building frontier agentic language models and advancing foundational AI research.",
     url: APP_URL,
-    siteName: "SnippetX",
+    siteName: "NUMINA",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SnippetX — Code Snippet Marketplace",
+    title: "NUMINA — Frontier Agentic AI Research Lab",
     description:
-      "Buy & sell production-ready code snippets. Save hours of development time.",
+      "Building frontier agentic language models and advancing foundational AI research.",
   },
 };
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "SnippetX",
+  name: "NUMINA",
   url: APP_URL,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${APP_URL}/browse?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SnippetX",
+  name: "NUMINA",
   url: APP_URL,
-  logo: `${APP_URL}/icon.png`,
+  logo: `${APP_URL}/icon.svg`,
   sameAs: [] as string[],
 };
 
@@ -100,17 +97,16 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <JsonLd data={websiteJsonLd} />
         <JsonLd data={organizationJsonLd} />
         <Providers>
           <Header />
           <CommandPalette />
-          <main className="flex-1">
-            {children}
-          </main>
+          <main className="flex-1">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

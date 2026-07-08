@@ -1,352 +1,343 @@
-"use client"
-
 import Link from "next/link"
+import {
+  ArrowRight,
+  Atom,
+  Brain,
+  Cpu,
+  GitBranch,
+  Network,
+  ShieldCheck,
+  Sparkles,
+  Terminal,
+  Wrench,
+  Zap,
+  Microscope,
+  Scale,
+  Rocket,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
-import { Code2, DollarSign, Shield, Zap, ArrowRight, Search, Sparkles, Terminal, Cpu, Rocket, CheckCircle } from "lucide-react"
-import { motion } from "framer-motion"
-import { IntegrationBanner, IntegrationBadge } from "@/components/integration-banner"
-import { snippetPath } from "@/lib/seo"
-import { useState, useEffect } from "react"
+import { AuroraBackground } from "@/components/visual/AuroraBackground"
+import { GlowCard } from "@/components/visual/GlowCard"
+import { Marquee } from "@/components/visual/Marquee"
+import { AnimatedHeadline } from "@/components/visual/AnimatedHeadline"
+import { Reveal } from "@/components/visual/Reveal"
+import { StatCounter } from "@/components/visual/StatCounter"
+import { SectionHeading } from "@/components/visual/SectionHeading"
 
-interface FeaturedSnippet {
-  id: string
-  title: string
-  description: string
-  price: number
-  language: string
-  author: string | null
-  featured: boolean
-}
-
-const fallbackSnippets: FeaturedSnippet[] = [
+const models = [
   {
-    id: "fallback-1",
-    title: "React Hook Form Validation Kit",
-    description: "Reusable form validation schemas and components for React Hook Form + Zod.",
-    price: 1200,
-    language: "TypeScript",
-    author: "SNIPPETxADMIN",
-    featured: true,
+    name: "NUMINA-Horizon",
+    size: "2.4T",
+    context: "1M tokens",
+    tags: ["Reasoning", "Agentic", "Multimodal"],
+    desc: "Our flagship frontier model with deep tool-use and long-horizon planning.",
+    metric: 94.2,
   },
   {
-    id: "fallback-2",
-    title: "Auth Middleware Suite",
-    description: "Pre-built authentication middleware for Express/Fastify with JWT & OAuth support.",
-    price: 1900,
-    language: "JavaScript",
-    author: "SNIPPETxADMIN",
-    featured: true,
+    name: "NUMINA-Aether",
+    size: "410B",
+    context: "256K tokens",
+    tags: ["Code", "Science", "Long-context"],
+    desc: "A research-grade model tuned for rigorous scientific and engineering tasks.",
+    metric: 91.8,
   },
   {
-    id: "fallback-3",
-    title: "FastAPI Starter Kit",
-    description: "Production-ready FastAPI application with SQLAlchemy, Alembic migrations, JWT auth, and Docker support.",
-    price: 1800,
-    language: "Python",
-    author: "SNIPPETxADMIN",
-    featured: true,
+    name: "NUMINA-Pulse",
+    size: "70B",
+    context: "128K tokens",
+    tags: ["Fast", "Edge", "Tool-use"],
+    desc: "A low-latency model for real-time agents and interactive applications.",
+    metric: 88.4,
   },
 ]
 
+const capabilities = [
+  { icon: Wrench, title: "Tool Use", desc: "Native function calling across thousands of typed tools with verifiable execution." },
+  { icon: GitBranch, title: "Planning", desc: "Decomposes goals into scored plans and adapts them under uncertainty." },
+  { icon: Terminal, title: "Code Execution", desc: "Sandboxed runtime for iterative programming, testing, and debugging." },
+  { icon: Brain, title: "Reasoning", desc: "Deliberative chains with self-consistency and explicit uncertainty." },
+  { icon: Network, title: "Multi-Agent", desc: "Coordinates specialist agents that negotiate and delegate sub-tasks." },
+  { icon: Cpu, title: "Self-Improvement", desc: "Curates its own training signals from deployed experience." },
+]
+
+const research = [
+  {
+    title: "Deliberative Agents at Scale",
+    authors: "K. Vance, R. Okafor, L. Mercer",
+    abstract:
+      "We present a framework for training language agents that plan with explicit world models and recover from failure without human intervention.",
+  },
+  {
+    title: "Sparse Mixtures for Efficient Reasoning",
+    authors: "S. Haddad, M. Lindqvist",
+    abstract:
+      "A routing architecture that activates reasoning pathways on demand, cutting inference cost by 4.3x with no loss on benchmarks.",
+  },
+  {
+    title: "Value Learning under Distribution Shift",
+    authors: "T. Nakamura, A. Bauer",
+    abstract:
+      "Towards models that preserve intent when deployed far outside their training distribution.",
+  },
+]
+
+const principles = [
+  { icon: ShieldCheck, title: "Aligned by Construction", desc: "Safety properties are designed into training, not bolted on after." },
+  { icon: Microscope, title: "Empirically Evaluated", desc: "Every release is subject to open, reproducible evaluations." },
+  { icon: Scale, title: "Measured & Honest", desc: "We report capabilities and failure modes with equal rigor." },
+]
+
+const codeSnippet = `import { Numina } from "@numina/sdk"
+
+const agent = await Numina.agent("horizon", {
+  tools: ["web", "code", "files"],
+  reasoning: "high",
+})
+
+const result = await agent.run(
+  "Draft a research plan for low-cost carbon capture"
+)
+console.log(result.plan)`
+
 export default function Home() {
-  const [featuredSnippets, setFeaturedSnippets] = useState<FeaturedSnippet[]>(fallbackSnippets)
-
-  useEffect(() => {
-    fetch("/api/snippets?featured=true&limit=3")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setFeaturedSnippets(data)
-        }
-      })
-      .catch(() => {})
-  }, [])
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
-      <header className="sticky top-0 z-50 border-b border-border bg-background/60 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <Link href="/" className="flex items-center gap-2 font-bold tracking-tighter text-xl transition-opacity hover:opacity-80">
-            <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground neon-glow">
-              <Code2 className="size-5" />
-            </div>
-            <span>SnippetX</span>
-          </Link>
-          <div className="flex items-center gap-6">
-            <nav className="hidden items-center gap-8 sm:flex">
-              <Link href="/browse" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Browse
-              </Link>
-              <Link href="/sell" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Sell
-              </Link>
-            </nav>
-            <div className="flex items-center gap-3">
-              <ModeToggle />
-              <Button variant="default" size="sm" className="rounded-full px-5 font-medium transition-all hover:neon-glow" render={<Link href="/login" />}>
-                Sign In
-              </Button>
-            </div>
-          </div>
+    <div className="relative flex min-h-screen flex-col bg-background text-foreground">
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <AuroraBackground />
+        <div className="mx-auto max-w-6xl px-6 pb-24 pt-28 sm:pt-36">
+          <Reveal className="mb-6 flex justify-center" delay={0.05}>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
+              <Sparkles className="size-3 text-brand-3" />
+              New: NUMINA-Horizon is now live
+            </span>
+          </Reveal>
+
+          <AnimatedHeadline
+            as="h1"
+            text="Frontier intelligence, built to act."
+            gradientWords={["act."]}
+            className="mx-auto max-w-4xl text-center text-5xl font-extrabold leading-[1.05] sm:text-7xl lg:text-8xl"
+          />
+
+          <Reveal delay={0.3} className="mx-auto mt-8 max-w-2xl text-center">
+            <p className="text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              NUMINA is a research lab building agentic language models that reason,
+              plan, and act — advancing the frontier of artificial intelligence.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.45} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button size="lg" className="h-12 rounded-full px-8 text-base font-semibold transition-all hover:neon-glow" render={<Link href="/#models" />}>
+              Explore the models
+              <ArrowRight className="ml-2 size-4" />
+            </Button>
+            <Button variant="outline" size="lg" className="h-12 rounded-full px-8 text-base font-semibold backdrop-blur transition-all hover:bg-card" render={<Link href="/#research" />}>
+              Read the research
+            </Button>
+          </Reveal>
+
+          <Reveal delay={0.6} className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/40 sm:grid-cols-4">
+            {[
+              { v: 2.4, s: "T", d: 1, l: "Parameters" },
+              { v: 1, s: "M", d: 0, l: "Context window" },
+              { v: 94.2, s: "", d: 1, l: "MMLU-Pro" },
+              { v: 12, s: "K+", d: 0, l: "Agents deployed" },
+            ].map((s) => (
+              <div key={s.l} className="bg-card/70 p-5 text-center backdrop-blur">
+                <div className="text-2xl font-bold tracking-tight text-gradient sm:text-3xl">
+                  <StatCounter value={s.v} suffix={s.s} decimals={s.d} />
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
+              </div>
+            ))}
+          </Reveal>
         </div>
-      </header>
+      </section>
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden px-6 pt-32 pb-24 sm:pt-48 sm:pb-32">
-          {/* Background Glows */}
-          <div className="absolute -top-24 -left-24 size-96 rounded-full bg-primary/20 blur-[120px]" />
-          <div className="absolute top-1/2 -right-24 size-96 rounded-full bg-primary/10 blur-[120px]" />
-          
-          <div className="mx-auto max-w-5xl text-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary backdrop-blur-sm"
-            >
-              <Sparkles className="size-3" />
-              <span>From code snippets to <strong>shipped features</strong></span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl"
-            >
-              Production code.<br />
-              <span className="bg-gradient-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
-                Shipped in hours.
-              </span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground"
-            >
-              Access a curated vault of production-ready code assets. Buy the snippet, or let us{" "}
-              <span className="font-semibold text-foreground">integrate it end-to-end within 24 hours</span>{" "}
-              for a flat fee. No context-switching, no boilerplate.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
-            >
-              <Button size="lg" className="h-12 px-8 text-base font-semibold rounded-full transition-all hover:neon-glow" render={<Link href="/browse" />}>
-                Explore the Vault
-                <ArrowRight className="ml-2 size-4" />
-              </Button>
-              <Button variant="outline" size="lg" className="h-12 px-8 text-base font-semibold rounded-full backdrop-blur-sm transition-all hover:bg-muted" render={<Link href="/sell/new" />}>
-                <DollarSign className="mr-2 size-4" />
-                Monetize Your Code
-              </Button>
-            </motion.div>
+      {/* MARQUEE */}
+      <section className="border-y border-border bg-card/30 py-6">
+        <Marquee
+          items={[
+            <span key="a" className="inline-flex items-center gap-2"><Atom className="size-4 text-brand-3" /> Agentic</span>,
+            <span key="b" className="inline-flex items-center gap-2"><Sparkles className="size-4 text-brand-2" /> Multimodal</span>,
+            <span key="c" className="inline-flex items-center gap-2"><Brain className="size-4 text-brand-1" /> Reasoning</span>,
+            <span key="d" className="inline-flex items-center gap-2"><Wrench className="size-4 text-brand-3" /> Tool-use</span>,
+            <span key="e" className="inline-flex items-center gap-2"><Cpu className="size-4 text-brand-2" /> Long-context</span>,
+            <span key="f" className="inline-flex items-center gap-2"><ShieldCheck className="size-4 text-brand-1" /> Safety-aligned</span>,
+            <span key="g" className="inline-flex items-center gap-2"><Zap className="size-4 text-brand-3" /> Self-improving</span>,
+          ]}
+          duration={28}
+        />
+      </section>
 
-            {/* Trust/credibility row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-muted-foreground"
-            >
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="size-3.5 text-green-500" />
-                Snippet-only from $8
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="size-3.5 text-green-500" />
-                Full integration $250 flat
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="size-3.5 text-green-500" />
-                Delivered in 24 hours
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle className="size-3.5 text-green-500" />
-                Production-ready code
-              </span>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Featured Section */}
-        <section className="mx-auto max-w-7xl px-6 pb-32">
-          <div className="mb-12 flex items-end justify-between">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tight">Featured Assets</h2>
-              <p className="text-muted-foreground">Hand-picked solutions. Download raw or get it integrated.</p>
-            </div>
-            <Link
-              href="/browse"
-              className="group flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-            >
-              View all assets <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
-          
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredSnippets.map((snippet, i) => (
-              <Link
-                key={snippet.id}
-                href={snippetPath(snippet.id, snippet.title)}
-                className="block"
-              >
-                <motion.article
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className={`group relative rounded-2xl border transition-all ${
-                    snippet.featured
-                      ? "border-amber-500/30 bg-gradient-to-b from-amber-500/[0.04] to-card hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
-                      : "border-border bg-card hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                  } p-6 glass`}
-                >
-                  {snippet.featured && (
-                    <div className="absolute -top-2.5 right-4 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-lg">
-                      <Rocket className="size-3" />
-                      Featured Service
-                    </div>
-                  )}
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">
-                      {snippet.language}
+      {/* MODELS */}
+      <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Models"
+            title="A family of frontier models"
+            description="From flagship reasoning engines to fast edge agents — each trained with our agentic post-training recipe."
+            id="models"
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {models.map((m, i) => (
+            <Reveal key={m.name} delay={i * 0.1}>
+              <GlowCard className="h-full">
+                <div className="flex items-center justify-between">
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-1/20 to-brand-3/20 text-brand-2">
+                    <Rocket className="size-5" />
+                  </div>
+                  <span className="font-mono text-xs text-muted-foreground">{m.context}</span>
+                </div>
+                <h3 className="mt-5 text-xl font-bold tracking-tight">{m.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.desc}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {m.tags.map((t) => (
+                    <span key={t} className="rounded-full border border-border bg-background/40 px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+                      {t}
                     </span>
-                    <span className="text-xs font-medium text-muted-foreground">by {snippet.author}</span>
+                  ))}
+                </div>
+                <div className="mt-5 flex items-end justify-between border-t border-border/60 pt-4">
+                  <div>
+                    <div className="text-2xl font-bold tracking-tight">{m.size}</div>
+                    <div className="text-xs text-muted-foreground">parameters</div>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
-                    {snippet.title}
-                  </h3>
-                  <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                    {snippet.description}
-                  </p>
-                  <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                    <div className="flex items-center gap-2">
-                      <div className="size-6 rounded-full bg-muted border border-border" />
-                      <span
-                        className="text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          window.location.href = `/profile/${snippet.author}`
-                        }}
-                      >
-                        @{snippet.author}
-                      </span>
-                    </div>
-                    <span className="text-xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(0)}</span>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-gradient">{m.metric}</div>
+                    <div className="text-xs text-muted-foreground">eval score</div>
                   </div>
-                  <div className="mt-3">
-                    <IntegrationBadge compact />
+                </div>
+              </GlowCard>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* AGENTS / CAPABILITIES */}
+      <section className="relative border-t border-border bg-card/20">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Capabilities"
+              title="Agents that get things done"
+              description="NUMINA models aren't just chat — they perceive, decide, and act through tools in the real world."
+              id="agents"
+            />
+          </Reveal>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((c, i) => (
+              <Reveal key={c.title} delay={i * 0.07}>
+                <GlowCard className="h-full" spotlight={false}>
+                  <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-brand-2/15 text-brand-2">
+                    <c.icon className="size-5" />
                   </div>
-                </motion.article>
-              </Link>
+                  <h3 className="text-lg font-bold tracking-tight">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
+                </GlowCard>
+              </Reveal>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Integration Service Section (replaces old "Value Props") */}
-        <section className="border-t border-border bg-muted/20">
-          <div className="mx-auto max-w-7xl px-6 py-24">
-            <div className="mb-12 text-center">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-medium text-amber-500">
-                <Zap className="size-3" />
-                <span>Introducing: Done-for-you Integration</span>
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Buy the Code. Or Let Us Build It.
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Not every team has the cycles to wire up a new tool. For a flat $250, our engineers
-                deliver a fully integrated, production-ready implementation within 24 hours.
-              </p>
-            </div>
-
-            <div className="mx-auto max-w-4xl">
-              <div className="grid gap-6 sm:grid-cols-3">
-                {[
-                  {
-                    icon: Terminal,
-                    title: "You Buy",
-                    desc: "Purchase any asset on the marketplace. Whether it's a $12 hook or a $29 workflow — same flat integration fee.",
-                    highlight: false,
-                  },
-                  {
-                    icon: Rocket,
-                    title: "We Build",
-                    desc: "Our team forks your repo, wires the asset into your stack, configures env vars, CI/CD, and tests. You get a PR within 24 hours.",
-                    highlight: true,
-                  },
-                  {
-                    icon: Zap,
-                    title: "You Ship",
-                    desc: "Review, approve, merge. What used to take days now takes one click. Your feature ships same-week.",
-                    highlight: false,
-                  },
-                ].map((step, i) => (
-                  <div
-                    key={i}
-                    className={`group relative rounded-2xl border p-8 transition-all ${
-                      step.highlight
-                        ? "border-amber-500/30 bg-gradient-to-b from-amber-500/[0.06] to-card hover:border-amber-500/50"
-                        : "border-border bg-card hover:border-primary/30"
-                    } glass`}
-                  >
-                    <div
-                      className={`mb-4 flex size-12 items-center justify-center rounded-xl transition-transform group-hover:scale-110 ${
-                        step.highlight
-                          ? "bg-amber-500/20 text-amber-500"
-                          : "bg-primary/10 text-primary"
-                      }`}
-                    >
-                      <step.icon className="size-6" />
-                    </div>
-                    <h3 className="mb-2 text-lg font-bold tracking-tight">{step.title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
-                    {step.highlight && (
-                      <div className="mt-4 inline-flex items-center gap-1 rounded-full bg-amber-500/15 px-2.5 py-1 border border-amber-500/20">
-                        <span className="text-[10px] font-bold text-amber-500">$250 FLAT — 24H DELIVERY</span>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-12 text-center">
-                <Button
-                  size="lg"
-                  className="h-12 px-8 text-base font-semibold rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700 shadow-lg shadow-amber-500/25 transition-all hover:shadow-amber-500/40"
-                  render={<Link href="/browse" />}
+      {/* RESEARCH */}
+      <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Research"
+            title="Pushing the frontier, in the open"
+            description="Selected work from the NUMINA research team."
+            id="research"
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {research.map((r, i) => (
+            <Reveal key={r.title} delay={i * 0.1}>
+              <GlowCard className="flex h-full flex-col" spotlight={false}>
+                <h3 className="text-lg font-bold leading-snug tracking-tight">{r.title}</h3>
+                <p className="mt-2 font-mono text-xs text-brand-3">{r.authors}</p>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">{r.abstract}</p>
+                <Link
+                  href="/#research"
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-brand-2"
                 >
-                  <Rocket className="mr-2 size-4" />
-                  Find an Asset to Integrate
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+                  Read paper <ArrowRight className="size-4" />
+                </Link>
+              </GlowCard>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-      <footer className="border-t border-border bg-background">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2 font-semibold tracking-tight">
-            <Code2 className="size-4" />
-            <span>SnippetX</span>
-          </div>
-          <div className="flex items-center gap-6">
-            <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
-            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-            <span className="hidden sm:inline opacity-50">|</span>
-            <span>&copy; {new Date().getFullYear()} SnippetX</span>
+      {/* SAFETY */}
+      <section className="relative border-t border-border bg-card/20">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Safety & Approach"
+              title="Power, earned through rigor"
+              description="We treat safety as a research problem, not a constraint — measured, honest, and built in from the start."
+              id="safety"
+            />
+          </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {principles.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.1}>
+                <GlowCard className="h-full" spotlight={false}>
+                  <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-1/20 to-brand-3/20 text-brand-2">
+                    <p.icon className="size-5" />
+                  </div>
+                  <h3 className="text-lg font-bold tracking-tight">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </GlowCard>
+              </Reveal>
+            ))}
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* API CTA */}
+      <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-8 sm:p-14">
+            <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" aria-hidden />
+            <div className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-brand-2/20 blur-[100px]" aria-hidden />
+            <div className="relative grid items-center gap-10 lg:grid-cols-2">
+              <div>
+                <SectionHeading
+                  eyebrow="Build with NUMINA"
+                  title="Ship agents in minutes"
+                  description="A single SDK call gives your application a frontier agent with tools, memory, and reasoning."
+                  id="api"
+                />
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Button size="lg" className="h-12 rounded-full px-8 text-base font-semibold transition-all hover:neon-glow" render={<Link href="/login" />}>
+                    Get API Key
+                    <ArrowRight className="ml-2 size-4" />
+                  </Button>
+                  <Button variant="outline" size="lg" className="h-12 rounded-full px-8 text-base font-semibold backdrop-blur transition-all hover:bg-card" render={<Link href="/#docs" />}>
+                    Read the docs
+                  </Button>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-2xl border border-border bg-background/80 backdrop-blur">
+                <div className="flex items-center gap-2 border-b border-border px-4 py-2.5">
+                  <span className="size-3 rounded-full bg-red-400/70" />
+                  <span className="size-3 rounded-full bg-amber-400/70" />
+                  <span className="size-3 rounded-full bg-emerald-400/70" />
+                  <span className="ml-2 font-mono text-xs text-muted-foreground">agent.ts</span>
+                </div>
+                <pre className="overflow-x-auto p-4 font-mono text-[13px] leading-relaxed text-foreground/90">
+                  <code>{codeSnippet}</code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
     </div>
   )
 }

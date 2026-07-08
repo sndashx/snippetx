@@ -1,100 +1,142 @@
 "use client"
 
 import Link from "next/link"
-import { Code2, Search } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { useState, useEffect } from "react"
-import { useRouter, usePathname } from "next/navigation"
+import { BrandMark } from "@/components/footer"
+
+const navLinks = [
+  { label: "Models", href: "/#models" },
+  { label: "Agents", href: "/#agents" },
+  { label: "Research", href: "/#research" },
+  { label: "Safety", href: "/#safety" },
+  { label: "API", href: "/#api" },
+  { label: "Docs", href: "/docs" },
+]
 
 export function Header() {
-  const router = useRouter()
-  const pathname = usePathname()
-  const [searchQuery, setSearchQuery] = useState("")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
-  // Handle scroll effect for header shadow
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 12)
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Handle search submission
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (searchQuery.trim()) {
-      router.push(`/browse?q=${encodeURIComponent(searchQuery.trim())}`)
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
     }
-  }
-
-  // Don't show header on certain pages (optional)
-  if (pathname?.startsWith("/auth/")) return null
+  }, [mobileOpen])
 
   return (
-    <header className={`sticky top-0 z-50 border-b border-border bg-background/60 backdrop-blur-xl transition-shadow ${isScrolled ? "shadow-sm" : ""}`}>
+    <header
+      className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${
+        isScrolled
+          ? "border-border bg-background/80 shadow-lg shadow-black/20"
+          : "border-transparent bg-background/40"
+      }`}
+    >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 font-bold tracking-tighter text-xl transition-opacity hover:opacity-80">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground neon-glow">
-            <Code2 className="size-5" />
-          </div>
-          <span>SnippetX</span>
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 font-semibold tracking-tight transition-opacity hover:opacity-80"
+        >
+          <BrandMark className="size-7" />
+          <span className="text-lg">NUMINA</span>
         </Link>
 
-        {/* Search Bar - Center */}
-        <div className="hidden flex-1 mx-8 md:block">
-          <form onSubmit={handleSearch} className="relative w-full max-w-md mx-auto group">
-            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" />
-            <input
-              type="text"
-              placeholder="Search snippets, languages, or keywords..."
-              className="w-full rounded-full border border-border bg-card py-2.5 pl-10 pr-4 text-sm outline-none transition-all focus:border-primary/50 focus:ring-2 focus:ring-primary/20 glass"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </form>
-        </div>
+        <nav className="hidden items-center gap-8 lg:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="group relative text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.label}
+              <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gradient-to-r from-brand-1 to-brand-3 transition-all duration-300 group-hover:w-full" />
+            </Link>
+          ))}
+        </nav>
 
-        {/* Right Side - Nav & Auth */}
-        <div className="flex items-center gap-6">
-          <nav className="hidden items-center gap-8 sm:flex">
-            <Link
-              href="/browse"
-              className="text-sm font-medium text-foreground transition-colors"
-            >
-              Browse
-            </Link>
-            <Link
-              href="/sell"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Sell
-            </Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <ModeToggle />
-            <Button variant="default" size="sm" className="rounded-full px-5 font-medium transition-all hover:neon-glow" render={<Link href="/login" />}>
-              Sign In
-            </Button>
-          </div>
+        <div className="flex items-center gap-3">
+          <ModeToggle />
+          <Button
+            variant="default"
+            size="sm"
+            className="hidden rounded-full px-5 font-medium transition-all hover:neon-glow sm:inline-flex"
+            render={<Link href="/login" />}
+          >
+            Get API Key
+          </Button>
+          <button
+            type="button"
+            aria-label="Open menu"
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen(true)}
+            className="flex size-9 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:border-brand-2/50 lg:hidden"
+          >
+            <Menu className="size-5" />
+          </button>
         </div>
       </div>
 
-      {/* Mobile Search - Shown below header on small screens */}
-      <div className="border-t border-border bg-background/60 p-3 md:hidden">
-        <form onSubmit={handleSearch} className="relative w-full group">
-          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" />
-          <input
-            type="text"
-            placeholder="Search snippets..."
-            className="w-full rounded-full border border-border bg-card py-2.5 pl-10 pr-4 text-sm outline-none transition-all focus:border-primary/50 focus:ring-2 focus:ring-primary/20 glass"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </form>
+      {/* Mobile sheet */}
+      <div
+        className={`fixed inset-0 z-[60] lg:hidden ${mobileOpen ? "" : "pointer-events-none"}`}
+        aria-hidden={!mobileOpen}
+      >
+        <div
+          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+            mobileOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setMobileOpen(false)}
+        />
+        <div
+          className={`absolute right-0 top-0 h-full w-[80%] max-w-sm border-l border-border bg-background p-6 transition-transform duration-300 ${
+            mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2 font-semibold" onClick={() => setMobileOpen(false)}>
+              <BrandMark className="size-6" />
+              <span>NUMINA</span>
+            </Link>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setMobileOpen(false)}
+              className="flex size-9 items-center justify-center rounded-lg border border-border bg-card text-foreground"
+            >
+              <X className="size-5" />
+            </button>
+          </div>
+          <nav className="mt-8 flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg px-3 py-3 text-base font-medium text-foreground/90 transition-colors hover:bg-card"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <Button
+            variant="default"
+            size="lg"
+            className="mt-6 w-full rounded-full font-medium"
+            render={<Link href="/login" />}
+          >
+            Get API Key
+          </Button>
+        </div>
       </div>
     </header>
   )
