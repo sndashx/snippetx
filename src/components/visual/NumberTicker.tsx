@@ -4,8 +4,10 @@ import * as React from "react"
 import { useInView, useReducedMotion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-interface StatCounterProps {
+export interface NumberTickerProps {
   value: number
+  /** "plain" shows the raw number; "compact" abbreviates with K/M/B/T. */
+  format?: "plain" | "compact"
   prefix?: string
   suffix?: string
   decimals?: number
@@ -13,14 +15,24 @@ interface StatCounterProps {
   className?: string
 }
 
-export function StatCounter({
+function compact(n: number): { num: number; suffix: string } {
+  const abs = Math.abs(n)
+  if (abs >= 1e12) return { num: n / 1e12, suffix: "T" }
+  if (abs >= 1e9) return { num: n / 1e9, suffix: "B" }
+  if (abs >= 1e6) return { num: n / 1e6, suffix: "M" }
+  if (abs >= 1e3) return { num: n / 1e3, suffix: "K" }
+  return { num: n, suffix: "" }
+}
+
+export function NumberTicker({
   value,
+  format = "plain",
   prefix = "",
   suffix = "",
   decimals = 0,
   duration = 1800,
   className,
-}: StatCounterProps) {
+}: NumberTickerProps) {
   const ref = React.useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: "-40px" })
   const reduce = useReducedMotion()
@@ -40,14 +52,24 @@ export function StatCounter({
     return () => cancelAnimationFrame(raf)
   }, [inView, value, duration, reduce])
 
+  let text: string
+  if (format === "compact") {
+    const { num, suffix: s } = compact(display)
+    const d = decimals > 0 ? decimals : Number.isInteger(num) ? 0 : 1
+    text = `${prefix}${num.toLocaleString(undefined, {
+      minimumFractionDigits: d,
+      maximumFractionDigits: d,
+    })}${s}${suffix}`
+  } else {
+    text = `${prefix}${display.toLocaleString(undefined, {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    })}${suffix}`
+  }
+
   return (
     <span ref={ref} className={cn("tabular-nums", className)}>
-      {prefix}
-      {display.toLocaleString(undefined, {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals,
-      })}
-      {suffix}
+      {text}
     </span>
   )
 }

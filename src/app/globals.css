@@ -232,6 +232,22 @@
     -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
   }
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  }
+  .marquee-vertical {
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    animation: marquee-y var(--marquee-duration, 24s) linear infinite;
+  }
+  .marquee-vertical-reverse {
+    animation-direction: reverse;
+  }
+  .marquee-vertical-paused:hover {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes shimmer {
@@ -247,11 +263,18 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+@keyframes marquee-y {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .aurora,
   .shimmer,
-  .marquee {
+  .marquee,
+  .marquee-vertical,
+  .orb-spin,
+  .gradient-spin {
     animation: none !important;
   }
   .aurora {
