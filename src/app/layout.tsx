@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { CommandPalette } from "@/components/ui/command-palette/command-palette";
 import { JsonLd } from "@/components/json-ld";
 import { APP_URL } from "@/lib/constants";
@@ -20,26 +21,27 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: "SnippetX — Buy & Sell Production-Ready Code Snippets",
-    template: "%s — SnippetX",
+    default: "NUMINA — Frontier Agentic AI Research Lab",
+    template: "%s — NUMINA",
   },
   description:
-    "SnippetX is a marketplace for developers to buy and sell high-quality, production-ready code snippets. Save hours of development time.",
+    "NUMINA is a frontier research lab building agentic language models that reason, plan, and act. Explore our models, agents, and safety research.",
   keywords: [
-    "code snippets",
-    "buy code",
-    "sell code",
-    "developer marketplace",
-    "production-ready code",
-    "TypeScript snippets",
-    "React components",
-    "Python scripts",
+    "agentic AI",
+    "large language models",
+    "AI research",
+    "AI agents",
+    "frontier models",
+    "reasoning models",
+    "AI safety",
+    "multimodal AI",
+    "NUMINA",
   ],
   alternates: {
     canonical: "/",
   },
-  applicationName: "SnippetX",
-  authors: [{ name: "SnippetX" }],
+  applicationName: "NUMINA",
+  authors: [{ name: "Numina Research, Inc." }],
   robots: {
     index: true,
     follow: true,
@@ -53,41 +55,33 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "SnippetX — Code Snippet Marketplace",
+    title: "NUMINA — Frontier Agentic AI Research Lab",
     description:
-      "Buy & sell production-ready code snippets. Save hours of development time.",
+      "Building frontier agentic language models that reason, plan, and act — safely, in service of human progress.",
     url: APP_URL,
-    siteName: "SnippetX",
+    siteName: "NUMINA",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SnippetX — Code Snippet Marketplace",
+    title: "NUMINA — Frontier Agentic AI Research Lab",
     description:
-      "Buy & sell production-ready code snippets. Save hours of development time.",
+      "Building frontier agentic language models that reason, plan, and act — safely, in service of human progress.",
   },
 };
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "SnippetX",
+  name: "NUMINA",
   url: APP_URL,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${APP_URL}/browse?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SnippetX",
+  name: "Numina Research, Inc.",
   url: APP_URL,
-  logo: `${APP_URL}/icon.png`,
+  logo: `${APP_URL}/icon.svg`,
   sameAs: [] as string[],
 };
 
@@ -100,7 +94,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
         <JsonLd data={websiteJsonLd} />
@@ -111,6 +105,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <Footer />
         </Providers>
       </body>
     </html>
