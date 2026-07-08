@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
             </div>
             <h1 className="text-2xl font-bold">Admin Access</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              SnippetX Administrative Panel
+              NUMINA Administrative Panel
             </p>
           </div>
 

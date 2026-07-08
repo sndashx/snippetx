@@ -34,7 +34,7 @@ export async function generateMetadata(props: {
   const canonical = snippetPath(snippet.id, snippet.title)
   const title = `${snippet.title} — ${snippet.language} Snippet`
   const description = truncateForMeta(
-    `${snippet.description} Production-ready ${snippet.language} code by ${snippet.author || "SnippetX"}. Instant download for $${(snippet.price / 100).toFixed(2)}.`,
+    `${snippet.description} Production-ready ${snippet.language} code by ${snippet.author || "NUMINA"}. Instant download for $${(snippet.price / 100).toFixed(2)}.`,
   )
 
   // Note: the colocated opengraph-image.tsx is auto-injected by Next.js with
@@ -57,7 +57,7 @@ export async function generateMetadata(props: {
       title,
       description,
       url: snippetUrl(snippet.id, snippet.title),
-      siteName: "SnippetX",
+      siteName: "NUMINA",
     },
     twitter: {
       card: "summary_large_image",
@@ -117,7 +117,7 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
     name: snippet.title,
     description: truncateForMeta(snippet.description, 500),
     category: `${snippet.language} code snippet`,
-    brand: { "@type": "Brand", name: "SnippetX" },
+    brand: { "@type": "Brand", name: "NUMINA" },
     url: snippetUrl(snippet.id, snippet.title),
     offers: {
       "@type": "Offer",
@@ -125,7 +125,7 @@ export default async function SnippetPage(props: { params: Promise<{ id: string 
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
       url: snippetUrl(snippet.id, snippet.title),
-      seller: { "@type": "Organization", name: "SnippetX" },
+      seller: { "@type": "Organization", name: "NUMINA" },
     },
   }
   if (snippet.ratingCount > 0) {

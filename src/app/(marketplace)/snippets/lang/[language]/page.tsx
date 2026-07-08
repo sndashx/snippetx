@@ -41,7 +41,7 @@ export async function generateMetadata(props: {
   if (!language) return { title: "Language not found" }
 
   const title = `${language} Code Snippets — Buy Production-Ready ${language}`
-  const description = `Browse and buy production-ready ${language} code snippets on SnippetX. Hand-crafted, tested ${language} components, utilities, and helpers with instant download.`
+  const description = `Browse and buy production-ready ${language} code snippets on NUMINA. Hand-crafted, tested ${language} components, utilities, and helpers with instant download.`
 
   return {
     title,
@@ -59,7 +59,7 @@ export async function generateMetadata(props: {
       title,
       description,
       url: `${APP_URL}/snippets/lang/${param.toLowerCase()}`,
-      siteName: "SnippetX",
+      siteName: "NUMINA",
     },
   }
 }
@@ -103,7 +103,7 @@ export default async function LanguageLandingPage(props: {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: `${language} Code Snippets`,
-    description: `Production-ready ${language} code snippets for sale on SnippetX.`,
+    description: `Production-ready ${language} code snippets for sale on NUMINA.`,
     url: `${APP_URL}/snippets/lang/${param.toLowerCase()}`,
     mainEntity: {
       "@type": "ItemList",
@@ -134,7 +134,7 @@ export default async function LanguageLandingPage(props: {
           {language} Code Snippets
         </h1>
         <p className="text-lg leading-relaxed text-muted-foreground">
-          Buy production-ready {language} code on SnippetX. Every {language} snippet
+          Buy production-ready {language} code on NUMINA. Every {language} snippet
           is hand-crafted by developers and verified before listing — from reusable
           components and utilities to complete integrations. Download instantly after
           purchase and ship faster.

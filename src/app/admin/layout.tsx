@@ -15,7 +15,7 @@ export default function AdminLayout({
             {/* Logo */}
             <div className="flex items-center gap-2 border-b border-border px-6 py-4">
               <Shield className="size-6 text-primary" />
-              <span className="text-lg font-bold">SnippetX Admin</span>
+              <span className="text-lg font-bold">NUMINA Admin</span>
             </div>
 
             {/* Navigation */}

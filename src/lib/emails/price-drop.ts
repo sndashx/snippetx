@@ -60,7 +60,7 @@ export async function sendPriceDropEmail({
       </div>
     </div>
     <div class="footer">
-      <p>SnippetX &mdash; sn-x.com</p>
+      <p>NUMINA &mdash; sn-x.com</p>
       <p>You're receiving this because you added this snippet to your wishlist.</p>
     </div>
   </div>

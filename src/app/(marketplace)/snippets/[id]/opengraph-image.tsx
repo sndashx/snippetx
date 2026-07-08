@@ -3,7 +3,7 @@ import { getSnippet } from "./snippet-data"
 import { extractId } from "@/lib/seo"
 
 export const runtime = "nodejs"
-export const alt = "SnippetX code snippet"
+export const alt = "NUMINA code snippet"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -14,7 +14,7 @@ export default async function OpengraphImage(props: {
   const id = extractId(rawParam)
   const snippet = id ? await getSnippet(id) : null
 
-  const title = snippet?.title ?? "SnippetX"
+  const title = snippet?.title ?? "NUMINA"
   const language = snippet?.language ?? "Code"
   const price = snippet ? `$${(snippet.price / 100).toFixed(2)}` : ""
   const author = snippet?.author ?? "sn-x.com"
@@ -52,7 +52,7 @@ export default async function OpengraphImage(props: {
             >
               {"</>"}
             </div>
-            <span style={{ fontSize: "32px", fontWeight: 800, color: "#fff" }}>SnippetX</span>
+            <span style={{ fontSize: "32px", fontWeight: 800, color: "#fff" }}>NUMINA</span>
           </div>
           <span
             style={{
