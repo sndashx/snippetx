@@ -27,7 +27,7 @@ export const GlowCard = React.forwardRef<HTMLDivElement, GlowCardProps>(
         ref={ref as never}
         onMouseMove={handleMove}
         className={cn(
-          "group relative overflow-hidden rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:border-brand-2/40 hover:shadow-2xl hover:shadow-brand-2/10 glow-border",
+          "group relative overflow-hidden rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:border-brand-2/40 hover:shadow-elevated-3 glow-border",
           className,
         )}
         {...props}
