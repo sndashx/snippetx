@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Code2 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | SnippetX",
+  title: "Privacy Policy | NUMINA",
 }
 
 export default function PrivacyPage() {
@@ -13,14 +13,14 @@ export default function PrivacyPage() {
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
             <Code2 className="size-5" />
-            SnippetX
+            NUMINA
           </Link>
           <nav className="hidden items-center gap-6 sm:flex">
-            <Link href="/browse" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Browse
+            <Link href="/#models" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Models
             </Link>
-            <Link href="/sell" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Sell
+            <Link href="/#research" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Research
             </Link>
           </nav>
         </div>
@@ -34,11 +34,11 @@ export default function PrivacyPage() {
           <div className="mt-10 space-y-8 text-sm leading-relaxed text-muted-foreground">
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">1. Data We Collect</h2>
-              <p>We collect the following information when you use SnippetX:</p>
+              <p>We collect the following information when you use NUMINA:</p>
               <ul className="mt-2 list-disc pl-5 space-y-1">
                 <li><strong className="text-foreground">Account information:</strong> Email address and display name provided during sign-up via Supabase Auth.</li>
                 <li><strong className="text-foreground">Payment information:</strong> Payment details are processed by Stripe and are never stored on our servers. Stripe may collect billing address, card details, and transaction history.</li>
-                <li><strong className="text-foreground">Usage data:</strong> Pages visited, actions taken, and browser metadata for analytics and platform improvement.</li>
+                <li><strong className="text-foreground">Usage data:</strong> Pages visited, actions taken, and browser metadata for analytics and service improvement.</li>
               </ul>
             </section>
 
@@ -46,11 +46,11 @@ export default function PrivacyPage() {
               <h2 className="mb-3 text-lg font-semibold text-foreground">2. How We Use Your Data</h2>
               <p>Your data is used to:</p>
               <ul className="mt-2 list-disc pl-5 space-y-1">
-                <li>Provide and maintain the SnippetX platform</li>
-                <li>Process purchases and distribute payouts to sellers</li>
-                <li>Send transactional emails (purchase confirmations, account notifications)</li>
-                <li>Detect and prevent fraud or abuse</li>
-                <li>Improve platform features and user experience</li>
+                <li>Provide and maintain the NUMINA platform and API</li>
+                <li>Process API subscriptions and manage billing</li>
+                <li>Send transactional emails (usage alerts, account notifications)</li>
+                <li>Detect and prevent abuse or unauthorized access</li>
+                <li>Improve model performance and service features</li>
               </ul>
             </section>
 
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
               <h2 className="mb-3 text-lg font-semibold text-foreground">3. Third-Party Services</h2>
               <p>We use the following third-party services that may collect or process your data:</p>
               <ul className="mt-2 list-disc pl-5 space-y-1">
-                <li><strong className="text-foreground">Stripe:</strong> Payment processing and payouts. <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Stripe Privacy Policy</a></li>
+                <li><strong className="text-foreground">Stripe:</strong> Payment processing and billing. <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Stripe Privacy Policy</a></li>
                 <li><strong className="text-foreground">Supabase:</strong> Authentication and database hosting. <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Supabase Privacy Policy</a></li>
                 <li><strong className="text-foreground">Cloudflare:</strong> CDN and security services. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Cloudflare Privacy Policy</a></li>
                 <li><strong className="text-foreground">Resend:</strong> Transactional email delivery. <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Resend Privacy Policy</a></li>
@@ -68,18 +68,18 @@ export default function PrivacyPage() {
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">4. Cookies</h2>
               <p>
-                SnippetX uses essential cookies to maintain your session and authentication state. We do not use
+                NUMINA uses essential cookies to maintain your session and authentication state. We do not use
                 third-party advertising cookies. You may configure your browser to reject cookies, though this may
-                affect platform functionality.
+                affect service functionality.
               </p>
             </section>
 
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">5. Data Retention</h2>
               <p>
-                We retain your account information for as long as your account is active. If you delete your account,
-                we will remove your personal data within 30 days, except where required by law or for legitimate
-                business purposes (such as transaction records for tax compliance).
+                We retain your account information for as long as your account is active. If you delete your
+                account, we will remove your personal data within 30 days, except where required by law or for
+                legitimate business purposes (such as transaction records for tax compliance).
               </p>
             </section>
 
@@ -95,8 +95,8 @@ export default function PrivacyPage() {
               </ul>
               <p className="mt-2">
                 To exercise any of these rights, contact us at{" "}
-                <a href="mailto:support@sn-x.com" className="text-foreground underline hover:no-underline">
-                  support@sn-x.com
+                <a href="mailto:support@numina.ai" className="text-foreground underline hover:no-underline">
+                  support@numina.ai
                 </a>
                 .
               </p>
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">8. Children&apos;s Privacy</h2>
               <p>
-                SnippetX is not intended for users under the age of 13. We do not knowingly collect personal
+                NUMINA is not intended for users under the age of 13. We do not knowingly collect personal
                 information from children. If we become aware that a child has provided us with personal data,
                 we will take steps to delete it promptly.
               </p>
@@ -124,7 +124,7 @@ export default function PrivacyPage() {
               <h2 className="mb-3 text-lg font-semibold text-foreground">9. Changes to This Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. Significant changes will be communicated
-                via email or a notice on the platform. Continued use of SnippetX after changes are posted
+                via email or a notice on the platform. Continued use of NUMINA after changes are posted
                 constitutes acceptance of the updated policy.
               </p>
             </section>
@@ -133,8 +133,8 @@ export default function PrivacyPage() {
               <h2 className="mb-3 text-lg font-semibold text-foreground">10. Contact</h2>
               <p>
                 If you have any questions about this Privacy Policy, please contact us at{" "}
-                <a href="mailto:support@sn-x.com" className="text-foreground underline hover:no-underline">
-                  support@sn-x.com
+                <a href="mailto:support@numina.ai" className="text-foreground underline hover:no-underline">
+                  support@numina.ai
                 </a>
                 .
               </p>
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
 
       <footer className="border-t border-border">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 text-sm text-muted-foreground">
-          <span>&copy; {new Date().getFullYear()} SnippetX</span>
+          <span>&copy; {new Date().getFullYear()} Numina Research, Inc.</span>
           <div className="flex items-center gap-4">
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>

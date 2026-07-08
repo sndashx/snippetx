@@ -9,14 +9,14 @@ export default function NotFound() {
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
             <Code2 className="size-5" />
-            SnippetX
+            NUMINA
           </Link>
           <nav className="hidden items-center gap-6 sm:flex">
-            <Link href="/browse" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Browse
+            <Link href="/#models" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Models
             </Link>
-            <Link href="/sell" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Sell
+            <Link href="/#research" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Research
             </Link>
           </nav>
         </div>
@@ -38,7 +38,7 @@ export default function NotFound() {
 
       <footer className="border-t border-border">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 text-sm text-muted-foreground">
-          <span>&copy; {new Date().getFullYear()} SnippetX</span>
+          <span>&copy; {new Date().getFullYear()} Numina Research, Inc.</span>
           <div className="flex items-center gap-4">
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
