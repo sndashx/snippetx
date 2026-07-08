@@ -15,7 +15,7 @@ export default function EnterpriseCodeRabbitPage() {
             <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground neon-glow">
               <Code2 className="size-5" />
             </div>
-            <span>SnippetX</span>
+            <span>NUMINA</span>
           </Link>
           <div className="flex items-center gap-6">
             <nav className="hidden items-center gap-8 sm:flex">
@@ -414,13 +414,13 @@ export default function EnterpriseCodeRabbitPage() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-2 font-semibold tracking-tight">
             <Code2 className="size-4" />
-            <span>SnippetX</span>
+            <span>NUMINA</span>
           </div>
           <div className="flex items-center gap-6">
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
             <span className="hidden sm:inline opacity-50">|</span>
-            <span>&copy; {new Date().getFullYear()} SnippetX</span>
+            <span>&copy; {new Date().getFullYear()} NUMINA</span>
           </div>
         </div>
       </footer>

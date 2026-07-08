@@ -13,7 +13,6 @@ const navLinks = [
   { label: "Research", href: "/#research" },
   { label: "Safety", href: "/#safety" },
   { label: "API", href: "/#api" },
-  { label: "Docs", href: "/docs" },
 ]
 
 export function Header() {

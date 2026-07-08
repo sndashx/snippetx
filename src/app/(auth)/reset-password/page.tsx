@@ -126,7 +126,7 @@ export default function ResetPasswordPage() {
             className="inline-flex items-center gap-2 font-semibold tracking-tight text-lg justify-center"
           >
             <Code2 className="size-6" />
-            SnippetX
+            NUMINA
           </Link>
           <div className="rounded-2xl border border-border bg-card p-8 shadow-sm">
             <AlertCircle className="size-10 mx-auto mb-4 text-destructive" />
@@ -165,7 +165,7 @@ export default function ResetPasswordPage() {
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 font-semibold tracking-tight text-lg">
             <Code2 className="size-6" />
-            SnippetX
+            NUMINA
           </Link>
           <h1 className="mt-4 text-2xl font-bold tracking-tight">Create new password</h1>
           <p className="mt-1 text-sm text-muted-foreground">Enter your new password below.</p>

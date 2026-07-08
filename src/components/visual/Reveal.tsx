@@ -1,13 +1,16 @@
 "use client"
 
 import * as React from "react"
-import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-interface RevealProps extends HTMLMotionProps<"div"> {
+interface RevealProps {
   as?: "div" | "section" | "li" | "article"
+  className?: string
+  children?: React.ReactNode
   delay?: number
   y?: number
+  [key: string]: unknown
 }
 
 export function Reveal({ as = "div", className, children, delay = 0, y = 28, ...props }: RevealProps) {

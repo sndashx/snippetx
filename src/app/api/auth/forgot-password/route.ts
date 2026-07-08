@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     const body = await req.json()
     const { email } = schema.parse(body)
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://sn-x.com"
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://numina.org"
     const redirectTo = `${appUrl}/reset-password`
 
     const adminSupabase = await createAdminClient()

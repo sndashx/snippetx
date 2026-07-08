@@ -21,8 +21,8 @@ export async function generateMetadata({
       : "Browse Code Snippets"
 
   const description = lang
-    ? `Browse production-ready ${lang} code snippets for sale on SnippetX. Filter, preview, and buy with instant download.`
-    : "Browse the SnippetX marketplace — production-ready code snippets across every major language. Filter by language or search for what you need."
+    ? `Browse production-ready ${lang} code snippets for sale on NUMINA. Filter, preview, and buy with instant download.`
+    : "Browse the NUMINA marketplace — production-ready code snippets across every major language. Filter by language or search for what you need."
 
   return {
     title,

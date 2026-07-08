@@ -4,7 +4,7 @@ import { createAdminClient } from "@/lib/supabase/server"
 import { eq } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
-const ADMIN_EMAIL = "snippetxadmin@sn-x.com"
+const ADMIN_EMAIL = "snippetxadmin@numina.org"
 const ADMIN_PASSWORD = "Sn1pp3tX@dm1n2026!"
 const ADMIN_DISPLAY_NAME = "SNIPPETxADMIN"
 

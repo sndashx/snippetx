@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Code2 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Terms of Service | SnippetX",
+  title: "Terms of Service | NUMINA",
 }
 
 export default function TermsPage() {
@@ -13,7 +13,7 @@ export default function TermsPage() {
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
             <Code2 className="size-5" />
-            SnippetX
+            NUMINA
           </Link>
           <nav className="hidden items-center gap-6 sm:flex">
             <Link href="/browse" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -35,7 +35,7 @@ export default function TermsPage() {
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">1. Platform Description</h2>
               <p>
-                SnippetX is an online marketplace that enables developers to buy and sell production-ready code snippets.
+                NUMINA is an online marketplace that enables developers to buy and sell production-ready code snippets.
                 We act as an intermediary between buyers and sellers, facilitating transactions and providing hosting for
                 snippet listings. We do not own the snippets listed on our platform unless explicitly stated.
               </p>
@@ -43,7 +43,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">2. User Responsibilities</h2>
-              <p>By using SnippetX, you agree to:</p>
+              <p>By using NUMINA, you agree to:</p>
               <ul className="mt-2 list-disc pl-5 space-y-1">
                 <li>Provide accurate and complete account information</li>
                 <li>Maintain the security of your account credentials</li>
@@ -58,7 +58,7 @@ export default function TermsPage() {
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">3. Snippet Licensing</h2>
               <p>
-                When you purchase a snippet on SnippetX, you receive a non-exclusive, perpetual license to use that
+                When you purchase a snippet on NUMINA, you receive a non-exclusive, perpetual license to use that
                 snippet in your personal and commercial projects. You may not redistribute, resell, or share the snippet
                 with third parties. Sellers retain full ownership of their snippets and may list them on other platforms.
               </p>
@@ -67,7 +67,7 @@ export default function TermsPage() {
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">4. Payment Terms</h2>
               <p>
-                All payments are processed through Stripe Connect. SnippetX charges a 25% platform fee on each sale.
+                All payments are processed through Stripe Connect. NUMINA charges a 25% platform fee on each sale.
                 Sellers receive 75% of the listed price. Payouts are made to sellers&apos; connected Stripe accounts
                 according to Stripe&apos;s standard payout schedule.
               </p>
@@ -89,7 +89,7 @@ export default function TermsPage() {
             <section>
               <h2 className="mb-3 text-lg font-semibold text-foreground">6. Limitation of Liability</h2>
               <p>
-                SnippetX is provided &ldquo;as is&rdquo; without warranties of any kind. We are not liable for any
+                NUMINA is provided &ldquo;as is&rdquo; without warranties of any kind. We are not liable for any
                 damages arising from your use of the platform or any snippets purchased through it. We do not guarantee
                 that snippets will be error-free, compatible with your environment, or meet your specific requirements.
                 It is your responsibility to test and verify code before using it in production.
@@ -109,7 +109,7 @@ export default function TermsPage() {
               <h2 className="mb-3 text-lg font-semibold text-foreground">8. Changes to Terms</h2>
               <p>
                 We reserve the right to update these terms at any time. Material changes will be communicated via email
-                or a notice on the platform. Your continued use of SnippetX after changes are posted constitutes
+                or a notice on the platform. Your continued use of NUMINA after changes are posted constitutes
                 acceptance of the updated terms.
               </p>
             </section>
@@ -118,8 +118,8 @@ export default function TermsPage() {
               <h2 className="mb-3 text-lg font-semibold text-foreground">9. Contact</h2>
               <p>
                 If you have questions about these Terms of Service, please contact us at{" "}
-                <a href="mailto:support@sn-x.com" className="text-foreground underline hover:no-underline">
-                  support@sn-x.com
+                <a href="mailto:support@numina.org" className="text-foreground underline hover:no-underline">
+                  support@numina.org
                 </a>
                 .
               </p>
@@ -130,7 +130,7 @@ export default function TermsPage() {
 
       <footer className="border-t border-border">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 text-sm text-muted-foreground">
-          <span>&copy; {new Date().getFullYear()} SnippetX</span>
+          <span>&copy; {new Date().getFullYear()} NUMINA</span>
           <div className="flex items-center gap-4">
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>

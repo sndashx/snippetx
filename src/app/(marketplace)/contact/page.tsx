@@ -2,8 +2,8 @@ import { Suspense } from "react"
 import { ContactForm } from "@/components/contact-form"
 
 export const metadata = {
-  title: "Contact — SnippetX Integration Service",
-  description: "Get your snippet integrated end-to-end within 24 hours. Contact the SnippetX team.",
+  title: "Contact — NUMINA Integration Service",
+  description: "Get your snippet integrated end-to-end within 24 hours. Contact the NUMINA team.",
 }
 
 export default function ContactPage() {

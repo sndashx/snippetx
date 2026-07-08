@@ -9,14 +9,14 @@ import { motion } from "framer-motion"
 export default function AdminSettingsPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [settings, setSettings] = useState({
-    platformName: "SnippetX",
+    platformName: "NUMINA",
     platformFee: 25,
     minimumPayout: 50,
     autoApproveSnippets: false,
     requireEmailVerification: true,
     enableTwoFactor: false,
     maintenanceMode: false,
-    supportEmail: "support@sn-x.com",
+    supportEmail: "support@numina.org",
     termsUrl: "/terms",
     privacyUrl: "/privacy",
   })

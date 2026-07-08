@@ -5,7 +5,7 @@ import { uploadSnippet } from "@/lib/r2"
 import { sql } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
-const PLATFORM_EMAIL = "site@sn-x.com"
+const PLATFORM_EMAIL = "site@numina.org"
 const PLATFORM_PASSWORD = "platform-sn-x-2026"
 const PLATFORM_DISPLAY_NAME = "Sn-x.com"
 

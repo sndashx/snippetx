@@ -60,7 +60,7 @@ export default function LoginPage() {
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 font-semibold tracking-tight text-lg">
             <Code2 className="size-6" />
-            SnippetX
+            NUMINA
           </Link>
           <h1 className="mt-4 text-2xl font-bold tracking-tight">Sign in</h1>
           <p className="mt-1 text-sm text-muted-foreground">

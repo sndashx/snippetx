@@ -83,7 +83,7 @@ export async function POST(req: Request) {
                 <p>You bought <strong>${snippet.title}</strong> for $${(order.amount / 100).toFixed(2)}.</p>
                 <p><a href="${downloadUrl}">Download your snippet</a></p>
                 <p>This link expires in 1 hour.</p>
-                <p><a href="${APP_URL}/snippets/${snippet.id}">View on SnippetX</a></p>
+                <p><a href="${APP_URL}/snippets/${snippet.id}">View on NUMINA</a></p>
               `,
             })
           }

@@ -32,7 +32,7 @@ export async function sendPasswordResetEmail({ to, resetUrl }: PasswordResetEmai
 <body>
   <div class="container">
     <div class="logo">
-      <span class="logo-text">⌘ SnippetX</span>
+      <span class="logo-text">⌘ NUMINA</span>
     </div>
     <div class="card">
       <h2>Reset your password</h2>
@@ -43,7 +43,7 @@ export async function sendPasswordResetEmail({ to, resetUrl }: PasswordResetEmai
       </div>
     </div>
     <div class="footer">
-      <p>SnippetX &mdash; sn-x.com</p>
+      <p>NUMINA &mdash; numina.org</p>
     </div>
   </div>
 </body>
@@ -52,7 +52,7 @@ export async function sendPasswordResetEmail({ to, resetUrl }: PasswordResetEmai
   await resend.emails.send({
     from: FROM_EMAIL,
     to,
-    subject: "Reset your SnippetX password",
+    subject: "Reset your NUMINA password",
     html,
   })
 }

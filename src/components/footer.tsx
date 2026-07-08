@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, ArrowUpRight, Sparkles } from "lucide-react";
+import { Globe, X, Mail, ArrowUpRight, Sparkles } from "lucide-react";
 
 const columns = [
   {
@@ -23,18 +23,16 @@ const columns = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "/#about" },
-      { label: "Careers", href: "/#about" },
-      { label: "Contact", href: "/#about" },
+      { label: "Contact", href: "/contact" },
       { label: "Newsroom", href: "/#research" },
     ],
   },
 ];
 
 const socials = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Twitter, href: "https://twitter.com", label: "X" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Globe, href: "https://github.com", label: "GitHub" },
+  { icon: X, href: "https://twitter.com", label: "X" },
+  { icon: Mail, href: "https://linkedin.com", label: "LinkedIn" },
 ];
 
 export function Footer() {

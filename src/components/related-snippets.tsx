@@ -28,7 +28,7 @@ export function RelatedSnippets({ items }: { items: RelatedSnippet[] }) {
               {s.title}
             </h3>
             <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">@{s.author || "sn-x.com"}</span>
+              <span className="text-xs text-muted-foreground">@{s.author || "numina.org"}</span>
               <span className="text-sm font-bold tracking-tighter">${(s.price / 100).toFixed(2)}</span>
             </div>
           </Link>

@@ -215,8 +215,8 @@ export function ContactForm() {
       <p className="flex items-center justify-center gap-1.5 text-center text-xs text-muted-foreground">
         <Mail className="size-3.5" />
         Or email us directly at{" "}
-        <a href="mailto:taylor@sn-x.com" className="font-medium text-amber-500 hover:underline">
-          taylor@sn-x.com
+        <a href="mailto:taylor@numina.org" className="font-medium text-amber-500 hover:underline">
+          taylor@numina.org
         </a>
       </p>
     </form>

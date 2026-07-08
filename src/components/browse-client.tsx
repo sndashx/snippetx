@@ -158,7 +158,7 @@ export function BrowseClient({ lang, q }: { lang?: string; q?: string }) {
                         <div className="flex items-center gap-2">
                           <div className="size-5 rounded-full bg-muted border border-border" />
                           <span className="text-xs font-medium text-muted-foreground">
-                            @{snippet.author || "sn-x.com"}
+                            @{snippet.author || "numina.org"}
                           </span>
                         </div>
                         <span className="text-xl font-bold tracking-tighter">${(snippet.price / 100).toFixed(2)}</span>

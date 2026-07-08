@@ -4,7 +4,7 @@ import { resend, FROM_EMAIL } from "@/lib/resend"
 export const dynamic = "force-dynamic"
 
 // Where integration / contact requests are delivered
-const CONTACT_TO_EMAIL = "taylor@sn-x.com"
+const CONTACT_TO_EMAIL = "taylor@numina.org"
 
 // Simple email shape check
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -105,14 +105,14 @@ export async function POST(req: Request) {
     if (sendError) {
       console.error("Resend returned an error sending contact email:", sendError)
       return NextResponse.json(
-        { error: "Failed to send your message. Please try again or email taylor@sn-x.com directly." },
+        { error: "Failed to send your message. Please try again or email taylor@numina.org directly." },
         { status: 502 },
       )
     }
   } catch (error: unknown) {
     console.error("Failed to send contact email:", error)
     return NextResponse.json(
-      { error: "Failed to send your message. Please try again or email taylor@sn-x.com directly." },
+      { error: "Failed to send your message. Please try again or email taylor@numina.org directly." },
       { status: 500 },
     )
   }

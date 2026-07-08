@@ -3,13 +3,12 @@
 import React, { useEffect, useState } from "react"
 import { Command } from "cmdk"
 import { useRouter } from "next/navigation"
-import { Search, X, Terminal } from "lucide-react"
+import { Search, Terminal } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/lib/utils"
 
 const COMMANDS = [
-  { label: "Browse Snippets", value: "/browse", icon: Search },
-  { label: "Sell a Snippet", value: "/sell/new", icon: Terminal },
+  { label: "Browse", value: "/browse", icon: Search },
+  { label: "Contribute", value: "/sell/new", icon: Terminal },
   { label: "My Profile", value: "/profile", icon: Terminal },
   { label: "Login", value: "/login", icon: Terminal },
   { label: "Register", value: "/register", icon: Terminal },

@@ -17,4 +17,4 @@ export const resend = new Proxy({} as Resend, {
   },
 })
 
-export const FROM_EMAIL = "SnippetX <noreply@sn-x.com>"
+export const FROM_EMAIL = "NUMINA <noreply@numina.org>"
