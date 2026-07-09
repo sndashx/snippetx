@@ -88,7 +88,6 @@ export function buildMetadata(opts?: {
       "AI research lab",
       "artificial intelligence",
     ],
-    themeColor,
     openGraph: {
       type: "website",
       title,

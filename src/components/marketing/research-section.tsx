@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { Reveal } from "@/components/visual/Reveal"
+import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
 import { researchPapers, type ResearchKind } from "@/content/research"
 import { cn } from "@/lib/utils"
@@ -61,7 +61,7 @@ export function ResearchSection() {
         >
           {papers.map((p, i) => (
             <li key={p.slug}>
-              <Reveal delay={Math.min(i * 0.05, 0.3)}>
+              <Reveal delay={Math.min(i * 50, 300)}>
                 <Link
                   href={`/research/${p.slug}`}
                   className={cn(

@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/visual/Reveal"
+import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
 import { modelFlagship } from "@/lib/brand"
 import { cn } from "@/lib/utils"
@@ -119,7 +119,7 @@ export function CapabilitiesSection() {
         >
           {capabilities.map((c, i) => (
             <li key={c.title}>
-              <Reveal delay={i * 0.08}>
+              <Reveal delay={i * 80}>
                 <CapabilityCard capability={c} />
               </Reveal>
             </li>
