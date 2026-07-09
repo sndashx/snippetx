@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, ArrowUpRight, Sparkles } from "lucide-react";
+import { Globe, AtSign, Globe2, ArrowUpRight, Sparkles } from "lucide-react";
 
 const columns = [
   {
@@ -32,9 +32,9 @@ const columns = [
 ];
 
 const socials = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Twitter, href: "https://twitter.com", label: "X" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Globe, href: "https://github.com", label: "GitHub" },
+  { icon: AtSign, href: "https://twitter.com", label: "X" },
+  { icon: Globe2, href: "https://linkedin.com", label: "LinkedIn" },
 ];
 
 export function Footer() {

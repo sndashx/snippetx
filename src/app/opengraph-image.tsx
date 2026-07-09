@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
-export const alt = "NUMINA — Frontier Agentic AI Research Lab"
+export const alt = "minimax M3 — Frontier agentic intelligence, built in the open."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -17,9 +17,9 @@ export default function OG() {
           justifyContent: "space-between",
           padding: "80px",
           background:
-            "radial-gradient(900px circle at 20% 0%, oklch(0.62 0.21 285 / 0.35), transparent 60%), radial-gradient(900px circle at 90% 30%, oklch(0.78 0.15 200 / 0.3), transparent 60%), oklch(0.14 0.02 265)",
-          color: "white",
-          fontFamily: "sans-serif",
+            "radial-gradient(900px circle at 15% 0%, rgba(200,255,0,0.18), transparent 60%), radial-gradient(900px circle at 90% 40%, rgba(232,255,122,0.14), transparent 60%), #070708",
+          color: "#f4f1ea",
+          fontFamily: "serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
@@ -28,40 +28,56 @@ export default function OG() {
               width: 56,
               height: 56,
               borderRadius: 14,
-              border: "2px solid oklch(0.78 0.15 200)",
+              border: "2px solid #c8ff00",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontSize: 30,
-              fontWeight: 700,
+              fontWeight: 600,
+              color: "#c8ff00",
             }}
           >
-            N
+            m
           </div>
-          <div style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.5 }}>NUMINA</div>
+          <div style={{ fontSize: 34, fontWeight: 500, letterSpacing: -0.5 }}>minimax</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 76, fontWeight: 800, letterSpacing: -2, lineHeight: 1.05 }}>
-            Frontier intelligence,
+          <div style={{ fontSize: 124, fontWeight: 400, letterSpacing: -4, lineHeight: 1.0, fontStyle: "italic" }}>
+            minimax M3
           </div>
           <div
             style={{
-              fontSize: 76,
-              fontWeight: 800,
-              letterSpacing: -2,
-              lineHeight: 1.05,
-              background: "linear-gradient(90deg, oklch(0.62 0.21 285), oklch(0.78 0.15 200))",
-              backgroundClip: "text",
-              color: "transparent",
+              marginTop: 18,
+              fontSize: 36,
+              fontStyle: "italic",
+              color: "#c8ff00",
+              letterSpacing: -0.5,
             }}
           >
-            built to act.
+            Frontier agentic intelligence,
           </div>
-          <div style={{ marginTop: 24, fontSize: 28, color: "oklch(0.66 0.03 265)" }}>
-            Frontier Agentic AI Research Lab
+          <div
+            style={{
+              fontSize: 36,
+              fontStyle: "italic",
+              color: "#c8ff00",
+              letterSpacing: -0.5,
+            }}
+          >
+            built in the open.
           </div>
         </div>
-        <div style={{ display: "flex", gap: 16, fontSize: 22, color: "oklch(0.66 0.03 265)" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 16,
+            fontSize: 20,
+            color: "#a8a39a",
+            letterSpacing: 4,
+            textTransform: "uppercase",
+            fontFamily: "monospace",
+          }}
+        >
           <span>Agentic</span>
           <span>•</span>
           <span>Reasoning</span>
