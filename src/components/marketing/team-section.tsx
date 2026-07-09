@@ -198,10 +198,10 @@ export function TeamSection() {
                       </p>
                     </div>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-4 text-pretty text-sm leading-relaxed text-muted-foreground">
                     {m.bio}
                   </p>
-                  <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  <p className="mt-4 text-eyebrow">
                     <span className="text-foreground/80">{m.group}</span>
                   </p>
                 </article>

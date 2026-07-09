@@ -44,10 +44,10 @@ export default function ResearchIndexPage() {
       <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-44">
         <header className="mb-16 max-w-3xl">
           <p className="text-eyebrow">Research · Index</p>
-          <h1 className="mt-4 text-display-lg text-foreground">
+          <h1 className="mt-4 text-display-lg text-balance text-foreground">
             Notes from the frontier.
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             Papers, technical posts, and release notes from the team building
             minimax M3. We publish what we learn, even when it&apos;s mid-progress.
           </p>
@@ -56,7 +56,7 @@ export default function ResearchIndexPage() {
         <div className="grid gap-10 lg:grid-cols-[16rem_1fr] lg:gap-16">
           {/* Sticky left index */}
           <aside aria-label="Research index" className="lg:sticky lg:top-28 lg:self-start">
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            <p className="mb-4 text-eyebrow">
               {papers.length} artifacts
             </p>
             <ol className="flex flex-col gap-1 border-l border-border">
@@ -108,7 +108,7 @@ export default function ResearchIndexPage() {
                   </time>
                 </div>
                 <div className="flex flex-col gap-3">
-                  <h2 className="text-display-md text-foreground">
+                  <h2 className="text-display-md text-balance text-foreground">
                     <Link
                       href={`/research/${p.slug}`}
                       className="transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -116,7 +116,7 @@ export default function ResearchIndexPage() {
                       {p.title}
                     </Link>
                   </h2>
-                  <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+                  <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground">
                     {p.abstract}
                   </p>
                   <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">

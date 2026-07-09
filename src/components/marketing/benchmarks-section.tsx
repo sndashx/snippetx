@@ -183,14 +183,14 @@ function BenchmarkChart({ benchmark }: { benchmark: BenchmarkRow }) {
     <article className="group rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors duration-500 ease-out-expo hover:border-accent/35 sm:p-7">
       <header className="flex items-baseline justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+          <h3 className="text-balance text-display-sm font-medium tracking-tight text-foreground">
             {benchmark.name}
           </h3>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-pretty text-sm text-muted-foreground">
             {benchmark.description}
           </p>
         </div>
-        <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+        <span className="shrink-0 text-eyebrow">
           higher is better
         </span>
       </header>
@@ -257,6 +257,7 @@ function BenchmarkChart({ benchmark }: { benchmark: BenchmarkRow }) {
                   textAnchor="end"
                   fontFamily="var(--font-mono), ui-monospace, monospace"
                   fontSize={11}
+                  fontVariant="tabular-nums"
                   fill="currentColor"
                   fillOpacity={m.highlight ? 0.95 : 0.75}
                 >

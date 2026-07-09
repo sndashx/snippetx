@@ -27,13 +27,13 @@ export function ContactSection() {
                 aria-hidden
                 className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-accent/15 blur-3xl"
               />
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
+              <p className="text-eyebrow text-accent">
                 Direct line
               </p>
-              <h3 className="mt-3 text-display-md font-display text-foreground">
+              <h3 className="mt-3 text-display-md text-balance">
                 Email the lab
               </h3>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 max-w-md text-pretty text-sm leading-relaxed text-muted-foreground">
                 Prefer a direct line? Drop us a note and a member of the team
                 will route it to the right desk.
               </p>
@@ -47,20 +47,20 @@ export function ContactSection() {
 
               <dl className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border/70 bg-background/30 p-4">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  <dt className="text-eyebrow">
                     Press
                   </dt>
-                  <dd className="mt-2 text-sm text-foreground">press@minimax.ai</dd>
+                  <dd className="mt-2 text-sm text-foreground tabular-nums">press@minimax.ai</dd>
                 </div>
                 <div className="rounded-xl border border-border/70 bg-background/30 p-4">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  <dt className="text-eyebrow">
                     Careers
                   </dt>
-                  <dd className="mt-2 text-sm text-foreground">careers@minimax.ai</dd>
+                  <dd className="mt-2 text-sm text-foreground tabular-nums">careers@minimax.ai</dd>
                 </div>
               </dl>
 
-              <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              <p className="mt-8 text-eyebrow">
                 San Francisco · London · Singapore
               </p>
             </aside>
