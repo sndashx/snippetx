@@ -16,13 +16,11 @@ import {
   Rocket,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { AuroraBackground } from "@/components/visual/AuroraBackground"
 import { GlowCard } from "@/components/visual/GlowCard"
 import { Marquee } from "@/components/visual/Marquee"
-import { AnimatedHeadline } from "@/components/visual/AnimatedHeadline"
 import { Reveal } from "@/components/visual/Reveal"
-import { StatCounter } from "@/components/visual/StatCounter"
 import { SectionHeading } from "@/components/visual/SectionHeading"
+import { Hero } from "@/components/marketing/hero"
 
 const models = [
   {
@@ -103,57 +101,7 @@ export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-foreground">
       {/* HERO */}
-      <section className="relative overflow-hidden">
-        <AuroraBackground />
-        <div className="mx-auto max-w-6xl px-6 pb-24 pt-28 sm:pt-36">
-          <Reveal className="mb-6 flex justify-center" delay={0.05}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
-              <Sparkles className="size-3 text-brand-3" />
-              New: NUMINA-Horizon is now live
-            </span>
-          </Reveal>
-
-          <AnimatedHeadline
-            as="h1"
-            text="Frontier intelligence, built to act."
-            gradientWords={["act."]}
-            className="mx-auto max-w-4xl text-center text-5xl font-extrabold leading-[1.05] sm:text-7xl lg:text-8xl"
-          />
-
-          <Reveal delay={0.3} className="mx-auto mt-8 max-w-2xl text-center">
-            <p className="text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              NUMINA is a research lab building agentic language models that reason,
-              plan, and act — advancing the frontier of artificial intelligence.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.45} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="h-12 rounded-full px-8 text-base font-semibold transition-all hover:neon-glow" render={<Link href="/#models" />}>
-              Explore the models
-              <ArrowRight className="ml-2 size-4" />
-            </Button>
-            <Button variant="outline" size="lg" className="h-12 rounded-full px-8 text-base font-semibold backdrop-blur transition-all hover:bg-card" render={<Link href="/#research" />}>
-              Read the research
-            </Button>
-          </Reveal>
-
-          <Reveal delay={0.6} className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/40 sm:grid-cols-4">
-            {[
-              { v: 2.4, s: "T", d: 1, l: "Parameters" },
-              { v: 1, s: "M", d: 0, l: "Context window" },
-              { v: 94.2, s: "", d: 1, l: "MMLU-Pro" },
-              { v: 12, s: "K+", d: 0, l: "Agents deployed" },
-            ].map((s) => (
-              <div key={s.l} className="bg-card/70 p-5 text-center backdrop-blur">
-                <div className="text-2xl font-bold tracking-tight text-gradient sm:text-3xl">
-                  <StatCounter value={s.v} suffix={s.s} decimals={s.d} />
-                </div>
-                <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
+      <Hero />
 
       {/* MARQUEE */}
       <section className="border-y border-border bg-card/30 py-6">
