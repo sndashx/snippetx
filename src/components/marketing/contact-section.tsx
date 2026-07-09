@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Mail } from "lucide-react"
-import { Reveal } from "@/components/visual/Reveal"
+import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
 import { ContactForm } from "@/components/marketing/contact-form"
 
@@ -21,7 +21,7 @@ export function ContactSection() {
         </Reveal>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <Reveal delay={0.05}>
+          <Reveal delay={50}>
             <aside className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-7 sm:p-8">
               <span
                 aria-hidden
@@ -66,7 +66,7 @@ export function ContactSection() {
             </aside>
           </Reveal>
 
-          <Reveal delay={0.1}>
+          <Reveal delay={100}>
             <div className="relative">
               <ContactForm />
             </div>

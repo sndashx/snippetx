@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/visual/Reveal"
+import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
 import { modelFlagship } from "@/lib/brand"
 import { cn } from "@/lib/utils"
@@ -128,7 +128,7 @@ export function BenchmarksSection() {
         </Reveal>
 
         {/* Legend */}
-        <Reveal delay={0.1}>
+        <Reveal delay={100}>
           <ul
             role="list"
             className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground"
@@ -153,14 +153,14 @@ export function BenchmarksSection() {
         <ul role="list" className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-x-12">
           {benchmarks.map((b, i) => (
             <li key={b.name}>
-              <Reveal delay={Math.min(i * 0.06, 0.3)}>
+              <Reveal delay={Math.min(i * 60, 300)}>
                 <BenchmarkChart benchmark={b} />
               </Reveal>
             </li>
           ))}
         </ul>
 
-        <Reveal delay={0.2}>
+        <Reveal delay={200}>
           <p className="mt-12 max-w-2xl font-mono text-[11px] leading-relaxed text-muted-foreground">
             All numbers from public leaderboards and our internal replications, March 2026.
             The full evaluation suite — including held-out tasks — is reproducible from the

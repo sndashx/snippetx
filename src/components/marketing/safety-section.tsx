@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/visual/Reveal"
+import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
 import { labNameLong } from "@/lib/brand"
 
@@ -36,7 +36,7 @@ export function SafetySection() {
         </Reveal>
 
         {/* Manifesto */}
-        <Reveal delay={0.05}>
+        <Reveal delay={50}>
           <div className="mt-14 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div className="relative">
               <span
@@ -88,7 +88,7 @@ export function SafetySection() {
         >
           {commitments.map((c, i) => (
             <li key={c.title} className="bg-card/70">
-              <Reveal delay={i * 0.08}>
+              <Reveal delay={i * 80}>
                 <article className="relative h-full p-7 sm:p-8">
                   <span
                     aria-hidden

@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/visual/Reveal"
+import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
 import { cn } from "@/lib/utils"
 
@@ -160,7 +160,7 @@ export function TeamSection() {
           />
         </Reveal>
 
-        <Reveal delay={0.05}>
+        <Reveal delay={50}>
           <ul
             role="list"
             className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
@@ -185,7 +185,7 @@ export function TeamSection() {
         >
           {members.map((m, i) => (
             <li key={m.name}>
-              <Reveal delay={Math.min(i * 0.04, 0.32)}>
+              <Reveal delay={Math.min(i * 40, 320)}>
                 <article className="group relative h-full overflow-hidden rounded-2xl border border-border/70 bg-card/70 p-6 transition-colors duration-500 ease-out-expo hover:border-accent/35">
                   <div className="flex items-start gap-4">
                     <Monogram name={m.name} />
