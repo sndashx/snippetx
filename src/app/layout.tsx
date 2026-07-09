@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CommandPalette } from "@/components/ui/command-palette/command-palette";
 import { JsonLd } from "@/components/json-ld";
+import { SiteNav } from "@/components/marketing/site-nav";
 import { APP_URL } from "@/lib/constants";
 import { buildMetadata, labName, themeColor } from "@/lib/brand";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
         <JsonLd data={websiteJsonLd} />
         <JsonLd data={organizationJsonLd} />
         <Providers>
+          <SiteNav />
           <Header />
           <CommandPalette />
           <main id="main" className="flex-1">

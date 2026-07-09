@@ -359,6 +359,15 @@
   .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
   .ease-in-out-expo { transition-timing-function: var(--ease-in-out-expo); }
   .duration-cinematic { transition-duration: var(--duration-cinematic); }
+
+  /* ── Hand-rolled code highlighter tokens (see src/components/marketing/highlight.tsx) ─ */
+  .tok-comment { color: color-mix(in oklch, var(--muted-foreground) 80%, transparent); font-style: italic; }
+  .tok-string { color: color-mix(in oklch, var(--accent) 75%, var(--accent-soft)); }
+  .tok-number { color: color-mix(in oklch, var(--accent-soft) 80%, var(--accent)); }
+  .tok-keyword { color: var(--accent); font-weight: 500; }
+  .tok-type { color: var(--foreground); font-weight: 500; }
+  .tok-ident { color: color-mix(in oklch, var(--foreground) 90%, transparent); }
+  .tok-punct { color: color-mix(in oklch, var(--muted-foreground) 80%, transparent); }
 }
 
 @keyframes shimmer {
