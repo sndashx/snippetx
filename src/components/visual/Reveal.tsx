@@ -12,7 +12,7 @@ interface RevealProps extends HTMLMotionProps<"div"> {
 
 export function Reveal({ as = "div", className, children, delay = 0, y = 28, ...props }: RevealProps) {
   const reduce = useReducedMotion()
-  const Tag = motion[as]
+  const Tag = motion[as] as React.ComponentType<HTMLMotionProps<"div">>
   return (
     <Tag
       className={cn(className)}
