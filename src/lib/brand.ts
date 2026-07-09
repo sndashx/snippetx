@@ -94,20 +94,11 @@ export function buildMetadata(opts?: {
       description: desc,
       url,
       siteName: labName,
-      images: [
-        {
-          url: social.ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${labName} — Frontier agentic intelligence`,
-        },
-      ],
     },
     twitter: {
       card: social.twitterCard,
       title,
       description: desc,
-      images: [social.ogImage],
     },
     alternates: {
       canonical: opts?.path ?? "/",
