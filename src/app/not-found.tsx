@@ -1,50 +1,53 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Code2 } from "lucide-react"
+import { buildMetadata } from "@/lib/metadata"
+import { labName } from "@/lib/brand"
+
+export const metadata = buildMetadata({
+  title: "Not found",
+  description: `The page you are looking for does not exist on ${labName}.`,
+  path: "/404",
+})
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-            <Code2 className="size-5" />
-            SnippetX
-          </Link>
-          <nav className="hidden items-center gap-6 sm:flex">
-            <Link href="/browse" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Browse
-            </Link>
-            <Link href="/sell" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Sell
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="relative flex min-h-screen flex-col bg-background text-foreground">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 opacity-60"
+        aria-hidden
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,color-mix(in_oklch,var(--accent)_14%,transparent)_0%,transparent_60%)]" />
+        <div className="grain absolute inset-0" />
+      </div>
 
-      <main className="flex flex-1 flex-col items-center justify-center px-4 text-center">
-        <div className="mb-6 rounded-xl bg-muted p-4">
-          <Code2 className="size-8 text-muted-foreground" />
-        </div>
-        <p className="mb-1 text-6xl font-bold tracking-tighter text-muted-foreground/30">404</p>
-        <h1 className="mb-2 text-2xl font-semibold tracking-tight">Page not found</h1>
-        <p className="mb-8 max-w-md text-sm text-muted-foreground">
-          The page you are looking for does not exist or has been moved.
+      <main
+        id="main"
+        className="flex flex-1 flex-col items-center justify-center px-6 py-24 text-center"
+      >
+        <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+          Error · 404
         </p>
-        <Link href="/">
-          <Button size="lg">Back to Home</Button>
-        </Link>
-      </main>
-
-      <footer className="border-t border-border">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 text-sm text-muted-foreground">
-          <span>&copy; {new Date().getFullYear()} SnippetX</span>
-          <div className="flex items-center gap-4">
-            <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
-            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-          </div>
+        <h1 className="mt-6 max-w-2xl text-balance font-display text-5xl leading-[1.05] tracking-tight text-foreground sm:text-7xl">
+          This page is <em className="text-accent">off the lattice</em>.
+        </h1>
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          The page you are looking for does not exist, was renamed, or is still
+          being trained. Head back to the {labName} homepage to keep exploring.
+        </p>
+        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+          <Link
+            href="/"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-7 text-sm font-semibold text-background transition-all hover:neon-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            Back to homepage
+          </Link>
+          <Link
+            href="/research"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-card/40 px-7 text-sm font-semibold text-foreground backdrop-blur transition-colors hover:bg-card/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            Read research
+          </Link>
         </div>
-      </footer>
+      </main>
     </div>
   )
 }

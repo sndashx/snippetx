@@ -20,16 +20,63 @@ const LANGUAGES = [
   "kotlin",
 ]
 
+/** Static lab-site routes. Update when adding/removing marketing routes. */
+type RouteSpec = {
+  path: string
+  changeFrequency:
+    | "always"
+    | "hourly"
+    | "daily"
+    | "weekly"
+    | "monthly"
+    | "yearly"
+    | "never"
+  priority: number
+}
+
+const LAB_ROUTES: RouteSpec[] = [
+  { path: "/", changeFrequency: "daily", priority: 1 },
+  { path: "/model", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/research", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/playground", changeFrequency: "monthly", priority: 0.8 },
+]
+
+/** Marketplace routes that should be discoverable by search engines. */
+const MARKETPLACE_ROUTES: RouteSpec[] = [
+  { path: "/browse", changeFrequency: "hourly", priority: 0.9 },
+]
+
+const STATIC_ROUTES: RouteSpec[] = [
+  { path: "/contact", changeFrequency: "monthly", priority: 0.4 },
+  { path: "/terms", changeFrequency: "yearly", priority: 0.2 },
+  { path: "/privacy", changeFrequency: "yearly", priority: 0.2 },
+]
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${APP_URL}/`, lastModified: now, changeFrequency: "daily", priority: 1 },
-    { url: `${APP_URL}/browse`, lastModified: now, changeFrequency: "hourly", priority: 0.9 },
-    { url: `${APP_URL}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${APP_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${APP_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
-  ]
+  const labRoutes: MetadataRoute.Sitemap = LAB_ROUTES.map((r) => ({
+    url: `${APP_URL}${r.path}`,
+    lastModified: now,
+    changeFrequency: r.changeFrequency,
+    priority: r.priority,
+  }))
+
+  const marketplaceRoutes: MetadataRoute.Sitemap = MARKETPLACE_ROUTES.map(
+    (r) => ({
+      url: `${APP_URL}${r.path}`,
+      lastModified: now,
+      changeFrequency: r.changeFrequency,
+      priority: r.priority,
+    }),
+  )
+
+  const staticRoutes: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => ({
+    url: `${APP_URL}${r.path}`,
+    lastModified: now,
+    changeFrequency: r.changeFrequency,
+    priority: r.priority,
+  }))
 
   const languageRoutes: MetadataRoute.Sitemap = LANGUAGES.map((lang) => ({
     url: `${APP_URL}/snippets/lang/${lang}`,
@@ -60,5 +107,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("sitemap: failed to load snippets:", error)
   }
 
-  return [...staticRoutes, ...languageRoutes, ...snippetRoutes]
+  return [
+    ...labRoutes,
+    ...marketplaceRoutes,
+    ...staticRoutes,
+    ...languageRoutes,
+    ...snippetRoutes,
+  ]
 }

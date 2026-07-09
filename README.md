@@ -1,10 +1,114 @@
-# SnippetX Documentation
+# minimax — Frontier Agentic Intelligence
 
-## Overview
+**minimax** is a small AI research lab building agentic language models.
+Our flagship model is **minimax M3** — a frontier agentic system with
+deliberative reasoning, native tool-use, and a one-million-token context
+window.
 
-SnippetX is a Next.js 16 code snippet marketplace that enables developers to buy, sell, and share code snippets. The platform features a comprehensive marketplace with authentication, payments, team collaboration, and premium verification systems.
+This repository hosts the public lab website (marketing, research, model
+documentation, playground) and the legacy SnippetX marketplace + CLI/API
+runtime that funds the lab.
+
+> If you only came for the model — start at
+> <https://minimax.dev/model>. If you came for the marketplace or CLI,
+> jump to **CLI Tool (snippetx)** below.
+
+## Repository Layout
+
+```
+src/
+  app/
+    page.tsx                # Lab homepage — hero, capabilities, research
+    model/                  # /model — flagship model page
+    research/               # /research — papers, posts, releases
+    playground/             # /playground — streaming chat UI
+    (marketplace)/          # Legacy marketplace (browse, sell, snippets)
+    api/                    # API routes (checkout, webhooks, auth, playground)
+  components/
+    marketing/              # Lab-site sections + reveal-on-scroll primitive
+    visual/                 # Shared visual primitives (aurora, glow, marquee)
+  lib/
+    brand.ts                # Single source of truth for lab copy + tokens
+    metadata.ts             # buildMetadata() helper for every route
+    seo.ts                  # Snippet slugs, JSON-LD, canonical helpers
+  content/                  # Lab research artifacts (papers, posts)
+```
+
+## Lab Website
+
+The public-facing site at `/`, `/model`, `/research`, and `/playground`
+is built around a strict component contract:
+
+- **Brand tokens** (`src/lib/brand.ts`) — single source of truth for
+  lab name, model family, color tokens, fonts, and Open Graph metadata.
+- **Metadata** (`src/lib/metadata.ts`) — every route uses the
+  `buildMetadata()` factory so title, description, OpenGraph, Twitter
+  card, and canonical URL stay consistent.
+- **Motion** (`src/components/marketing/reveal.tsx`) — IntersectionObserver
+  reveal-on-scroll primitive with `--delay` CSS variable for staggered
+  children. Respects `prefers-reduced-motion`.
+- **Discovery** — `src/app/sitemap.ts` enumerates lab + marketplace
+  routes; `src/app/robots.ts` allows the lab site and disallows admin,
+  auth, and API paths.
+
+### Adding a route
+
+1. Create `src/app/<route>/page.tsx`.
+2. Add `export const metadata: Metadata = buildMetadata({ title, description, path })`.
+3. Register the route in `src/app/sitemap.ts` (`LAB_ROUTES`).
+4. If the page needs entrance motion, wrap headings/cards in
+   `<Reveal delay={n}>` from `@/components/marketing/reveal` — staggered
+   children just pass `delay={i * 80}`.
+
+## Marketplace (Legacy)
+
+The SnippetX marketplace — auth, snippet listings, Stripe Connect
+checkout, R2 storage, Resend email — still ships under
+`src/app/(marketplace)` and `src/app/api`. It is the commercial side
+of the lab: every purchase funds compute for the next model release.
 
 ## Features
+
+### CLI Tool (snippetx)
+
+The CLI tool provides instant snippet installation from the marketplace:
+
+#### Installation
+```bash
+npm install -g snippetx-cli
+```
+
+#### Commands
+
+**Install a snippet:**
+```bash
+snippetx install <snippet-id>
+```
+
+**List available snippets:**
+```bash
+snippetx list
+```
+
+**Login to marketplace:**
+```bash
+snippetx login
+```
+
+#### Usage Examples
+
+```bash
+# Install a specific snippet
+snippetx install react-hooks-useState
+
+# List all available snippets
+snippetx list
+
+# Login with API token
+snippetx login
+```
+
+### Team-Based Subscriptions (B2B SaaS)
 
 ### CLI Tool (snippetx)
 
