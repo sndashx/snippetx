@@ -120,10 +120,10 @@ export default function ModelPage() {
       <div className="mx-auto max-w-6xl px-6 pb-32 pt-36 sm:pt-44">
         <header className="mb-16 max-w-3xl">
           <p className="text-eyebrow">Model · Flagship</p>
-          <h1 className="mt-4 text-display-xl text-foreground">
+          <h1 className="mt-4 text-display-xl text-balance text-foreground">
             {modelFlagship.name}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
             {modelFlagship.tagline}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -168,7 +168,7 @@ export default function ModelPage() {
         {/* Capabilities */}
         <section className="mt-24">
           <p className="text-eyebrow">Capabilities</p>
-          <h2 className="mt-3 text-display-md text-foreground">
+          <h2 className="mt-3 text-display-md text-balance text-foreground">
             What {modelFlagship.codename} is good at.
           </h2>
           <ul className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
@@ -195,10 +195,10 @@ export default function ModelPage() {
         {/* API example */}
         <section className="mt-24">
           <p className="text-eyebrow">API</p>
-          <h2 className="mt-3 text-display-md text-foreground">
+          <h2 className="mt-3 text-display-md text-balance text-foreground">
             Drop-in OpenAI-compatible endpoint.
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground">
             Same request shape as the OpenAI Chat Completions API. Switch your
             <code className="mx-1 rounded bg-card/70 px-1.5 py-0.5 font-mono text-sm text-accent">baseURL</code>
             and
@@ -214,10 +214,10 @@ export default function ModelPage() {
         {/* Pricing */}
         <section className="mt-24">
           <p className="text-eyebrow">Pricing</p>
-          <h2 className="mt-3 text-display-md text-foreground">
+          <h2 className="mt-3 text-display-md text-balance text-foreground">
             Pay for what you use.
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground">
             Token-based pricing across three model sizes. Volume discounts
             available above 10B tokens / month.
           </p>
@@ -255,7 +255,7 @@ export default function ModelPage() {
         {/* Availability */}
         <section className="mt-24">
           <p className="text-eyebrow">Availability</p>
-          <h2 className="mt-3 text-display-md text-foreground">
+          <h2 className="mt-3 text-display-md text-balance text-foreground">
             Where you can run it.
           </h2>
           <ul className="mt-10 grid gap-3 sm:grid-cols-2">
@@ -283,7 +283,7 @@ export default function ModelPage() {
         {/* Changelog */}
         <section className="mt-24">
           <p className="text-eyebrow">Changelog</p>
-          <h2 className="mt-3 text-display-md text-foreground">Releases.</h2>
+          <h2 className="mt-3 text-display-md text-balance text-foreground">Releases.</h2>
           <ol className="mt-10 flex flex-col divide-y divide-border/60 rounded-2xl border border-border">
             {changelog.map((c) => (
               <li

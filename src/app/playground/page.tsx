@@ -141,10 +141,10 @@ export default function PlaygroundPage() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 pb-24 pt-28 sm:pt-36 lg:pt-32">
         <header className="flex flex-col gap-2">
           <p className="text-eyebrow">Playground · STUB</p>
-          <h1 className="text-display-md text-foreground">
+          <h1 className="text-display-md text-balance text-foreground">
             Talk to {modelFlagship.name}.
           </h1>
-          <p className="max-w-2xl text-base text-muted-foreground">
+          <p className="max-w-2xl text-pretty text-base text-muted-foreground">
             Streaming chat UI that demonstrates how the production endpoint
             will feel. The backend is a stub that emits a placeholder response.
           </p>

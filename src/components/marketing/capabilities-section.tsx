@@ -175,13 +175,13 @@ function CapabilityCard({ capability }: { capability: Capability }) {
         </span>
 
         <div className="min-w-0 flex-1">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="text-eyebrow">
             {capability.meta}
           </p>
-          <h3 className="mt-2 text-display-md font-display text-foreground">
+          <h3 className="mt-2 text-display-md text-balance">
             {capability.title}
           </h3>
-          <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">
+          <p className="mt-3 max-w-prose text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
             {capability.body}
           </p>
         </div>

@@ -79,14 +79,14 @@ export function ResearchSection() {
                     <div className="col-span-12 flex items-center gap-3 sm:col-span-2">
                       <span
                         className={cn(
-                          "font-mono text-[10px] uppercase tracking-[0.22em]",
+                          "text-eyebrow",
                           kindAccent(p.kind),
                         )}
                       >
                         {kindLabel(p.kind)}
                       </span>
                       <span aria-hidden className="text-border">·</span>
-                      <span className="font-mono text-xs text-muted-foreground">
+                      <span className="font-mono text-xs text-muted-foreground tabular-nums">
                         {p.date}
                       </span>
                     </div>
@@ -94,7 +94,7 @@ export function ResearchSection() {
                     <div className="col-span-12 sm:col-span-10">
                       <h3
                         className={cn(
-                          "text-display-md font-display text-foreground",
+                          "text-display-md text-balance",
                           "transition-colors duration-300 group-hover:text-accent",
                         )}
                       >
@@ -103,7 +103,7 @@ export function ResearchSection() {
                       <p className="mt-2 font-mono text-xs text-muted-foreground">
                         {authorList(p.authors)}
                       </p>
-                      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
                         {p.abstract}
                       </p>
 

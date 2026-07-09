@@ -78,7 +78,7 @@ export default async function ResearchPaperPage(
             All research
           </Link>
 
-          <header className="mb-12 max-w-3xl">
+          <header className="prose-measure mb-12">
             <div className="mb-5 flex items-center gap-3 text-xs text-muted-foreground">
               <span
                 className={cn(
@@ -90,7 +90,7 @@ export default async function ResearchPaperPage(
               >
                 {kindLabel[paper.kind]}
               </span>
-              <span className="font-mono">{formatLongDate(paper.iso, paper.date)}</span>
+              <span className="font-mono tabular-nums">{formatLongDate(paper.iso, paper.date)}</span>
               {paper.tags?.slice(0, 2).map((t) => (
                 <span
                   key={t}
@@ -101,9 +101,9 @@ export default async function ResearchPaperPage(
               ))}
             </div>
 
-            <h1 className="text-display-lg text-foreground">{paper.title}</h1>
+            <h1 className="text-display-lg text-balance text-foreground">{paper.title}</h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
               {paper.abstract}
             </p>
 
@@ -136,7 +136,7 @@ export default async function ResearchPaperPage(
             )}
           </header>
 
-          <div className="max-w-3xl">{renderMarkdown(paper.body)}</div>
+          <div className="prose-measure">{renderMarkdown(paper.body)}</div>
 
           <nav
             aria-label="Paper navigation"
@@ -176,7 +176,7 @@ export default async function ResearchPaperPage(
         </article>
 
         <aside aria-label="More research" className="lg:sticky lg:top-28 lg:self-start">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="mb-4 text-eyebrow">
             More research
           </p>
           <ol className="flex flex-col gap-1 border-l border-border">

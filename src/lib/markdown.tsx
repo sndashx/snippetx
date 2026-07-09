@@ -190,14 +190,14 @@ export function renderMarkdown(src: string): ReactNode {
         return (
           <h2
             key={idx}
-            className="mt-12 text-display-md text-foreground first:mt-0"
+            className="mt-12 text-display-md text-balance text-foreground first:mt-0"
           >
             {renderInline(b.text!)}
           </h2>
         )
       case "h3":
         return (
-          <h3 key={idx} className="mt-8 text-xl font-medium text-foreground">
+          <h3 key={idx} className="mt-8 text-balance text-xl font-medium tracking-tight text-foreground">
             {renderInline(b.text!)}
           </h3>
         )
@@ -205,14 +205,14 @@ export function renderMarkdown(src: string): ReactNode {
         return (
           <p
             key={idx}
-            className="mt-5 text-base leading-relaxed text-muted-foreground"
+            className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground"
           >
             {renderInline(b.text!)}
           </p>
         )
       case "ul":
         return (
-          <ul key={idx} className="mt-5 flex flex-col gap-2 pl-5 text-base text-muted-foreground">
+          <ul key={idx} className="mt-5 flex flex-col gap-2 pl-5 text-pretty text-base text-muted-foreground">
             {b.items!.map((it, j) => (
               <li key={j} className="relative pl-2 marker:text-accent">
                 <span
@@ -226,7 +226,7 @@ export function renderMarkdown(src: string): ReactNode {
         )
       case "ol":
         return (
-          <ol key={idx} className="mt-5 flex list-decimal flex-col gap-2 pl-6 text-base text-muted-foreground">
+          <ol key={idx} className="mt-5 flex list-decimal flex-col gap-2 pl-6 text-pretty text-base text-muted-foreground">
             {b.items!.map((it, j) => (
               <li key={j}>{renderInline(it)}</li>
             ))}
@@ -247,13 +247,13 @@ export function renderMarkdown(src: string): ReactNode {
       case "table":
         return (
           <div key={idx} className="mt-6 overflow-x-auto rounded-xl border border-border">
-            <table className="w-full text-left text-sm">
+            <table className="w-full text-left text-sm tabular-nums">
               <thead className="bg-card/60">
                 <tr>
                   {b.table!.headers.map((h, j) => (
                     <th
                       key={j}
-                      className="border-b border-border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground"
+                      className="border-b border-border px-4 py-3 text-left font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground"
                     >
                       {h}
                     </th>
@@ -264,7 +264,7 @@ export function renderMarkdown(src: string): ReactNode {
                 {b.table!.rows.map((row, r) => (
                   <tr key={r} className="border-b border-border/60 last:border-b-0">
                     {row.map((cell, c) => (
-                      <td key={c} className="px-4 py-3 text-foreground/85">
+                      <td key={c} className="px-4 py-3 text-pretty text-foreground/85">
                         {renderInline(cell)}
                       </td>
                     ))}

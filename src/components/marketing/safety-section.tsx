@@ -45,13 +45,13 @@ export function SafetySection() {
               >
                 &ldquo;
               </span>
-              <p className="font-display text-2xl leading-snug text-foreground sm:text-3xl">
+              <p className="dropcap font-display text-balance text-2xl leading-snug text-foreground sm:text-3xl">
                 A model that can do more can also be misused more. The honest
                 answer is not fewer capabilities — it is better measurements,
                 better refusal paths, and a research culture that treats
                 alignment as the load-bearing wall, not the wallpaper.
               </p>
-              <p className="mt-6 font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+              <p className="mt-6 text-eyebrow">
                 — {labNameLong}, Safety manifesto
               </p>
             </div>
@@ -61,13 +61,13 @@ export function SafetySection() {
                 aria-hidden
                 className="pointer-events-none absolute -right-12 -top-16 size-56 rounded-full bg-accent/15 blur-3xl"
               />
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
+              <p className="text-eyebrow text-accent">
                 Read the full position
               </p>
-              <h3 className="mt-3 text-display-md font-display text-foreground">
+              <h3 className="mt-3 text-display-md text-balance">
                 The minimax Safety Charter
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
                 Twelve pages on how we evaluate, when we decline, and how we
                 communicate model limits to operators and the public.
               </p>
@@ -96,10 +96,10 @@ export function SafetySection() {
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                  <h3 className="mt-4 text-balance text-lg font-semibold tracking-tight text-foreground sm:text-xl">
                     {c.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {c.body}
                   </p>
                 </article>
