@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { AnimatedHeadline } from "@/components/visual/AnimatedHeadline"
 import { HeroCanvas } from "@/components/marketing/hero-canvas"
 import { ModelSwitcher } from "@/components/marketing/model-switcher"
+import { Magnetic } from "@/components/marketing/magnetic"
 import { modelFlagship, labNameLong, tagline } from "@/lib/brand"
 import { recentResearch } from "@/content/research"
 import { cn } from "@/lib/utils"
@@ -51,14 +52,16 @@ export function Hero() {
             className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 fade-in-up"
             style={{ animationDelay: "680ms", animationFillMode: "both" }}
           >
-            <Button
-              size="lg"
-              render={<Link href="/#research" />}
-              className="h-12 rounded-full bg-accent px-7 text-base font-semibold text-background shadow-[0_18px_40px_-18px_color-mix(in_oklch,var(--accent)_70%,transparent)] transition-all hover:neon-glow"
-            >
-              Read the paper
-              <ArrowRight className="ml-2 size-4" aria-hidden />
-            </Button>
+            <Magnetic strength={8} radius={120}>
+              <Button
+                size="lg"
+                render={<Link href="/#research" />}
+                className="h-12 rounded-full bg-accent px-7 text-base font-semibold text-background shadow-[0_18px_40px_-18px_color-mix(in_oklch,var(--accent)_70%,transparent)] transition-all hover:neon-glow"
+              >
+                Read the paper
+                <ArrowRight className="ml-2 size-4" aria-hidden />
+              </Button>
+            </Magnetic>
             <Button
               size="lg"
               variant="outline"

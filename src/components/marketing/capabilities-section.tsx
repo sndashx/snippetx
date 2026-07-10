@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
+import { SpotlightCard } from "@/components/visual/SpotlightCard"
 import { modelFlagship } from "@/lib/brand"
 import { cn } from "@/lib/utils"
 
@@ -132,7 +133,10 @@ export function CapabilitiesSection() {
 
 function CapabilityCard({ capability }: { capability: Capability }) {
   return (
-    <article
+    <SpotlightCard
+      as="article"
+      size={420}
+      intensity={16}
       className={cn(
         "group relative h-full overflow-hidden rounded-2xl border border-border bg-card/70 p-7 sm:p-8",
         "transition-all duration-500 ease-out-expo",
@@ -192,6 +196,6 @@ function CapabilityCard({ capability }: { capability: Capability }) {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100"
       />
-    </article>
+    </SpotlightCard>
   )
 }
