@@ -179,9 +179,11 @@ export default function PlaygroundPage() {
           const { value, done } = await reader.read()
           if (done) break
           buf += decoder.decode(value, { stream: true })
+          // SSE: events separated by a blank line.
           const events = buf.split("\n\n")
           buf = events.pop() ?? ""
           for (const evt of events) {
+            // Each event: lines starting with "event:" and "data:".
             const line = evt.trim()
             if (!line) continue
             const dataLine = line
@@ -517,7 +519,7 @@ function ResponseText({
       )}
     >
       {text}
-      {streaming && <span aria-hidden className="careet" />}
+      {streaming && <span aria-hidden className="caret" />}
     </p>
   )
 }

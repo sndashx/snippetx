@@ -510,7 +510,7 @@
   100% { background-position:  120% 0; }
 }
 
-.careet {
+.caret {
   display: inline-block;
   width: 0.55ch;
   height: 1em;
@@ -633,12 +633,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .careet,
+  .caret,
   .response-streaming,
   .thinking-dots .dot {
     animation: none !important;
   }
-  .careet {
+  .caret {
     opacity: 1;
   }
   .response-streaming {
