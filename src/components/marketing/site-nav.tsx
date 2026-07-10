@@ -61,12 +61,14 @@ export function SiteNav() {
           ? "border-b border-border bg-background/70 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
+      style={{ viewTransitionName: "chrome" }}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link
           href="/"
           aria-label={`${labName} home`}
           className="group inline-flex items-center gap-2.5 text-sm font-medium tracking-tight text-foreground transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          style={{ viewTransitionName: "site-logo" }}
         >
           <span
             aria-hidden

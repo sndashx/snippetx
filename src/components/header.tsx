@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { BrandMark } from "@/components/footer"
+import { labName } from "@/lib/brand"
 
 const navLinks = [
   { label: "Models", href: "/#models" },
@@ -48,7 +49,7 @@ export function Header() {
           className="flex items-center gap-2.5 font-semibold tracking-tight transition-opacity hover:opacity-80"
         >
           <BrandMark className="size-7" />
-          <span className="text-lg">NUMINA</span>
+          <span className="font-display text-lg">{labName}</span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -105,7 +106,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 font-semibold" onClick={() => setMobileOpen(false)}>
               <BrandMark className="size-6" />
-              <span>NUMINA</span>
+              <span>{labName}</span>
             </Link>
             <button
               type="button"
