@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
-import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CommandPalette } from "@/components/ui/command-palette/command-palette";
 import { JsonLd } from "@/components/json-ld";
@@ -75,7 +74,6 @@ export default function RootLayout({
         <JsonLd data={organizationJsonLd} />
         <Providers>
           <SiteNav />
-          <Header />
           <CommandPalette />
           <main id="main" className="flex-1">
             {children}
