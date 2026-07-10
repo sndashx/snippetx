@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { Magnetic } from "@/components/marketing/magnetic"
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -150,18 +151,20 @@ export function ContactForm({ className }: ContactFormProps) {
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
           We respond within 2 working days.
         </p>
-        <button
-          type="submit"
-          disabled={disabled}
-          className={cn(
-            "inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-background",
-            "transition-all duration-300 ease-out-expo",
-            "hover:shadow-[0_18px_40px_-18px_color-mix(in_oklch,var(--accent)_70%,transparent)]",
-            "disabled:cursor-not-allowed disabled:opacity-60",
-          )}
-        >
-          {status === "loading" ? "Sending…" : "Send message"}
-        </button>
+        <Magnetic strength={6} radius={100}>
+          <button
+            type="submit"
+            disabled={disabled}
+            className={cn(
+              "inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-background",
+              "transition-all duration-300 ease-out-expo",
+              "hover:shadow-[0_18px_40px_-18px_color-mix(in_oklch,var(--accent)_70%,transparent)]",
+              "disabled:cursor-not-allowed disabled:opacity-60",
+            )}
+          >
+            {status === "loading" ? "Sending…" : "Send message"}
+          </button>
+        </Magnetic>
       </div>
     </form>
   )

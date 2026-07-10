@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Check, ArrowRight } from "lucide-react"
 import { buildMetadata, modelFlagship } from "@/lib/brand"
 import { CodeBlock } from "@/components/marketing/highlight"
+import { SpotlightCard } from "@/components/visual/SpotlightCard"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = buildMetadata({
@@ -223,8 +224,15 @@ export default function ModelPage() {
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {tiers.map((t, i) => (
-              <div
+              <SpotlightCard
                 key={t.name}
+                size={420}
+                intensity={18}
+                color={
+                  i === tiers.length - 1
+                    ? "var(--brand-2, var(--accent))"
+                    : "var(--accent)"
+                }
                 className={`flex flex-col rounded-2xl border p-6 transition-colors ${
                   i === tiers.length - 1
                     ? "border-accent/40 bg-accent/[0.04]"
@@ -247,7 +255,7 @@ export default function ModelPage() {
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {t.blurb}
                 </p>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
         </section>
