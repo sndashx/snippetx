@@ -15,9 +15,10 @@ const kindLabel: Record<ResearchPaper["kind"], string> = {
 export default async function OG({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const paper = getPaperBySlug(params.slug)
+  const { slug } = await params
+  const paper = getPaperBySlug(slug)
   const fallback = researchPapers[0]
   const title = paper?.title ?? fallback?.title ?? "Research"
   const kind = paper?.kind ?? fallback?.kind ?? "paper"
@@ -25,6 +26,6 @@ export default async function OG({
     eyebrow: kindLabel[kind],
     title: title.length > 48 ? `${title.slice(0, 46)}…` : title,
     subtitle: "minimax Research",
-    meta: `/${params.slug}`,
+    meta: `/${slug}`,
   })
 }
