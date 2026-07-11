@@ -40,10 +40,10 @@ export function ResearchSection() {
               eyebrow="Research"
               title={
                 <span id="research-heading">
-                  Pushing the frontier, in the open
+                  Recent working papers
                 </span>
               }
-              description="Selected work from the minimax research team — released with code, weights (where possible), and the eval suites used to measure them."
+              description="Selected working papers from SN-X residents — released with code, data, and the eval suites used to measure them."
             />
             <Link
               href="/research"

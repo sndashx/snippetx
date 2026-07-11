@@ -1,65 +1,60 @@
 import Link from "next/link";
-import { Globe, AtSign, Globe2, ArrowUpRight, Sparkles } from "lucide-react";
+import { Globe, AtSign, Globe2, ArrowUpRight } from "lucide-react";
+import { labName, labNameLong, tagline } from "@/lib/brand";
 
 const columns = [
   {
-    title: "Product",
+    title: "Institution",
     links: [
-      { label: "Models", href: "/#models" },
-      { label: "Agents", href: "/#agents" },
-      { label: "API", href: "/#api" },
-      { label: "Console", href: "/login" },
+      { label: "Axes", href: "/#axes" },
+      { label: "Method", href: "/#method" },
+      { label: "Fellowship", href: "/#fellowship" },
+      { label: "Charter", href: "/#method" },
     ],
   },
   {
     title: "Research",
     links: [
-      { label: "Papers", href: "/#research" },
-      { label: "Safety", href: "/#safety" },
-      { label: "Blog", href: "/#research" },
-      { label: "Evaluations", href: "/#safety" },
+      { label: "Papers", href: "/research" },
+      { label: "Instruments", href: "/#indicators" },
+      { label: "Open data", href: "/research" },
+      { label: "Reviews", href: "/research" },
     ],
   },
   {
-    title: "Company",
+    title: "Visit",
     links: [
-      { label: "About", href: "/#about" },
-      { label: "Careers", href: "/#about" },
-      { label: "Contact", href: "/#about" },
-      { label: "Newsroom", href: "/#research" },
+      { label: "Cambridge", href: "/#contact" },
+      { label: "Marfa", href: "/#contact" },
+      { label: "Public lectures", href: "/#indicators" },
+      { label: "Press", href: "/#contact" },
     ],
   },
 ];
 
 const socials = [
-  { icon: Globe, href: "https://github.com", label: "GitHub" },
-  { icon: AtSign, href: "https://twitter.com", label: "X" },
-  { icon: Globe2, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Globe, href: "https://github.com/sndashx", label: "GitHub" },
+  { icon: AtSign, href: "https://twitter.com/sndashx", label: "X" },
+  { icon: Globe2, href: "https://arxiv.org/a/sn-x_1", label: "arXiv" },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 border-t border-border bg-grid">
-      <div className="pointer-events-none absolute inset-0 bg-background/70" aria-hidden />
-      <div className="relative mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+    <footer className="relative mt-24 border-t border-border">
+      <div className="relative mx-auto max-w-7xl px-6 py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
-            <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 font-semibold tracking-tight"
+            >
               <BrandMark className="size-7" />
-              <span className="text-lg">NUMINA</span>
+              <span className="font-display text-lg tracking-tight">{labName}</span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              A frontier research lab building agentic language models that reason,
-              plan, and act in service of Humanity&apos;s progress.
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              {labNameLong}. {tagline}
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-2 animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
-              </span>
-              All systems operational
-            </div>
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-7 flex items-center gap-3">
               {socials.map((s) => (
                 <Link
                   key={s.label}
@@ -67,7 +62,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="flex size-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-brand-2/50 hover:text-foreground"
+                  className="flex size-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-accent/45 hover:text-foreground"
                 >
                   <s.icon className="size-4" />
                 </Link>
@@ -77,10 +72,10 @@ export function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
                 {col.title}
               </h3>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-5 space-y-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -97,19 +92,21 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} NUMINA Research. All rights reserved.</p>
-          <div className="flex items-center gap-6">
+        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
+          <p>
+            &copy; {new Date().getFullYear()} {labNameLong}. Resident
+            fellowships are tenure-track or honorary.
+          </p>
+          <div className="flex items-center gap-6 font-mono text-[10px] uppercase tracking-[0.24em]">
             <Link href="/terms" className="transition-colors hover:text-foreground">
               Terms
             </Link>
             <Link href="/privacy" className="transition-colors hover:text-foreground">
               Privacy
             </Link>
-            <span className="inline-flex items-center gap-1.5">
-              <Sparkles className="size-3 text-brand-3" />
-              Built by NUMINA
-            </span>
+            <Link href="/research" className="transition-colors hover:text-foreground">
+              Pre-prints
+            </Link>
           </div>
         </div>
       </div>
@@ -117,6 +114,11 @@ export function Footer() {
   );
 }
 
+/**
+ * BrandMark — three intersecting ellipses forming a six-petal rosette,
+ * the visual signature of SN-X. Drawn in pure SVG so it scales without
+ * raster artefacts and adopts the brand palette automatically.
+ */
 export function BrandMark({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -127,16 +129,41 @@ export function BrandMark({ className = "" }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="numina-mark" x1="0" y1="0" x2="32" y2="32">
+        <linearGradient id="snx-mark" x1="0" y1="0" x2="32" y2="32">
           <stop offset="0%" stopColor="var(--brand-1)" />
-          <stop offset="50%" stopColor="var(--brand-2)" />
+          <stop offset="55%" stopColor="var(--brand-2)" />
           <stop offset="100%" stopColor="var(--brand-3)" />
         </linearGradient>
       </defs>
-      <circle cx="16" cy="16" r="11" stroke="url(#numina-mark)" strokeWidth="1.6" opacity="0.9" />
-      <ellipse cx="16" cy="16" rx="11" ry="4.5" stroke="url(#numina-mark)" strokeWidth="1.6" transform="rotate(60 16 16)" />
-      <ellipse cx="16" cy="16" rx="11" ry="4.5" stroke="url(#numina-mark)" strokeWidth="1.6" transform="rotate(-60 16 16)" />
-      <circle cx="16" cy="16" r="3" fill="url(#numina-mark)" />
+      <circle
+        cx="16"
+        cy="16"
+        r="11"
+        stroke="url(#snx-mark)"
+        strokeWidth="1.4"
+        opacity="0.85"
+      />
+      <ellipse
+        cx="16"
+        cy="16"
+        rx="11"
+        ry="4.2"
+        stroke="url(#snx-mark)"
+        strokeWidth="1.4"
+        opacity="0.85"
+        transform="rotate(60 16 16)"
+      />
+      <ellipse
+        cx="16"
+        cy="16"
+        rx="11"
+        ry="4.2"
+        stroke="url(#snx-mark)"
+        strokeWidth="1.4"
+        opacity="0.85"
+        transform="rotate(-60 16 16)"
+      />
+      <circle cx="16" cy="16" r="2.4" fill="url(#snx-mark)" />
     </svg>
   );
 }

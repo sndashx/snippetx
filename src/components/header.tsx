@@ -4,16 +4,15 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
 import { BrandMark } from "@/components/footer"
+import { labName } from "@/lib/brand"
 
 const navLinks = [
-  { label: "Models", href: "/#models" },
-  { label: "Agents", href: "/#agents" },
-  { label: "Research", href: "/#research" },
-  { label: "Safety", href: "/#safety" },
-  { label: "API", href: "/#api" },
-  { label: "Docs", href: "/docs" },
+  { label: "Axes", href: "/#axes" },
+  { label: "Research", href: "/research" },
+  { label: "Method", href: "/#method" },
+  { label: "Fellows", href: "/#fellowship" },
+  { label: "Indicators", href: "/#indicators" },
 ]
 
 export function Header() {
@@ -48,7 +47,7 @@ export function Header() {
           className="flex items-center gap-2.5 font-semibold tracking-tight transition-opacity hover:opacity-80"
         >
           <BrandMark className="size-7" />
-          <span className="text-lg">NUMINA</span>
+          <span className="font-display text-lg tracking-tight">{labName}</span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -65,14 +64,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ModeToggle />
           <Button
             variant="default"
             size="sm"
             className="hidden rounded-full px-5 font-medium transition-all hover:neon-glow sm:inline-flex"
-            render={<Link href="/login" />}
+            render={<Link href="/#fellowship" />}
           >
-            Get API Key
+            Apply for residency
           </Button>
           <button
             type="button"
@@ -105,7 +103,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 font-semibold" onClick={() => setMobileOpen(false)}>
               <BrandMark className="size-6" />
-              <span>NUMINA</span>
+              <span className="font-display">{labName}</span>
             </Link>
             <button
               type="button"
@@ -132,9 +130,9 @@ export function Header() {
             variant="default"
             size="lg"
             className="mt-6 w-full rounded-full font-medium"
-            render={<Link href="/login" />}
+            render={<Link href="/#fellowship" />}
           >
-            Get API Key
+            Apply for residency
           </Button>
         </div>
       </div>

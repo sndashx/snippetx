@@ -1,21 +1,59 @@
 import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
-import { modelFlagship } from "@/lib/brand"
+import { researchAxes } from "@/lib/brand"
 import { cn } from "@/lib/utils"
 
-interface Capability {
+interface Axis {
   title: string
-  body: string
   meta: string
+  body: string
   /** Inline SVG path data drawn into a 24×24 viewBox. */
   glyph: React.ReactNode
 }
 
-const capabilities: Capability[] = [
+const axes: Axis[] = [
   {
-    title: "Long-horizon reasoning",
-    meta: "Reasoning · Planning",
-    body: `${modelFlagship.name} holds a one-million-token window in working memory and plans across hundreds of steps without losing the goal. It commits to intermediate claims and recovers when they're falsified.`,
+    title: "Foundations of Complexity",
+    meta: "Axis 01 · Mathematics",
+    body:
+      "Phase transitions, critical phenomena, universality classes, and the limits of reduction. We study when and why microscopic rules give rise to macroscopic order.",
+    glyph: (
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M3 18h18" />
+        <path d="M5 18c2-7 5-10 7-10s5 3 7 10" />
+        <circle cx="12" cy="11" r="1.4" fill="currentColor" />
+      </g>
+    ),
+  },
+  {
+    title: "Computation & Information",
+    meta: "Axis 02 · Learning Theory",
+    body:
+      "Algorithmic information, statistical learning, and the geometry of representations learned by large models — including phase transitions in representation topology at scale.",
+    glyph: (
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="3.5" y="5.5" width="17" height="13" rx="1.6" />
+        <path d="M7 9h10M7 12h6M7 15h8" />
+      </g>
+    ),
+  },
+  {
+    title: "Biological Complex Systems",
+    meta: "Axis 03 · Life Sciences",
+    body:
+      "Morphogenesis, immune learning, neural development, and the regulatory architectures of living matter — treated as problems in statistical mechanics and learning theory.",
     glyph: (
       <g
         fill="none"
@@ -34,9 +72,10 @@ const capabilities: Capability[] = [
     ),
   },
   {
-    title: "Native tool-use",
-    meta: "Tools · Function calling",
-    body: "Call typed functions across web, code, files, and your own APIs with verifiable execution traces. The model writes the schema, not just the call — and refuses when the contract is ambiguous.",
+    title: "Social & Economic Complexity",
+    meta: "Axis 04 · Distributed Systems",
+    body:
+      "Markets as distributed message-passing; institutions as equilibria; cooperation, conventions, and collapse. We bring formal tools to questions traditionally left to narrative.",
     glyph: (
       <g
         fill="none"
@@ -45,16 +84,20 @@ const capabilities: Capability[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M14.5 4.5l5 5-9.5 9.5H5v-5z" />
-        <path d="M13 6l5 5" />
-        <path d="M8.5 14.5l1.5 1.5" />
+        <circle cx="6" cy="6" r="1.6" />
+        <circle cx="18" cy="6" r="1.6" />
+        <circle cx="6" cy="18" r="1.6" />
+        <circle cx="18" cy="18" r="1.6" />
+        <circle cx="12" cy="12" r="2.4" />
+        <path d="M7.2 7.2l3.6 3.6M16.8 7.2l-3.6 3.6M7.2 16.8l3.6-3.6M16.8 16.8l-3.6-3.6" />
       </g>
     ),
   },
   {
-    title: "Multimodal I/O",
-    meta: "Vision · Audio · Text",
-    body: "Reads documents, charts, screenshots, and photographs. Writes structured output — JSON, code, LaTeX, SVG — with the same fidelity it brings to prose.",
+    title: "Foundations of Inference",
+    meta: "Axis 05 · Causality",
+    body:
+      "Causal identification under deep uncertainty, decision theory, and the epistemology of model-based reasoning. What can be known when the model itself is in question?",
     glyph: (
       <g
         fill="none"
@@ -63,29 +106,10 @@ const capabilities: Capability[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
-        <circle cx="9" cy="10.5" r="1.6" />
-        <path d="M4 16l4.5-4.5 4 4 3-3 4.5 4.5" />
-      </g>
-    ),
-  },
-  {
-    title: "Deliberative agents",
-    meta: "Multi-step · Self-recover",
-    body: "Plans are scored against a learned world model before they touch the real environment. When a step fails, the agent revises its commitment instead of re-rolling the whole trace.",
-    glyph: (
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M5 7h10" />
-        <path d="M9 12h10" />
-        <path d="M5 17h10" />
-        <path d="M3 7h.01M7 12h.01M3 17h.01" />
-        <path d="M19 4l2 2-7 7h-2v-2z" />
+        <circle cx="6" cy="12" r="2.4" />
+        <circle cx="18" cy="12" r="2.4" />
+        <path d="M8.4 12h7.2" />
+        <path d="M14 9l3 3-3 3" />
       </g>
     ),
   },
@@ -94,8 +118,8 @@ const capabilities: Capability[] = [
 export function CapabilitiesSection() {
   return (
     <section
-      id="capabilities"
-      aria-labelledby="capabilities-heading"
+      id="axes"
+      aria-labelledby="axes-heading"
       className="relative isolate overflow-hidden border-t border-border/70 bg-card/20"
     >
       <div className="bg-grid-fine pointer-events-none absolute inset-0 opacity-40" aria-hidden />
@@ -103,24 +127,24 @@ export function CapabilitiesSection() {
       <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32">
         <Reveal>
           <SectionHeading
-            eyebrow="Capabilities"
+            eyebrow="Research axes"
             title={
-              <span id="capabilities-heading">
-                What {modelFlagship.name} can do
+              <span id="axes-heading">
+                Five axes, one question.
               </span>
             }
-            description="A frontier model isn't defined by a benchmark number — it's defined by the kinds of work it can carry end-to-end. Here are the four we care about most."
+            description="SN-X is organised around five research axes. They are not silos — most of our work crosses two or three of them. The question is the same in every case: how do simple rules give rise to rich behaviour?"
           />
         </Reveal>
 
         <ul
           role="list"
-          className="mt-14 grid gap-5 sm:grid-cols-2"
+          className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {capabilities.map((c, i) => (
-            <li key={c.title}>
+          {axes.map((a, i) => (
+            <li key={a.title}>
               <Reveal delay={i * 80}>
-                <CapabilityCard capability={c} />
+                <AxisCard axis={a} index={i} />
               </Reveal>
             </li>
           ))}
@@ -130,7 +154,7 @@ export function CapabilitiesSection() {
   )
 }
 
-function CapabilityCard({ capability }: { capability: Capability }) {
+function AxisCard({ axis, index }: { axis: Axis; index: number }) {
   return (
     <article
       className={cn(
@@ -140,7 +164,6 @@ function CapabilityCard({ capability }: { capability: Capability }) {
         "hover:-translate-y-0.5",
       )}
     >
-      {/* Faint grid wash on hover */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -168,26 +191,30 @@ function CapabilityCard({ capability }: { capability: Capability }) {
             width="22"
             height="22"
             role="img"
-            aria-label={`${capability.title} icon`}
+            aria-label={`${axis.title} icon`}
           >
-            {capability.glyph}
+            {axis.glyph}
           </svg>
         </span>
 
         <div className="min-w-0 flex-1">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-            {capability.meta}
-          </p>
+          <div className="flex items-center justify-between gap-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+              {axis.meta}
+            </p>
+            <span className="font-display text-[10px] text-muted-foreground/60">
+              №{String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
           <h3 className="mt-2 text-display-md font-display text-foreground">
-            {capability.title}
+            {axis.title}
           </h3>
           <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">
-            {capability.body}
+            {axis.body}
           </p>
         </div>
       </div>
 
-      {/* Bottom hairline that brightens on hover */}
       <span
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100"
@@ -195,3 +222,6 @@ function CapabilityCard({ capability }: { capability: Capability }) {
     </article>
   )
 }
+
+// `researchAxes` import kept for future editorial surfaces.
+void researchAxes

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { labName } from "@/lib/brand"
+import { labName, labNameLong, tagline } from "@/lib/brand"
 import { cn } from "@/lib/utils"
 
 export function SiteFooter() {
@@ -27,35 +27,31 @@ export function SiteFooter() {
               className="inline-flex items-baseline gap-2 font-display text-xl text-foreground"
             >
               {labName}
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                Research
+              <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                Research Institution
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              A small research lab building frontier agentic language models.
-              We publish our work, our evals, and our failure modes.
+              {labNameLong}. {tagline}
             </p>
-            <div className="mt-6">
-              <StatusPill />
-            </div>
           </div>
 
           <FooterColumn
-            heading="Lab"
+            heading="Institution"
             links={[
-              { label: "Model", href: "/model" },
+              { label: "Axes", href: "/#axes" },
               { label: "Research", href: "/research" },
-              { label: "Playground", href: "/playground" },
-              { label: "Safety", href: "/#safety" },
+              { label: "Method", href: "/#method" },
+              { label: "Fellowship", href: "/#fellowship" },
             ]}
           />
 
           <FooterColumn
-            heading="Company"
+            heading="Visit"
             links={[
-              { label: "Contact", href: "/#contact" },
-              { label: "Careers", href: "/careers" },
-              { label: "Press", href: "mailto:press@minimax.ai" },
+              { label: "Cambridge", href: "/#contact" },
+              { label: "Marfa", href: "/#contact" },
+              { label: "Press", href: "mailto:press@sn-x.org" },
               { label: "Privacy", href: "/privacy" },
             ]}
           />
@@ -63,19 +59,19 @@ export function SiteFooter() {
           <FooterColumn
             heading="Connect"
             links={[
-              { label: "Twitter / X", href: "https://twitter.com/minimax" },
-              { label: "GitHub", href: "https://github.com/minimax" },
-              { label: "RSS", href: "/rss.xml" },
-              { label: "hello@minimax.ai", href: "mailto:hello@minimax.ai" },
+              { label: "Twitter / X", href: "https://twitter.com/sndashx" },
+              { label: "GitHub", href: "https://github.com/sndashx" },
+              { label: "arXiv", href: "https://arxiv.org/a/sn-x_1" },
+              { label: "hello@sn-x.org", href: "mailto:hello@sn-x.org" },
             ]}
           />
         </div>
 
         <div className="mt-12 flex flex-col-reverse items-start justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-            © {year} {labName} Research · All rights reserved.
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+            © {year} {labNameLong} · Resident fellowships are tenure-track or honorary.
           </p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
             Built in the open. Designed for legibility.
           </p>
         </div>
@@ -93,7 +89,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/80">
+      <h3 className="font-mono text-[10px] uppercase tracking-[0.24em] text-foreground/80">
         {heading}
       </h3>
       <ul role="list" className="mt-4 space-y-2.5">
@@ -112,26 +108,5 @@ function FooterColumn({
         ))}
       </ul>
     </div>
-  )
-}
-
-function StatusPill() {
-  return (
-    <Link
-      href="/status"
-      className={cn(
-        "group inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/40 px-3 py-1.5",
-        "transition-colors hover:border-accent/40",
-      )}
-      aria-label="System status: all systems operational"
-    >
-      <span className="relative flex size-2">
-        <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60 motion-reduce:animate-none" />
-        <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
-      </span>
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground group-hover:text-foreground">
-        System status · operational
-      </span>
-    </Link>
   )
 }

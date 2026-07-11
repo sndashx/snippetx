@@ -2,10 +2,11 @@ import { Reveal } from "@/components/marketing/reveal"
 import { SectionHeading } from "@/components/visual/SectionHeading"
 import { cn } from "@/lib/utils"
 
-interface Member {
+interface Fellow {
   name: string
   role: string
-  group: "Research" | "Engineering" | "Safety" | "Operations"
+  group: "Mathematics" | "Computation" | "Biology" | "Social Science" | "Operations"
+  axis: string
   bio: string
 }
 
@@ -33,11 +34,10 @@ function Monogram({ name }: { name: string }) {
   const hue = seedFromName(name)
   const hueAlt = (hue + 38) % 360
 
-  // hsl() of the lab's accent + an analogous muted hue, so every avatar sits
-  // inside the brand palette without an icon library.
-  const a = `hsl(${hue} 90% 60% / 0.85)`
-  const b = `hsl(${hueAlt} 50% 35% / 0.9)`
-  const c = `hsl(${(hue + 200) % 360} 40% 22% / 0.95)`
+  // All avatars sit inside the SN-X palette — copper-and-bone, never neon.
+  const a = `hsl(${hue} 60% 58% / 0.85)`
+  const b = `hsl(${hueAlt} 35% 28% / 0.9)`
+  const c = `hsl(${(hue + 200) % 360} 30% 18% / 0.95)`
 
   const id = `mono-${hue}`
 
@@ -47,7 +47,7 @@ function Monogram({ name }: { name: string }) {
       width={64}
       height={64}
       role="img"
-      aria-label={`${name} avatar`}
+      aria-label={`${name} monogram`}
       className="block size-16 rounded-full"
     >
       <defs>
@@ -57,7 +57,7 @@ function Monogram({ name }: { name: string }) {
           <stop offset="100%" stopColor={c} />
         </linearGradient>
         <radialGradient id={`${id}-glow`} cx="0.3" cy="0.25" r="0.7">
-          <stop offset="0%" stopColor="white" stopOpacity={0.18} />
+          <stop offset="0%" stopColor="white" stopOpacity={0.16} />
           <stop offset="100%" stopColor="white" stopOpacity={0} />
         </radialGradient>
       </defs>
@@ -70,7 +70,7 @@ function Monogram({ name }: { name: string }) {
         fontFamily="var(--font-display), ui-serif, Georgia, serif"
         fontSize="22"
         fontWeight={400}
-        fill="rgba(7, 7, 8, 0.92)"
+        fill="rgba(6, 8, 15, 0.92)"
         letterSpacing="-0.02em"
       >
         {initials}
@@ -79,84 +79,112 @@ function Monogram({ name }: { name: string }) {
   )
 }
 
-const members: Member[] = [
+const fellows: Fellow[] = [
   {
-    name: "Dr. Aisha Vance",
-    role: "Co-founder, CEO",
+    name: "Dr. K. Vance",
+    role: "Director",
+    group: "Mathematics",
+    axis: "Foundations of Complexity",
+    bio: "Statistical mechanics of disordered systems. Author of the SN-X founding charter.",
+  },
+  {
+    name: "Prof. M. Lindqvist",
+    role: "Senior Fellow",
+    group: "Mathematics",
+    axis: "Foundations of Inference",
+    bio: "Causal identification, decision theory, and the philosophy of model-based reasoning.",
+  },
+  {
+    name: "Dr. R. Okafor",
+    role: "Senior Fellow",
+    group: "Computation",
+    axis: "Computation & Information",
+    bio: "Geometry of learned representations; phase transitions in representation topology at scale.",
+  },
+  {
+    name: "Dr. T. Nakamura",
+    role: "Senior Fellow",
+    group: "Biology",
+    axis: "Biological Complex Systems",
+    bio: "Morphogenesis as inference; chick feather primordia; the embryology of pattern.",
+  },
+  {
+    name: "Dr. L. Mercer",
+    role: "Resident Fellow",
+    group: "Mathematics",
+    axis: "Foundations of Complexity",
+    bio: "Avalanche statistics, branching processes, and the topology of critical phenomena.",
+  },
+  {
+    name: "Dr. S. Haddad",
+    role: "Resident Fellow",
+    group: "Computation",
+    axis: "Computation & Information",
+    bio: "Algorithmic information theory and the geometry of large-model representations.",
+  },
+  {
+    name: "Dr. Y. Park",
+    role: "Resident Fellow",
+    group: "Computation",
+    axis: "Computation & Information",
+    bio: "Sparse architectures and the efficiency frontiers of large neural systems.",
+  },
+  {
+    name: "Dr. A. Bauer",
+    role: "Resident Fellow",
+    group: "Biology",
+    axis: "Biological Complex Systems",
+    bio: "Immune learning, somatic hypermutation, and the design of continual-learning agents.",
+  },
+  {
+    name: "Dr. I. Kostov",
+    role: "Resident Fellow",
+    group: "Social Science",
+    axis: "Social & Economic Complexity",
+    bio: "Markets as distributed message-passing; price-discovery under message-passing dynamics.",
+  },
+  {
+    name: "Dr. D. Romero",
+    role: "Resident Fellow",
+    group: "Social Science",
+    axis: "Social & Economic Complexity",
+    bio: "Cooperation, conventions, and the equilibrium structure of institutions.",
+  },
+  {
+    name: "Dr. P. Singh",
+    role: "Resident Fellow",
+    group: "Social Science",
+    axis: "Social & Economic Complexity",
+    bio: "Market microstructure; the latency–volatility frontier in high-frequency data.",
+  },
+  {
+    name: "C. Lindholm",
+    role: "Operations Director",
     group: "Operations",
-    bio: "Previously led frontier-model alignment at a major research lab. Background in theoretical CS and category theory.",
-  },
-  {
-    name: "Marcus Lindqvist",
-    role: "Co-founder, CTO",
-    group: "Engineering",
-    bio: "Built the inference stack that powers three of the largest production agents in the world. Believes in small teams and ugly prototypes.",
-  },
-  {
-    name: "Dr. Kara Vance",
-    role: "Head of Research",
-    group: "Research",
-    bio: "Reasoning, planning, and self-consistency. Author of four papers on agentic evaluation.",
-  },
-  {
-    name: "Renée Okafor",
-    role: "Principal Research Scientist",
-    group: "Research",
-    bio: "Sparse architectures and efficient inference. Maintains the open-source minimax-eval suite.",
-  },
-  {
-    name: "Yuto Park",
-    role: "Staff Engineer, Inference",
-    group: "Engineering",
-    bio: "Distributed systems, KV-cache wizardry, and the person to blame when latency regresses.",
-  },
-  {
-    name: "Dr. Tomoko Nakamura",
-    role: "Alignment Lead",
-    group: "Safety",
-    bio: "Reward modelling, distribution shift, and the boring infrastructure that keeps agents honest.",
-  },
-  {
-    name: "Diego Romero",
-    role: "Research Engineer",
-    group: "Research",
-    bio: "Tool-use, agent traces, and the open agenttrace tracing toolkit.",
-  },
-  {
-    name: "Priya Singh",
-    role: "Head of Safety Operations",
-    group: "Safety",
-    bio: "Runs the red-team and incident response programs. Previously at a major incident-response consultancy.",
-  },
-  {
-    name: "Lena Mercer",
-    role: "Research Scientist",
-    group: "Research",
-    bio: "Multimodal evaluation and document understanding. Once trained a model to read Roman inscriptions.",
-  },
-  {
-    name: "Hadi Kostov",
-    role: "Engineering Lead, Tools",
-    group: "Engineering",
-    bio: "Schema design, tool contracts, and the relentless refusal to ship a flaky integration.",
+    axis: "—",
+    bio: "Runs the residential programme and the publication office. Keeps the corridors open.",
   },
 ]
 
 export function TeamSection() {
-  const groups = Array.from(new Set(members.map((m) => m.group)))
+  const groups = Array.from(new Set(fellows.map((m) => m.group)))
 
   return (
     <section
-      id="team"
-      aria-labelledby="team-heading"
+      id="fellowship"
+      aria-labelledby="fellowship-heading"
       className="relative border-t border-border/70 bg-card/20"
     >
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
         <Reveal>
           <SectionHeading
-            eyebrow="Team"
-            title={<span id="team-heading">A small lab with a long horizon.</span>}
-            description="We're researchers, engineers, and operators who think frontier AI deserves a careful, public-facing research culture. Here are some of the people behind minimax M3."
+            eyebrow="Resident fellows"
+            title={
+              <span id="fellowship-heading">
+                Twenty-three people in two buildings.
+              </span>
+            }
+            description="We appoint resident fellows by nomination and by open competition, on five-year terms. Most appointments are deliberately joint — the corridors cross the axes."
           />
         </Reveal>
 
@@ -183,7 +211,7 @@ export function TeamSection() {
           role="list"
           className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
-          {members.map((m, i) => (
+          {fellows.map((m, i) => (
             <li key={m.name}>
               <Reveal delay={Math.min(i * 40, 320)}>
                 <article className="group relative h-full overflow-hidden rounded-2xl border border-border/70 bg-card/70 p-6 transition-colors duration-500 ease-out-expo hover:border-accent/35">
@@ -201,9 +229,12 @@ export function TeamSection() {
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                     {m.bio}
                   </p>
-                  <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  <div className="mt-4 flex items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
                     <span className="text-foreground/80">{m.group}</span>
-                  </p>
+                    <span className="truncate text-right text-accent/80">
+                      {m.axis}
+                    </span>
+                  </div>
                 </article>
               </Reveal>
             </li>

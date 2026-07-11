@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { buildMetadata } from "@/lib/metadata"
+import { buildMetadata } from "@/lib/brand"
 import { Hero } from "@/components/marketing/hero"
 import { CapabilitiesSection } from "@/components/marketing/capabilities-section"
 import { ResearchSection } from "@/components/marketing/research-section"
@@ -7,12 +7,11 @@ import { BenchmarksSection } from "@/components/marketing/benchmarks-section"
 import { SafetySection } from "@/components/marketing/safety-section"
 import { TeamSection } from "@/components/marketing/team-section"
 import { ContactSection } from "@/components/marketing/contact-section"
-import { SiteFooter } from "@/components/marketing/site-footer"
 
 export const metadata: Metadata = buildMetadata({
-  title: "minimax M3 — frontier agentic intelligence",
+  title: "The mathematics of emergence",
   description:
-    "minimax is a small AI research lab building agentic language models. Meet minimax M3 — a frontier model with deliberative reasoning, native tool-use, and a 1M-token context window.",
+    "SN-X Research Institution for Complex Science — a private research institution studying how simple rules give rise to rich behaviour in cells, societies, minds, and machines.",
   path: "/",
 })
 
@@ -22,11 +21,10 @@ export default function Home() {
       <Hero />
       <CapabilitiesSection />
       <ResearchSection />
-      <BenchmarksSection />
       <SafetySection />
       <TeamSection />
+      <BenchmarksSection />
       <ContactSection />
-      <SiteFooter />
     </div>
   )
 }
