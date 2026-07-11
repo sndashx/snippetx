@@ -4,38 +4,37 @@ import { labNameLong } from "@/lib/brand"
 
 const commitments = [
   {
-    title: "Build safety in, not on",
-    body: "Safety properties are designed into the training objective. We do not bolt filters onto a finished system and call it aligned — we ship models whose behaviour emerges from how they were trained.",
+    title: "Open by default",
+    body: "Pre-prints, instruments, and datasets are released under permissive licences at the moment of publication. We treat reproducibility as a research output, not an afterthought.",
   },
   {
-    title: "Evaluate honestly, in public",
-    body: "Every release ships with an open evaluation suite covering capability, jailbreak resistance, and domain-specific risks. When we find failure modes, we publish them before we patch them.",
+    title: "Slow when it matters",
+    body: "Resident fellows are protected from publication pressure. Work that takes a decade takes a decade. We do not incentivise quarterly output and we do not pretend it does not exist.",
   },
   {
-    title: "Keep humans meaningfully in the loop",
-    body: "As agents grow more capable, the human role shifts from operator to reviewer. We design for that — clear commitments, legible traces, and refusal paths that respect operator intent.",
+    title: "Cross-discipline on purpose",
+    body: "Most of our appointments are deliberately joint: a mathematician and a developmental biologist, a physicist and a historian of science. The axes cross — the corridors do too.",
   },
 ]
 
 export function SafetySection() {
   return (
     <section
-      id="safety"
-      aria-labelledby="safety-heading"
+      id="method"
+      aria-labelledby="method-heading"
       className="relative border-t border-border/70"
     >
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
         <Reveal>
           <SectionHeading
-            eyebrow="Safety & alignment"
+            eyebrow="Method"
             title={
-              <span id="safety-heading">Power, earned through rigor.</span>
+              <span id="method-heading">How we work.</span>
             }
-            description="We treat safety as a research problem, not a compliance checklist. Here is what we owe the people who use our models — and the people who don't."
+            description="A research institution is a method before it is a list of papers. Here is the method."
           />
         </Reveal>
 
-        {/* Manifesto */}
         <Reveal delay={50}>
           <div className="mt-14 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div className="relative">
@@ -46,13 +45,13 @@ export function SafetySection() {
                 &ldquo;
               </span>
               <p className="font-display text-2xl leading-snug text-foreground sm:text-3xl">
-                A model that can do more can also be misused more. The honest
-                answer is not fewer capabilities — it is better measurements,
-                better refusal paths, and a research culture that treats
-                alignment as the load-bearing wall, not the wallpaper.
+                The institutions that have lasted were not the ones that
+                answered the question first. They were the ones that picked
+                the right question and stayed with it long enough to change
+                the way the question was asked.
               </p>
-              <p className="mt-6 font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                — {labNameLong}, Safety manifesto
+              <p className="mt-6 font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                — {labNameLong}, founding charter, MMXXI
               </p>
             </div>
 
@@ -61,27 +60,27 @@ export function SafetySection() {
                 aria-hidden
                 className="pointer-events-none absolute -right-12 -top-16 size-56 rounded-full bg-accent/15 blur-3xl"
               />
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
-                Read the full position
+              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-accent">
+                Read the full charter
               </p>
               <h3 className="mt-3 text-display-md font-display text-foreground">
-                The minimax Safety Charter
+                The SN-X Charter
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Twelve pages on how we evaluate, when we decline, and how we
-                communicate model limits to operators and the public.
+                Forty pages on what we study, how we appoint, how we publish,
+                and what we will not do — including the kinds of funding we
+                decline.
               </p>
               <ul className="mt-6 space-y-2 font-mono text-xs text-muted-foreground">
-                <li>· Capability, refusal, and jailbreak benchmarks</li>
-                <li>· Pre-deployment red-team protocol</li>
-                <li>· External review and disclosure commitments</li>
-                <li>· Incident response and rollback policy</li>
+                <li>· Five research axes and their scope</li>
+                <li>· The residential fellowship in detail</li>
+                <li>· Publication and reproducibility commitments</li>
+                <li>· Conflicts of interest and funding policy</li>
               </ul>
             </aside>
           </div>
         </Reveal>
 
-        {/* Numbered commitments */}
         <ol
           role="list"
           className="mt-20 grid gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 md:grid-cols-3"

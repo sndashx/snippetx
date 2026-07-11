@@ -8,13 +8,13 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* ── Brand palette ─────────────────────────────────────────────────── */
-  --color-ink: #070708;
-  --color-ink-raised: #0d0d10;
-  --color-paper: #f4f1ea;
-  --color-paper-muted: #a8a39a;
-  --color-accent: #c8ff00;
-  --color-accent-soft: #e8ff7a;
+  /* ── SN-X palette: deep ink (midnight), bone (parchment), copper ──── */
+  --color-ink: #06080f;
+  --color-ink-raised: #0c0f1a;
+  --color-paper: #ece7d8;
+  --color-paper-muted: #8a8478;
+  --color-accent: #d4a574;
+  --color-accent-soft: #e8c89a;
 
   /* ── Type families (CSS variables set by next/font in layout.tsx) ──── */
   --font-sans: var(--font-sans);
@@ -73,66 +73,68 @@
 }
 
 :root {
-  /* Brand surfaces — these are the canonical lab-site values. */
-  --background: #070708;
-  --foreground: #f4f1ea;
+  /* SN-X Research Institution — canonical surfaces */
+  --background: #06080f;
+  --foreground: #ece7d8;
 
-  --card: #0d0d10;
-  --card-foreground: #f4f1ea;
-  --popover: #0d0d10;
-  --popover-foreground: #f4f1ea;
+  --card: #0c0f1a;
+  --card-foreground: #ece7d8;
+  --popover: #0c0f1a;
+  --popover-foreground: #ece7d8;
 
-  --primary: #f4f1ea;
-  --primary-foreground: #070708;
+  --primary: #ece7d8;
+  --primary-foreground: #06080f;
 
-  --secondary: #141418;
-  --secondary-foreground: #f4f1ea;
+  --secondary: #131726;
+  --secondary-foreground: #ece7d8;
 
-  --muted: #141418;
-  --muted-foreground: #a8a39a;
+  --muted: #131726;
+  --muted-foreground: #8a8478;
 
-  --accent: #c8ff00;
-  --accent-foreground: #070708;
+  --accent: #d4a574;
+  --accent-foreground: #06080f;
 
   --destructive: oklch(0.6 0.2 20);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: #c8ff00;
+  --border: oklch(1 0 0 / 7%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: #d4a574;
 
   --radius: 0.625rem;
 
-  /* Brand-only tokens (composed from accent) */
-  --brand-1: #c8ff00;
-  --brand-2: #e8ff7a;
-  --brand-3: #a8a39a;
-  --glow: #c8ff00;
-  --amber: #f4f1ea;
+  /* Brand-only tokens — composed from the SN-X palette */
+  --brand-1: #d4a574;
+  --brand-2: #e8c89a;
+  --brand-3: #8a8478;
+  --glow: #d4a574;
+  --amber: #ece7d8;
+  --ink-blue: #0e1422;
 }
 
 .dark {
-  --background: #070708;
-  --foreground: #f4f1ea;
-  --card: #0d0d10;
-  --card-foreground: #f4f1ea;
-  --popover: #0d0d10;
-  --popover-foreground: #f4f1ea;
-  --primary: #f4f1ea;
-  --primary-foreground: #070708;
-  --secondary: #141418;
-  --secondary-foreground: #f4f1ea;
-  --muted: #141418;
-  --muted-foreground: #a8a39a;
-  --accent: #c8ff00;
-  --accent-foreground: #070708;
+  --background: #06080f;
+  --foreground: #ece7d8;
+  --card: #0c0f1a;
+  --card-foreground: #ece7d8;
+  --popover: #0c0f1a;
+  --popover-foreground: #ece7d8;
+  --primary: #ece7d8;
+  --primary-foreground: #06080f;
+  --secondary: #131726;
+  --secondary-foreground: #ece7d8;
+  --muted: #131726;
+  --muted-foreground: #8a8478;
+  --accent: #d4a574;
+  --accent-foreground: #06080f;
   --destructive: oklch(0.55 0.2 25);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: #c8ff00;
-  --brand-1: #c8ff00;
-  --brand-2: #e8ff7a;
-  --brand-3: #a8a39a;
-  --glow: #c8ff00;
-  --amber: #f4f1ea;
+  --border: oklch(1 0 0 / 7%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: #d4a574;
+  --brand-1: #d4a574;
+  --brand-2: #e8c89a;
+  --brand-3: #8a8478;
+  --glow: #d4a574;
+  --amber: #ece7d8;
+  --ink-blue: #0e1422;
 }
 
 @property --aurora-angle {

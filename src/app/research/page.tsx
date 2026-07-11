@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 export const metadata: Metadata = buildMetadata({
   title: "Research",
   description:
-    "Papers, posts, and release notes from minimax — deliberative agents, sparse mixtures, alignment, and the minimax M3 system card.",
+    "Working papers, essays, and instrument releases from SN-X — covering criticality, morphogenesis, distributed computation, and the mathematics of emergence.",
   path: "/research",
 })
 
@@ -45,11 +45,12 @@ export default function ResearchIndexPage() {
         <header className="mb-16 max-w-3xl">
           <p className="text-eyebrow">Research · Index</p>
           <h1 className="mt-4 text-display-lg text-foreground">
-            Notes from the frontier.
+            Working papers.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Papers, technical posts, and release notes from the team building
-            minimax M3. We publish what we learn, even when it&apos;s mid-progress.
+            Papers, essays, and instrument releases from SN-X residents and
+            visiting faculty. We publish what we learn — including the parts
+            that are mid-progress.
           </p>
         </header>
 

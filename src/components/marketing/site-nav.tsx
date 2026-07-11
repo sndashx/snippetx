@@ -13,10 +13,11 @@ interface NavLink {
 }
 
 const links: NavLink[] = [
-  { label: "Model", href: "/model" },
+  { label: "Axes", href: "/#axes" },
   { label: "Research", href: "/research" },
-  { label: "Playground", href: "/playground" },
-  { label: "Safety", href: "/#safety" },
+  { label: "Method", href: "/#method" },
+  { label: "Fellows", href: "/#fellowship" },
+  { label: "Indicators", href: "/#indicators" },
 ]
 
 export function SiteNav() {
@@ -186,11 +187,11 @@ export function SiteNav() {
           </nav>
           <div className="mx-auto w-full max-w-7xl px-6 pb-12">
             <Link
-              href="/playground"
+              href="/#fellowship"
               onClick={() => setMobileOpen(false)}
               className="inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3 text-base font-semibold text-background transition-all hover:neon-glow"
             >
-              Try minimax M3
+              Apply for residency
             </Link>
           </div>
         </div>

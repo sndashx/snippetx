@@ -14,9 +14,9 @@ export function ContactSection() {
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
         <Reveal>
           <SectionHeading
-            eyebrow="Get in touch"
-            title={<span id="contact-heading">Talk to the lab.</span>}
-            description="Research collaborations, enterprise pilots, press, or a sharp question about the system card — we'd like to hear from you."
+            eyebrow="Visit · Correspond"
+            title={<span id="contact-heading">Talk to the institution.</span>}
+            description="Research collaborations, residency enquiries, press, or a sharp question about a paper — we read everything."
           />
         </Reveal>
 
@@ -38,30 +38,30 @@ export function ContactSection() {
                 will route it to the right desk.
               </p>
               <Link
-                href="mailto:hello@minimax.ai"
+                href="mailto:hello@sn-x.org"
                 className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-4 py-2 font-mono text-sm text-foreground transition-colors hover:border-accent/40 hover:bg-accent/5"
               >
                 <Mail className="size-4 text-accent" aria-hidden />
-                hello@minimax.ai
+                hello@sn-x.org
               </Link>
 
               <dl className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border/70 bg-background/30 p-4">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
                     Press
                   </dt>
-                  <dd className="mt-2 text-sm text-foreground">press@minimax.ai</dd>
+                  <dd className="mt-2 text-sm text-foreground">press@sn-x.org</dd>
                 </div>
                 <div className="rounded-xl border border-border/70 bg-background/30 p-4">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                    Careers
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                    Fellowships
                   </dt>
-                  <dd className="mt-2 text-sm text-foreground">careers@minimax.ai</dd>
+                  <dd className="mt-2 text-sm text-foreground">fellowship@sn-x.org</dd>
                 </div>
               </dl>
 
-              <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                San Francisco · London · Singapore
+              <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                Cambridge · Marfa · on tour
               </p>
             </aside>
           </Reveal>

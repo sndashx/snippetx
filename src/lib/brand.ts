@@ -2,44 +2,107 @@ import type { Metadata } from "next"
 import { APP_URL } from "@/lib/constants"
 
 /**
- * Brand constants for the public lab website.
+ * Brand constants for the SN-X Research Institution for Complex Science website.
  *
  * Tokens (colors, fonts, easings) live in `src/app/globals.css` under
  * `@theme inline {}` because this project uses Tailwind v4 with the
  * `@tailwindcss/postcss` plugin — there is no `tailwind.config.ts` to extend.
  * Constants exported here are the *single source of truth* for marketing
- * copy (lab name, tagline, flagship model, family) and for code that needs
- * to reference brand metadata (e.g. Next.js Metadata).
+ * copy (institution name, tagline, research axes, programs) and for code that
+ * needs to reference brand metadata (e.g. Next.js Metadata).
  */
 
-export const labName = "minimax"
-export const labNameLong = "minimax Research"
-export const tagline = "Frontier agentic intelligence, built in the open."
+export const labName = "SN-X"
+export const labNameLong = "SN-X Research Institution for Complex Science"
+export const tagline =
+  "A research institution studying the mathematics of emergence."
 export const description =
-  "minimax is a small AI research lab building agentic language models and advancing the frontier of machine intelligence. Our flagship model is minimax M3."
+  "SN-X is a private research institution dedicated to the mathematics, computation, and philosophy of complex systems. We study how simple rules give rise to rich behaviour — in cells, in societies, in minds, and in the machines we build."
 
-export const themeColor = "#070708"
+export const themeColor = "#06080f"
 
+/** Flagship outputs — papers, instruments, datasets the institution is known for. */
 export const modelFlagship = {
-  name: "minimax M3",
-  codename: "M3",
+  name: "SN-X Papers",
+  codename: "Papers",
   tagline:
-    "A frontier agentic language model — reasoning, tool-use, and long-horizon planning.",
+    "Working papers across the five research axes. Published in arXiv, Nat. Phys., PNAS, and journals of record.",
   family: [
-    { name: "minimax M3", codename: "M3", status: "flagship" },
-    { name: "minimax M3-mini", codename: "M3-mini", status: "available" },
-    { name: "minimax M3-nano", codename: "M3-nano", status: "available" },
+    { name: "SN-X Papers", codename: "Papers", status: "flagship" },
+    { name: "Letters", codename: "Letters", status: "available" },
+    { name: "Reviews", codename: "Reviews", status: "available" },
   ],
+} as const
+
+/** The five research axes SN-X is organized around. */
+export const researchAxes = [
+  {
+    id: "complexity",
+    name: "Foundations of Complexity",
+    summary:
+      "The mathematics of emergence: phase transitions, critical phenomena, universality classes, and the limits of reduction.",
+  },
+  {
+    id: "computation",
+    name: "Computation & Information",
+    summary:
+      "Algorithmic information, statistical learning, and the geometry of representations learned by large models.",
+  },
+  {
+    id: "biological",
+    name: "Biological Complex Systems",
+    summary:
+      "Morphogenesis, immune learning, neural development, and the regulatory architectures of living matter.",
+  },
+  {
+    id: "social",
+    name: "Social & Economic Complexity",
+    summary:
+      "Markets as distributed computation; institutions as equilibria; cooperation, conventions, and collapse.",
+  },
+  {
+    id: "foundations",
+    name: "Foundations of Inference",
+    summary:
+      "Causal identification, decision theory under deep uncertainty, and the epistemology of model-based reasoning.",
+  },
+] as const
+
+/** Flagship outputs — papers, instruments, datasets the institution is known for. */
+export const flagshipOutputs = {
+  papers: {
+    name: "SN-X Papers",
+    codename: "Papers",
+    tagline:
+      "Working papers across the five research axes. Published in arXiv, Nat. Phys., PNAS, and journals of record.",
+    family: [
+      { name: "SN-X Papers", codename: "Papers", status: "flagship" },
+      { name: "Letters", codename: "Letters", status: "available" },
+      { name: "Reviews", codename: "Reviews", status: "available" },
+    ],
+  },
+  instruments: {
+    name: "SN-X Instruments",
+    codename: "Instruments",
+    tagline:
+      "Open-source instruments — simulators, benchmarks, datasets — that operationalize our theoretical work.",
+  },
+  fellows: {
+    name: "SN-X Fellows",
+    codename: "Fellows",
+    tagline:
+      "A residential fellowship for researchers across mathematics, physics, biology, and computation.",
+  },
 } as const
 
 /** Tailwind color tokens (must match `--color-*` in globals.css @theme). */
 export const colors = {
-  ink: "#070708",
-  inkRaised: "#0d0d10",
-  paper: "#f4f1ea",
-  paperMuted: "#a8a39a",
-  accent: "#c8ff00",
-  accentSoft: "#e8ff7a",
+  ink: "#06080f",
+  inkRaised: "#0c0f1a",
+  paper: "#ece7d8",
+  paperMuted: "#8a8478",
+  accent: "#d4a574",
+  accentSoft: "#e8c89a",
   noise: "#ffffff",
   grid: "#ffffff",
 } as const
@@ -60,7 +123,7 @@ export const social = {
 } as const
 
 /**
- * Build a Next.js Metadata object for a route on the lab site.
+ * Build a Next.js Metadata object for a route on the institution site.
  * Pass a title (or undefined for default) and optional description.
  */
 export function buildMetadata(opts?: {
@@ -70,7 +133,7 @@ export function buildMetadata(opts?: {
 }): Metadata {
   const title = opts?.title
     ? `${opts.title} — ${labName}`
-    : `${labName} — Frontier agentic intelligence`
+    : `${labName} — The mathematics of emergence`
   const desc = opts?.description ?? description
   const url = opts?.path ? `${APP_URL}${opts.path}` : APP_URL
   return {
@@ -80,13 +143,14 @@ export function buildMetadata(opts?: {
     applicationName: labName,
     authors: [{ name: labNameLong }],
     keywords: [
-      "minimax",
-      "M3",
-      "agentic AI",
-      "frontier models",
-      "language models",
-      "AI research lab",
-      "artificial intelligence",
+      "SN-X",
+      "complex systems",
+      "complexity science",
+      "emergence",
+      "research institution",
+      "Santa Fe Institute",
+      "complex adaptive systems",
+      "foundations",
     ],
     openGraph: {
       type: "website",
@@ -99,7 +163,7 @@ export function buildMetadata(opts?: {
           url: social.ogImage,
           width: 1200,
           height: 630,
-          alt: `${labName} — Frontier agentic intelligence`,
+          alt: `${labName} — The mathematics of emergence`,
         },
       ],
     },
