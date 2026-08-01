@@ -3,17 +3,19 @@
 import request from 'supertest';
 import { app } from '../src/app';
 import { db } from '../src/db';
-import { users, snippets, orders } from '../src/db/schema';
+import { users, snippets, orders, bounties } from '../src/db/schema';
 import { eq } from 'drizzle-orm';
 
 beforeAll(async () => {
   await db.delete(orders);
+  await db.delete(bounties);
   await db.delete(snippets);
   await db.delete(users);
 });
 
 afterAll(async () => {
   await db.delete(orders);
+  await db.delete(bounties);
   await db.delete(snippets);
   await db.delete(users);
 });
@@ -79,24 +81,13 @@ describe('Bounties API', () => {
         stripeAccountStatus: 'inactive',
       }).returning();
 
-      const snippet = await db.insert(snippets).values({
-        id: 'snippet_123',
-        sellerId: user[0].id,
-        title: 'Test Snippet',
-        description: 'A test snippet',
+      const bounty = await db.insert(bounties).values({
+        id: 'bounty_123',
+        creatorId: user[0].id,
+        title: 'Test Bounty',
+        description: 'A test bounty',
         language: 'typescript',
-        price: 500,
-        filePath: '/test/snippet.ts',
-        tags: ['typescript', 'test'],
-      }).returning();
-
-      const order = await db.insert(orders).values({
-        id: 'order_123',
-        buyerId: user[0].id,
-        sellerId: user[0].id,
-        snippetId: snippet[0].id,
-        amount: 1000,
-        platformFee: 100,
+        budget: 50000, // stored in cents
         status: 'open',
       }).returning();
 
@@ -106,8 +97,10 @@ describe('Bounties API', () => {
 
       expect(Array.isArray(response.body)).toBe(true);
       expect(response.body.length).toBe(1);
-      expect(response.body[0].id).toBe(order[0].id);
-      expect(response.body[0].title).toBe('Test Snippet');
+      expect(response.body[0].id).toBe(bounty[0].id);
+      expect(response.body[0].title).toBe('Test Bounty');
+      expect(response.body[0].creator).toBe('Test User 3');
+      expect(response.body[0].budget).toBe(500); // converted to dollars
     });
   });
 });
