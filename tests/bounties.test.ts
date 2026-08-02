@@ -72,6 +72,12 @@ describe('Bounties API', () => {
   });
 
   describe('GET /api/bounties', () => {
+    // Clear bounties before each GET test to avoid cross-test contamination
+    // from the POST tests above that also create open bounties
+    beforeEach(async () => {
+      await db.delete(bounties);
+    });
+
     it('should return open bounties', async () => {
       const user = await db.insert(users).values({
         id: 'user_789',
