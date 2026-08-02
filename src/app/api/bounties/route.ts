@@ -85,28 +85,37 @@ export async function GET(req: Request) {
     }
 
     const whereClause = conditions.length > 0 ? and(...conditions) : undefined
+
+    // Single query with join to avoid N+1
     const bountyList = await db
-      .select()
+      .select({
+        id: bounties.id,
+        title: bounties.title,
+        description: bounties.description,
+        language: bounties.language,
+        budget: bounties.budget,
+        status: bounties.status,
+        deadline: bounties.deadline,
+        createdAt: bounties.createdAt,
+        creatorDisplayName: users.displayName,
+        creatorEmail: users.email,
+      })
       .from(bounties)
+      .leftJoin(users, eq(bounties.creatorId, users.id))
       .where(whereClause)
       .orderBy(desc(bounties.createdAt))
 
-    // Get creator info for each bounty
-    const bountiesWithCreators = await Promise.all(
-      bountyList.map(async (bounty) => {
-        const [creator] = await db
-          .select({ displayName: users.displayName, email: users.email })
-          .from(users)
-          .where(eq(users.id, bounty.creatorId))
-          .limit(1)
-
-        return {
-          ...bounty,
-          creator: creator?.displayName || creator?.email.split("@")[0] || "Unknown",
-          budget: bounty.budget / 100, // Convert to dollars
-        }
-      })
-    )
+    const bountiesWithCreators = bountyList.map((bounty) => ({
+      id: bounty.id,
+      title: bounty.title,
+      description: bounty.description,
+      language: bounty.language,
+      budget: bounty.budget / 100, // Convert to dollars
+      status: bounty.status,
+      deadline: bounty.deadline,
+      createdAt: bounty.createdAt,
+      creator: bounty.creatorDisplayName || bounty.creatorEmail?.split("@")[0] || "Unknown",
+    }))
 
     return NextResponse.json(bountiesWithCreators)
   } catch (error) {
