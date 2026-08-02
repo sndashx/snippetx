@@ -48,7 +48,7 @@ is built around a strict component contract:
   reveal-on-scroll primitive with `--delay` CSS variable for staggered
   children. Respects `prefers-reduced-motion`.
 - **Discovery** — `src/app/sitemap.ts` enumerates lab + marketplace
-  routes; `src/app/robots.ts` allows the lab site and disallows admin,
+  routes; `src/app/robots.ts` allows lab site and disallows admin,
   auth, and API paths.
 
 ### Adding a route
@@ -68,47 +68,6 @@ checkout, R2 storage, Resend email — still ships under
 of the lab: every purchase funds compute for the next model release.
 
 ## Features
-
-### CLI Tool (snippetx)
-
-The CLI tool provides instant snippet installation from the marketplace:
-
-#### Installation
-```bash
-npm install -g snippetx-cli
-```
-
-#### Commands
-
-**Install a snippet:**
-```bash
-snippetx install <snippet-id>
-```
-
-**List available snippets:**
-```bash
-snippetx list
-```
-
-**Login to marketplace:**
-```bash
-snippetx login
-```
-
-#### Usage Examples
-
-```bash
-# Install a specific snippet
-snippetx install react-hooks-useState
-
-# List all available snippets
-snippetx list
-
-# Login with API token
-snippetx login
-```
-
-### Team-Based Subscriptions (B2B SaaS)
 
 ### CLI Tool (snippetx)
 
@@ -191,7 +150,7 @@ The bounty system allows users to offer custom development projects:
 
 - **Custom project requests** with specific requirements
 - **Budget-based bounties** with platform fee (10%)
-- **Status tracking** (Open, In Progress, Completed, Canceled)
+- **Status tracking** (Open, In Progress, Completed, Cancelled)
 - **Language filtering** for targeted projects
 
 #### Bounty API
@@ -355,25 +314,25 @@ src/
       teams/route.ts
       bounties/route.ts
       premium-vetting/route.ts
-    layout.tsx
-    page.tsx
+      layout.tsx
+      page.tsx
   components/
     ui/                    # shadcn/ui components
-    browse-client.tsx      # Client component for browsing snippets
-    bounty-client.tsx      # Client component for bounty system
+    browse-client.tsx     # Client component for browsing snippets
+    bounty-client.tsx     # Client component for bounty system
     premium-vetting-client.tsx # Client component for premium vetting
   db/
-    schema.ts            # Database schema
-    index.ts              # Database connection
+    schema.ts              # Database schema
+    index.ts               # Database connection
   lib/
-    constants.ts         # Application constants
-    r2.ts                # Cloudflare R2 client
-    resend.ts            # Resend email client
-    stripe.ts            # Stripe client
-    supabase/            # Supabase clients
-    utils.ts             # Utility functions
-  hooks/                # Custom React hooks
-  proxy.ts              # Security headers
+    constants.ts           # Application constants
+    r2.ts                  # Cloudflare R2 client
+    resend.ts              # Resend email client
+    stripe.ts              # Stripe client
+    supabase/              # Supabase clients
+    utils.ts               # Utility functions
+  hooks/                   # Custom React hooks
+  proxy.ts                 # Security headers
 ```
 
 ## Testing
@@ -412,7 +371,7 @@ test("renders button correctly", () => {
 
 // Integration tests for API routes
 test("GET /api/snippets returns snippets", async () => {
-  const response = await request(app, "GET", "/api/snippets")
+  const response = await request(app).get("/api/snippets")
   expect(response.status).toBe(200)
   expect(Array.isArray(response.body)).toBe(true)
 })
@@ -433,7 +392,7 @@ The tests are organized as follows:
 The tests use:
 - **Jest** - JavaScript testing framework
 - **Supertest** - HTTP assertion library for testing API endpoints
-- **Drizzle ORM** - Database testing utilities
+- **Dizzle ORM** - Database testing utilities
 
 ### Running Tests
 
@@ -529,7 +488,7 @@ Set the following environment variables in your Vercel dashboard:
 
 ### Common Issues
 
-**Database Connection Error**
+**Database Connection Errors**
 
 If you encounter database connection errors:
 
