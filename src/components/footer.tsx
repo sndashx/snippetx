@@ -9,7 +9,7 @@ const columns = [
       { label: "Axes", href: "/#axes" },
       { label: "Method", href: "/#method" },
       { label: "Fellowship", href: "/#fellowship" },
-      { label: "Charter", href: "/#method" },
+      { label: "Charter", href: "/#charter" },
     ],
   },
   {
@@ -42,7 +42,7 @@ export function Footer() {
   return (
     <footer className="relative mt-24 border-t border-border">
       <div className="relative mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr_1fr_1fr]">
           <div>
             <Link
               href="/"
@@ -92,7 +92,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center gap-6 font-mono text-[10px] uppercase tracking-[0.24em]">
           <p>
             &copy; {new Date().getFullYear()} {labNameLong}. Resident
             fellowships are tenure-track or honorary.
