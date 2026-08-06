@@ -10,13 +10,13 @@ import { APP_URL } from "@/lib/constants";
 import { buildMetadata, labName, themeColor } from "@/lib/brand";
 
 const inter = Inter({
-  variable: "--font-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
 const instrumentSerif = Instrument_Serif({
-  variable: "--font-display",
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
@@ -24,7 +24,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -63,7 +63,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} h-full antialiased `}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <a href="#main" className="skip-to-content">
