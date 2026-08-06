@@ -8,20 +8,20 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* ✱ SN-X palette: deep ink (midnight), bone (parchment), copper ✱✱✱✱ */
-  --color-link: #06080f;
-  --color-link-raised: #0c0f1a;
+  /* ── SN-X palette: deep ink (midnight), bone (parchment), copper ──── */
+  --color-ink: #06080f;
+  --color-ink-raised: #0c0f1a;
   --color-paper: #ece7d8;
   --color-paper-muted: #8a8478;
   --color-accent: #d4a574;
   --color-accent-soft: #e8c89a;
 
-  /* ✱ Type families (CSS variables set by next/font in layout.tsx) ✱✱✱✱ */
+  /* ── Type families (CSS variables set by next/font in layout.tsx) ──── */
   --font-sans: var(--font-inter);
   --font-display: var(--font-instrument-serif);
   --font-mono: var(--font-jetbrains-mono);
 
-  /* ✱ Cinematic motion ✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱✱ */
+  /* ── Cinematic motion ──────────────────────────────────────────────── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -30,7 +30,7 @@
   --duration-slow: 640ms;
   --duration-cinematic: 1200ms;
 
-  /* ✱ shadcn surface tokens (kept for component compatibility) ✱✱✱✱✱✱✱ */
+  /* ── shadcn surface tokens (kept for component compatibility) ──────── */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -162,7 +162,7 @@
     font-synthesis-weight: none;
   }
 
-  /* Editorial display type: serif by default, optionally tightened. */
+  /* Editorial display type: serif by default, optically tightened. */
   h1, h2, h3 {
     font-family: var(--font-display), ui-serif, Georgia, serif;
     letter-spacing: -0.02em;
@@ -261,7 +261,7 @@
     color: transparent;
   }
 
-  /* ✱ Fine grid background — used by hero / section frames ✱✱✱✱✱✱✱✱✱ */
+  /* ── Fine grid background — used by hero / section frames ──────────── */
   .bg-grid {
     background-image:
       linear-gradient(to right, color-mix(in oklch, var(--foreground) 5%, transparent) 1px, transparent 1px),
@@ -277,7 +277,7 @@
     background-size: 24px 24px;
   }
 
-  /* ✱ Film-grain overlay — fixed, full-bleed, non-interactive ✱✱✱✱✱✱✱✱ */
+  /* ── Film-grain overlay — fixed, full-bleed, non-interactive ─────────── */
   .grain {
     pointer-events: none;
     position: fixed;
@@ -361,7 +361,7 @@
   .ease-in-out-expo { transition-timing-function: var(--ease-in-out-expo); }
   .duration-cinematic { transition-duration: var(--duration-cinematic); }
 
-  /* ✱ Hand-rolled code highlighter tokens (see src/components/marketing/highlight.tsx) ✱ */
+  /* ── Hand-rolled code highlighter tokens (see src/components/marketing/highlight.tsx) ─ */
   .tok-comment { color: color-mix(in oklch, var(--muted-foreground) 80%, transparent); font-style: italic; }
   .tok-string { color: color-mix(in oklch, var(--accent) 75%, var(--accent-soft)); }
   .tok-number { color: color-mix(in oklch, var(--accent-soft) 80%, var(--accent)); }
