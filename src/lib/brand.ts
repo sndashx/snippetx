@@ -1,1 +1,180 @@
-aW1wb3J0IHR5cGUgeyBNZXRhZGF0YSB9IGZyb20gIm5leHQiCmltcG9ydCB7IEFQUF9VUkwgfSBmcm9tICJAL2xpYi9jb25zdGFudHMiCgovKioKICogQnJhbmQgY29uc3RhbnRzIGZvciB0aGUgU04tWCBSZXNlYXJjaCBJbnN0aXR1dGlvbiBmb3IgQ29tcGxleCBTY2llbmNlIHdlYnNpdGUuCiAqCiAqIFRva2VucyAoY29sb3JzLCBmb250cywgZWFzaW5ncykgbGl2ZSBpbiBgc3JjL2FwcC9nbG9iYWxzLmNzc2AgdW5kZXIKICogYEB0aGVtZSBpbmxpbmUge31gIGJlY2F1c2UgdGhpcyBwcm9qZWN0IHVzZXMgVGFpbHdpbmQgdjQgd2l0aCB0aGUKICogYEB0YWlsd2luZGNzcy9wb3N0Y3NzYCBwbHVnaW4g4oCUIHRoZXJlIGlzIG5vIGB0YWlsd2luZC5jb25maWcudHNgIHRvIGV4dGVuZC4KICogQ29uc3RhbnRzIGV4cG9ydGVkIGhlcmUgYXJlIHRoZSAqc2luZ2xlIHNvdXJjZSBvZiB0cnV0aCogZm9yIG1hcmtldGluZwogKiBjb3B5IChpbnN0aXR1dGlvbiBuYW1lLCB0YWdsaW5lLCByZXNlYXJjaCBheGVzLCBwcm9ncmFtcykgYW5kIGZvciBjb2RlIHRoYXQKICogbmVlZHMgdG8gcmVmZXJlbmNlIGJyYW5kIG1ldGFkYXRhIChlLmcuIE5leHQuanMgTWV0YWRhdGEpLgogKi8KCmV4cG9ydCBjb25zdCBsYWJOYW1lID0gIlNOLVgiCmV4cG9ydCBjb25zdCBsYWJOYW1lTG9uZyA9ICJTTi1YIFJlc2VhcmNoIEluc3RpdHV0aW9uIGZvciBDb21wbGV4IFNjaWVuY2UiCmV4cG9ydCBjb25zdCB0YWdsaW5lID0KICAiQSByZXNlYXJjaCBpbnN0aXR1dGlvbiBzdHVkeWluZyB0aGUgbWF0aGVtYXRpY3Mgb2YgZW1lcmdlbmNlLiIKZXhwb3J0IGNvbnN0IGRlc2NyaXB0aW9uID0KICAiU04tWCBpcyBhIHByaXZhdGUgcmVzZWFyY2ggaW5zdGl0dXRpb24gZGVkaWNhdGVkIHRvIHRoZSBtYXRoZW1hdGljcywgY29tcHV0YXRpb24sIGFuZCBwaGlsb3NvcGh5IG9mIGNvbXBsZXggc3lzdGVtcy4gV2Ugc3R1ZHkgaG93IHNpbXBsZSBydWxlcyBnaXZlIHJpc2UgdG8gcmljaCBiZWhhdmlvdXIg4oCUIGluIGNlbGxzLCBpbiBzb2NpZXRpZXMsIGluIG1pbmRzLCBhbmQgaW4gdGhlIG1hY2hpbmVzIHdlIGJ1aWxkLiIKCmV4cG9ydCBjb25zdCB0aGVtZUNvbG9yID0gIiMwNjA4MGYiCgovKiogRmxhZ3NoaXAgb3V0cHV0cyDigJQIHBhcGVycywgaW5zdHJ1bWVudHMsIGRhdGFzZXRzIHRoZSBpbnN0aXR1dGlvbiBpcyBrbm93biBmb3IuICovCmV4cG9ydCBjb25zdCBtb2RlbEZsYWdzaGlwID0gewogIG5hbWU6ICJTTi1YIFBhcGVycyIsCiAgY29kZW5hbWU6ICJQYXBlcnMiLAogIHRhZ2xpbmU6CiAgICAiV29ya2luZyBwYXBlcnMgYWNyb3NzIHRoZSBmaXZlIHJlc2VhcmNoIGF4ZXMuIFB1Ymxpc2hlZCBpbiBhclhpdiwgTmF0LiBQaHlzLiwgUE5BUywgYW5kIGpvdXJuYWxzIG9mIHJlY29yZC4iLAogIGZhbWlseTogWwogICAgeyBuYW1lOiAiU04tWCBQYXBlcnMiLCBjb2RlbmFtZTogIlBhcGVycyIsIHN0YXR1czogImZsYWdzaGlwIiB9LAogICAgeyBuYW1lOiAiTGV0dGVycyIsIGNvZGVuYW1lOiAiTGV0dGVycyIsIHN0YXR1czogImF2YWlsYWJsZSIgfSwKICAgIHsgbmFtZTogIlJldmlld3MiLCBjb2RlbmFtZTogIlJldmlld3MiLCBzdGF0dXM6ICJhdmFpbGFibGUiIH0sCiAgXSwKfSBhcyBjb25zdAoKLyoqIFRoZSBmaXZlIHJlc2VhcmNoIGF4ZXMgU04tWCBpcyBvcmdhbml6ZWQgYXJvdW5kLiAqLwpleHBvcnQgY29uc3QgcmVzZWFyY2hBeGVzID0gWwogIHsKICAgIGlkOiAiY29tcGxleGl0eSIsCiAgICBuYW1lOiAiRm91bmRhdGlvbnMgb2YgQ29tcGxleGl0eSIsCiAgICBzdW1tYXJ5OgogICAgICAiVGhlIG1hdGhlbWF0aWNzIG9mIGVtZXJnZW5jZTogcGhhc2UgdHJhbnNpdGlvbnMsIGNyaXRpY2FsIHBoZW5vbWVuYSwgdW5pdmVyc2FsaXR5IGNsYXNzZXMsIGFuZCB0aGUgbGltaXRzIG9mIHJlZHVjdGlvbi4iLAogIH0sCiAgewogICAgaWQ6ICJjb21wdXRhdGlvbiIsCiAgICBuYW1lOiAiQ29tcHV0YXRpb24gJiBJbmZvcm1hdGlvbiIsCiAgICBzdW1tYXJ5OgogICAgICAiQWxnb3JpdGhtaWMgaW5mb3JtYXRpb24sIHN0YXRpc3RpY2FsIGxlYXJuaW5nLCBhbmQgdGhlIGdlb21ldHJ5IG9mIHJlcHJlc2VudGF0aW9ucyBsZWFybmVkIGJ5IGxhcmdlIG1vZGVscy4iLAogIH0sCiAgewogICAgaWQ6ICJiaW9sb2dpY2FsIiwKICAgIG5hbWU6ICJCaW9sb2dpY2FsIENvbXBsZXggU3lzdGVtcyIsCiAgICBzdW1tYXJ5OgogICAgICAiTW9ycGhvZ2VuZXNpcywgaW1tdW5lIGxlYXJuaW5nLCBuZXVyYWwgZGV2ZWxvcG1lbnQsIGFuZCB0aGUgcmVndWxhdG9yeSBhcmNoaXRlY3R1cmVzIG9mIGxpdmluZyBtYXR0ZXIuIiwKICB9LAogIHsKICAgIGlkOiAic29jaWFsIiwKICAgIG5hbWU6ICJTb2NpYWwgJiBFY29ub21pYyBDb21wbGV4aXR5IiwKICAgIHN1bW1hcnk6CiAgICAgICJNYXJrZXRzIGFzIGRpc3RyaWJ1dGVkIGNvbXB1dGF0aW9uOyBpbnN0aXR1dGlvbnMgYXMgZXF1aWxpYnJpYTsgY29vcGVyYXRpb24sIGNvbnZlbnRpb25zLCBhbmQgY29sbGFwc2UuIiwKICB9LAogIHsKICAgIGlkOiAiZm91bmRhdGlvbnMiLAogICAgbmFtZTogIkZvdW5kYXRpb25zIG9mIEluZmVyZW5jZSIsCiAgICBzdW1tYXJ5OgogICAgICAiQ2F1c2FsIGlkZW50aWZpY2F0aW9uLCBkZWNpc2lvbiB0aGVvcnkgdW5kZXIgZGVlcCB1bmNlcnRhaW50eSwgYW5kIHRoZSBlcGlzdGVtb2xvZ3kgb2YgbW9kZWwtYmFzZWQgcmVhc29uaW5nLiIsCiAgfSwKXSBhcyBjb25zdAoKLyoqIEZsYWdzaGlwIG91dHB1dHMg4oCUIHBhcGVycywgaW5zdHJ1bWVudHMsIGRhdGFzZXRzIHRoZSBpbnN0aXR1dGlvbiBpcyBrbm93biBmb3IuICovCmV4cG9ydCBjb25zdCBmbGFnc2hpcE91dHB1dHMgPSB7CiAgcGFwZXJzOiB7CiAgICBuYW1lOiAiU04tWCBQYXBlcnMiLAogICAgY29kZW5hbWU6ICJQYXBlcnMiLAogICAgdGFnbGluZToKICAgICAgIldvcmtpbmcgcGFwZXJzIGFjcm9zcyB0aGUgZml2ZSByZXNlYXJjaCBheGVzLiBQdWJsaXNoZWQgaW4gYXJYaXYsIE5hdC4gUGh5cy4sIFBOQVMsIGFuZCBqb3VybmFscyBvZiByZWNvcmQuIiwKICAgIGZhbWlseTogWwogICAgICB7IG5hbWU6ICJTTi1YIFBhcGVycyIsIGNvZGVuYW1lOiAiUGFwZXJzIiwgc3RhdHVzOiAiZmxhZ3NoaXAiIH0sCiAgICAgIHsgbmFtZTogIkxldHRlcnMiLCBjb2RlbmFtZTogIkxldHRlcnMiLCBzdGF0dXM6ICJhdmFpbGFibGUiIH0sCiAgICAgIHsgbmFtZTogIlJldmlld3MiLCBjb2RlbmFtZTogIlJldmlld3MiLCBzdGF0dXM6ICJhdmFpbGFibGUiIH0sCiAgICBdLAogIH0sCiAgaW5zdHJ1bWVudHM6IHsKICAgIG5hbWU6ICJTTi1YIEluc3RydW1lbnRzIiwKICAgIGNvZGVuYW1lOiAiSW5zdHJ1bWVudHMiLAogICAgdGFnbGluZToKICAgICAgIk9wZW4tc291cmNlIGluc3RydW1lbnRzIOKAlCBzaW11bGF0b3JzLCBiZW5jaG1hcmtzLCBkYXRhc2V0cyDigJQgdGhhdCBvcGVyYXRpb25hbGl6ZSBvdXIgdGhlb3JldGljYWwgd29yay4iLAogIH0sCiAgZmVsbG93czogewogICAgbmFtZTogIlNOLVggRmVsbG93cyIsCiAgICBjb2RlbmFtZTogIkZlbGxvd3MiLAogICAgdGFnbGluZToKICAgICAgIkEgcmVzaWRlbnRpYWwgZmVsbG93c2hpcCBmb3IgcmVzZWFyY2hlcnMgYWNyb3NzIG1hdGhlbWF0aWNzLCBwaHlzaWNzLCBiaW9sb2d5LCBhbmQgY29tcHV0YXRpb24uIiwKICB9LAp9IGFzIGNvbnN0CgovKiogVGFpbHdpbmQgY29sb3IgdG9rZW5zIChtdXN0IG1hdGNoIGAtLWNvbG9yLSpgIGluIGdsb2JhbHMuY3NzIEB0aGVtZSkuICovCmV4cG9ydCBjb25zdCBjb2xvcnMgPSB7CiAgaW5rOiAiIzA2MDgwZiIsCiAgaW5rUmFpc2VkOiAiIzBjMGYxYSIsCiAgcGFwZXI6ICIjZWNlN2Q4IiwKICBwYXBlck11dGVkOiAiIzhhODQ3OCIsCiAgYWNjZW50OiAiI2Q0YTU3NCIsCiAgYWNjZW50U29mdDogIiNlOGM4OWEiLAogIG5vaXNlOiAiI2ZmZmZmZiIsCiAgZ3JpZDogIiNmZmZmZmYiLAp9IGFzIGNvbnN0CgovKiogbmV4dC9mb250IENTUyB2YXJpYWJsZSBuYW1lcyB3aXJlZCBpbiBzcmMvYXBwL2xheW91dC50c3guICovCmV4cG9ydCBjb25zdCBmb250cyA9IHsKICAvKiogU2VyaWYgZGlzcGxheSBmYW1pbHkg4oCUIGhlcm8sIGVkaXRvcmlhbCBtb21lbnRzLiAqLwogIHNhbnNWYXI6ICItLWZvbnQtaW50ZXIiLAogIC8qKiBNb25vc3BhY2Ug4oCUIGNvZGUsIG51bWJlcnMsIHRpY2tlci4gKi8KICBtb25vVmFyOiAiLS1mb250LWpldGJyYWlucy1tb25vIiwKICAvKiogU2VyaWYgZGlzcGxheSBmYW1pbHkg4oCUIGhlcm8sIGVkaXRvcmlhbCBtb21lbnRzLiAqLwogIGRpc3BsYXlWYXI6ICItLWZvbnQtaW5zdHJ1bWVudC1zZXJpZiIsCn0gYXMgY29uc3QKCmV4cG9ydCBjb25zdCBzb2NpYWwgPSB7CiAgb2dJbWFnZTogIi9vZy5zdmciLAogIHR3aXR0ZXJDYXJkOiAic3VtbWFyeV9sYXJnZV9pbWFnZSIsCn0gYXMgY29uc3QKCi8qKgogKiBCdWlsZCBhIE5leHQuanMgTWV0YWRhdGEgb2JqZWN0IGZvciBhIHJvdXRlIG9uIHRoZSBpbnN0aXR1dGlvbiBzaXRlLgogKiBQYXNzIGEgdGl0bGUgKG9yIHVuZGVmaW5lZCBmb3IgZGVmYXVsdCkgYW5kIG9wdGlvbmFsIGRlc2NyaXB0aW9uLgogKi8KZXhwb3J0IGZ1bmN0aW9uIGJ1aWxkTWV0YWRhdGEob3B0cz86IHsKICB0aXRsZT86IHN0cmluZwogIGRlc2NyaXB0aW9uPzogc3RyaW5nCiAgcGF0aD86IHN0cmluZwp9KTogTWV0YWRhdGEgewogIGNvbnN0IHRpdGxlID0gb3B0cz8udGl0bGUKICAgID8gYCR7b3B0cy50aXRsZX0g4oCUICR7bGFiTmFtZX1gCiAgICA6IGAke2xhYk5hbWV9IOKAlCBUaGUgbWF0aGVtYXRpY3Mgb2YgZW1lcmdlbmNlYAogIGNvbnN0IGRlc2MgPSBvcHRzPy5kZXNjcmlwdGlvbiA/PyBkZXNjcmlwdGlvbgogIGNvbnN0IHVybCA9IG9wdHM/LnBhdGggPyBgJHtBUFBfVVJMfSR7b3B0cy5wYXRofWAgOiBBUFBfVVJMCiAgcmV0dXJuIHsKICAgIHRpdGxlLAogICAgZGVzY3JpcHRpb246IGRlc2MsCiAgICBtZXRhZGF0YUJhc2U6IG5ldyBVUkwoQVBQX1VSTCksCiAgICBhcHBsaWNhdGlvbk5hbWU6IGxhYk5hbWUsCiAgICBhdXRob3JzOiBbeyBuYW1lOiBsYWJOYW1lTG9uZyB9XSwKICAgIGtleXdvcmRzOiBbCiAgICAgICJTTi1YIiwKICAgICAgImNvbXBsZXggc3lzdGVtcyIsCiAgICAgICJjb21wbGV4aXR5IHNjaWVuY2UiLAogICAgICAiZW1lcmdlbmNlIiwKICAgICAgInJlc2VhcmNoIGluc3RpdHV0aW9uIiwKICAgICAgIlNhbnRhIEZlIEluc3RpdHV0ZSIsCiAgICAgICJjb21wbGV4IGFkYXB0aXZlIHN5c3RlbXMiLAogICAgICAiZm91bmRhdGlvbnMiLAogICAgXSwKICAgIG9wZW5HcmFwaDogewogICAgICB0eXBlOiAid2Vic2l0ZSIsCiAgICAgIHRpdGxlLAogICAgICBkZXNjcmlwdGlvbjogZGVzYywKICAgICAgdXJsLAogICAgICBzaXRlTmFtZTogbGFiTmFtZSwKICAgICAgaW1hZ2VzOiBbCiAgICAgICAgewogICAgICAgICAgdXJsOiBzb2NpYWwub2dJbWFnZSwKICAgICAgICAgIHdpZHRoOiAxMjAwLAogICAgICAgICAgaGVpZ2h0OiA2MzAsCiAgICAgICAgICBhbHQ6IGAke2xhYk5hbWV9IOKAlCBUaGUgbWF0aGVtYXRpY3Mgb2YgZW1lcmdlbmNlYCwKICAgICAgICB9LAogICAgICBdLAogICAgfSwKICAgIHR3aXR0ZXI6IHsKICAgICAgY2FyZDogc29jaWFsLnR3aXR0ZXJDYXJkLAogICAgICB0aXRsZSwKICAgICAgZGVzY3JpcHRpb246IGRlc2MsCiAgICAgIGltYWdlczogW3NvY2lhbC5vZ0ltYWdlXSwKICAgIH0sCiAgICBhbHRlcm5hdGVzOiB7CiAgICAgIGNhbm9uaWNhbDogb3B0cz8ucGF0aCA/PyAiLyIsCiAgICB9LAogIH0KfQ==
+import type { Metadata } from "next"
+import { APP_URL } from "@/lib/constants"
+
+/**
+ * Brand constants for the SN-X Research Institution for Complex Science website.
+ *
+ * Tokens (colors, fonts, easings) live in `src/app/globals.css` under
+ * `@theme inline {}` because this project uses Tailwind v4 with the
+ * `@tailwindcss/postcss` plugin — there is no `tailwind.config.ts` to extend.
+ * Constants exported here are the *single source of truth* for marketing
+ * copy (institution name, tagline, research axes, programs) and for code that
+ * needs to reference brand metadata (e.g. Next.js Metadata).
+ */
+
+export const labName = "SN-X"
+export const labNameLong = "SN-X Research Institution for Complex Science"
+export const tagline =
+  "A research institution studying the mathematics of emergence."
+export const description =
+  "SN-X is a private research institution dedicated to the mathematics, computation, and philosophy of complex systems. We study how simple rules give rise to rich behaviour — in cells, in societies, in minds, and in the machines we build."
+
+export const themeColor = "#06080f"
+
+/** Flagship outputs — papers, instruments, datasets the institution is known for. */
+export const modelFlagship = {
+  name: "SN-X Papers",
+  codename: "Papers",
+  tagline:
+    "Working papers across the five research axes. Published in arXiv, Nat. Phys., PNAS, and journals of record.",
+  family: [
+    { name: "SN-X Papers", codename: "Papers", status: "flagship" },
+    { name: "Letters", codename: "Letters", status: "available" },
+    { name: "Reviews", codename: "Reviews", status: "available" },
+  ],
+} as const
+
+/** The five research axes SN-X is organized around. */
+export const researchAxes = [
+  {
+    id: "complexity",
+    name: "Foundations of Complexity",
+    summary:
+      "The mathematics of emergence: phase transitions, critical phenomena, universality classes, and the limits of reduction.",
+  },
+  {
+    id: "computation",
+    name: "Computation & Information",
+    summary:
+      "Algorithmic information, statistical learning, and the geometry of representations learned by large models.",
+  },
+  {
+    id: "biological",
+    name: "Biological Complex Systems",
+    summary:
+      "Morphogenesis, immune learning, neural development, and the regulatory architectures of living matter.",
+  },
+  {
+    id: "social",
+    name: "Social & Economic Complexity",
+    summary:
+      "Markets as distributed computation; institutions as equilibria; cooperation, conventions, and collapse.",
+  },
+  {
+    id: "foundations",
+    name: "Foundations of Inference",
+    summary:
+      "Causal identification, decision theory under deep uncertainty, and the epistemology of model-based reasoning.",
+  },
+] as const
+
+/** Flagship outputs — papers, instruments, datasets the institution is known for. */
+export const flagshipOutputs = {
+  papers: {
+    name: "SN-X Papers",
+    codename: "Papers",
+    tagline:
+      "Working papers across the five research axes. Published in arXiv, Nat. Phys., PNAS, and journals of record.",
+    family: [
+      { name: "SN-X Papers", codename: "Papers", status: "flagship" },
+      { name: "Letters", codename: "Letters", status: "available" },
+      { name: "Reviews", codename: "Reviews", status: "available" },
+    ],
+  },
+  instruments: {
+    name: "SN-X Instruments",
+    codename: "Instruments",
+    tagline:
+      "Open-source instruments — simulators, benchmarks, datasets — that operationalize our theoretical work.",
+  },
+  fellows: {
+    name: "SN-X Fellows",
+    codename: "Fellows",
+    tagline:
+      "A residential fellowship for researchers across mathematics, physics, biology, and computation.",
+  },
+} as const
+
+/** Tailwind color tokens (must match `--color-*` in globals.css @theme). */
+export const colors = {
+  ink: "#06080f",
+  inkRaised: "#0c0f1a",
+  paper: "#ece7d8",
+  paperMuted: "#8a8478",
+  accent: "#d4a574",
+  accentSoft: "#e8c89a",
+  noise: "#ffffff",
+  grid: "#ffffff",
+} as const
+
+/** next/font CSS variable names wired in src/app/layout.tsx. */
+export const fonts = {
+  /** Serif display family — hero, editorial moments. */
+  displayVar: "--font-instrument-serif",
+  /** Neo-grotesque sans — UI, body. */
+  sansVar: "--font-inter",
+  /** Monospace — code, numbers, ticker. */
+  monoVar: "--font-jetbrains-mono",
+} as const
+
+export const social = {
+  ogImage: "/og.svg",
+  twitterCard: "summary_large_image",
+} as const
+
+/**
+ * Build a Next.js Metadata object for a route on the institution site.
+ * Pass a title (or undefined for default) and optional description.
+ */
+export function buildMetadata(opts?: {
+  title?: string
+  description?: string
+  path?: string
+}): Metadata {
+  const title = opts?.title
+    ? `${opts.title} — ${labName}`
+    : `${labName} — The mathematics of emergence`
+  const desc = opts?.description ?? description
+  const url = opts?.path ? `${APP_URL}${opts.path}` : APP_URL
+  return {
+    title,
+    description: desc,
+    metadataBase: new URL(APP_URL),
+    applicationName: labName,
+    authors: [{ name: labNameLong }],
+    keywords: [
+      "SN-X",
+      "complex systems",
+      "complexity science",
+      "emergence",
+      "research institution",
+      "Santa Fe Institute",
+      "complex adaptive systems",
+      "foundations",
+    ],
+    openGraph: {
+      type: "website",
+      title,
+      description: desc,
+      url,
+      siteName: labName,
+      images: [
+        {
+          url: social.ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${labName} — The mathematics of emergence`,
+        },
+      ],
+    },
+    twitter: {
+      card: social.twitterCard,
+      title,
+      description: desc,
+      images: [social.ogImage],
+    },
+    alternates: {
+      canonical: opts?.path ?? "/",
+    },
+  }
+}
