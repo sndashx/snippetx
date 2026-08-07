@@ -1,1 +1,169 @@
-aW1wb3J0IExpbmsgZnJvbSAibmV4dC9saW5rIjsKaW1wb3J0IHsgR2xvYmUsIEF0U2lnbiwgR2xvYmUyLCBBcnJvd1VwUmlnaHQgfSBmcm9tICJsdWNpZGUtcmVhY3QiOwppbXBvcnQgeyBsYWJOYW1lLCBsYWJOYW1lTG9uZywgdGFnbGluZSB9IGZyb20gIkAvbGliL2JyYW5kIjsKCmNvbnN0IGNvbHVtbnMgPSBbCiAgewogICAgdGl0bGU6ICJJbnN0aXR1dGlvbiIsCiAgICBsaW5rczogWwogICAgICB7IGxhYmVsOiAiQXhlcyIsIGhyZWY6ICIvI2F4ZXMiIH0sCiAgICAgIHsgbGFiZWw6ICJNZXRob2QiLCBocmVmOiAiLyNtZXRob2QiIH0sCiAgICAgIHsgbGFiZWw6ICJGZWxsb3dzaGlwIiwgaHJlZjogIi8jZmVsbG93c2hpcCIgfSwKICAgICAgeyBsYWJlbDogIkNoYXJ0ZXIiLCBocmVmOiAiLyNtZXRob2QiIH0sCiAgICBdLAogIH0sCiAgewogICAgdGl0bGU6ICJSZXNlYXJjaCIsCiAgICBsaW5rczogWwogICAgICB7IGxhYmVsOiAiUGFwZXJzIiwgaHJlZjogIi9yZXNlYXJjaCIgfSwKICAgICAgeyBsYWJlbDogIkluc3RydW1lbnRzIiwgaHJlZjogIi8jaW5kaWNhdG9ycyIgfSwKICAgICAgeyBsYWJlbDogIk9wZW4gZGF0YSIsIGhyZWY6ICIvcmVzZWFyY2giIH0sCiAgICAgIHsgbGFiZWw6ICJSZXZpZXdzIiwgaHJlZjogIi9yZXNlYXJjaCIgfSwKICAgIF0sCiAgfSwKICB7CiAgICB0aXRsZTogIlZpc2l0IiwKICAgIGxpbmtzOiBbCiAgICAgIHsgbGFiZWw6ICJDYW1icmlkZ2UiLCBocmVmOiAiLyNjb250YWN0IiB9LAogICAgICB7IGxhYmVsOiAiTWFyZmEiLCBocmVmOiAiLyNjb250YWN0IiB9LAogICAgICB7IGxhYmVsOiAiUHVibGljIGxlY3R1cmVzIiwgaHJlZjogIi8jaW5kaWNhdG9ycyIgfSwKICAgICAgeyBsYWJlbDogIlByZXNzIiwgaHJlZjogIi8jY29udGFjdCIgfSwKICAgIF0sCiAgfSwKXTsKCmNvbnN0IHNvY2lhbHMgPSBbCiAgeyBpY29uOiBHbG9iZSwgaHJlZjogImh0dHBzOi8vZ2l0aHViLmNvbS9zbmRhc2h4IiwgbGFiZWw6ICJHaXRIdWIiIH0sCiAgeyBpY29uOiBBdFNpZ24sIGhyZWY6ICJodHRwczovL3R3aXR0ZXIuY29tL3NuZGFzaHgiLCBsYWJlbDogIlgiIH0sCiAgeyBpY29uOiBHbG9iZTIsIGhyZWY6ICJodHRwczovL2FyeGl2Lm9yZy9hL3NuLXhfMSIsIGxhYmVsOiAiYXJYaXYiIH0sCl07CgpleHBvcnQgZnVuY3Rpb24gRm9vdGVyKCkgewogIHJldHVybiAoCiAgICA8Zm9vdGVyIGNsYXNzTmFtZT0icmVsYXRpdmUgbXQtMjQgYm9yZGVyLXQgYm9yZGVyLWJvcmRlciI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJyZWxhdGl2ZSBteC1hdXRvIG1heC13LTd4bCBweC02IHB5LTIwIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZ3JpZCBnYXAtMTIgbGc6Z3JpZC1jb2xzLVsxLjZmcl8xZnJfMWZyXzFmcl0iPgogICAgICAgICAgPGRpdj4KICAgICAgICAgICAgPExpbmsKICAgICAgICAgICAgICBocmVmPSIvIgogICAgICAgICAgICAgIGNsYXNzTmFtZT0iZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIuNSBmb250LXNlbWlib2xkIHRyYWNraW5nLXRpZ2h0IgogICAgICAgICAgICA+CiAgICAgICAgICAgICAgPEJyYW5kTWFyayBjbGFzc05hbWU9InNpemUtNyIgLz4KICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImZvbnQtZGlzcGxheSB0ZXh0LWxnIHRyYWNraW5nLXRpZ2h0Ij57bGFiTmFtZX08L3NwYW4+CiAgICAgICAgICAgIDwvTGluaz4KICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJtdC01IG1heC13LXNtIHRleHQtc20gbGVhZGluZy1yZWxheGVkIHRleHQtbXV0ZWQtZm9yZWdyb3VuZCI+CiAgICAgICAgICAgICAge2xhYk5hbWVMb25nfS4ge3RhZ2xpbmV9CiAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTcgZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTMiPgogICAgICAgICAgICAgIHtzb2NpYWxzLm1hcCgocykgPT4gKAogICAgICAgICAgICAgICAgPExpbmsKICAgICAgICAgICAgICAgICAga2V5PXtzLmxhYmVsfQogICAgICAgICAgICAgICAgICBocmVmPXtzLmhyZWZ9CiAgICAgICAgICAgICAgICAgIHRhcmdldD0iX2JsYW5rIgogICAgICAgICAgICAgICAgICByZWw9Im5vcmVmZXJyZXIiCiAgICAgICAgICAgICAgICAgIGFyaWEtbGFiZWw9e3MubGFiZWx9CiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT0iZmxleCBzaXplLTkgaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1ib3JkZXIgYmctY2FyZCB0ZXh0LW11dGVkLWZvcmVncm91bmQgdHJhbnNpdGlvbi1jb2xvcnMgaG92ZXI6Ym9yZGVyLWFjY2VudC80NSBob3Zlcjp0ZXh0LWZvcmVncm91bmQiCiAgICAgICAgICAgICAgICA+CiAgICAgICAgICAgICAgICAgIDxzLmljb24gY2xhc3NOYW1lPSJzaXplLTQiIC8+CiAgICAgICAgICAgICAgICA8L0xpbms+CiAgICAgICAgICAgICAgKSl9CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgPC9kaXY+CgogICAgICAgICAge2NvbHVtbnMubWFwKChjb2wpID0+ICgKICAgICAgICAgICAgPGRpdiBrZXk9e2NvbC50aXRsZX0+CiAgICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT0iZm9udC1tb25vIHRleHQtWzEwcHhdIHVwcGVyY2FzZSB0cmFja2luZy1bMC4yNGVtXSB0ZXh0LW11dGVkLWZvcmVncm91bmQiPgogICAgICAgICAgICAgICAge2NvbC50aXRsZX0KICAgICAgICAgICAgICA8L2gzPgogICAgICAgICAgICAgIDx1bCBjbGFzc05hbWU9Im10LTUgc3BhY2UteS0zIj4KICAgICAgICAgICAgICAgIHtjb2wubGlua3MubWFwKChsaW5rKSA9PiAoCiAgICAgICAgICAgICAgICAgIDxsaSBrZXk9e2xpbmsubGFiZWx9PgogICAgICAgICAgICAgICAgICAgIDxMaW5rCiAgICAgICAgICAgICAgICAgICAgICBocmVmPXtsaW5rLmhyZWZ9CiAgICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9Imdyb3VwIGlubGluZS1mbGV4IGl0ZW1zLWNlbnRlciBnYXAtMSB0ZXh0LXNtIHRleHQtZm9yZWdyb3VuZC84MCB0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjp0ZXh0LWZvcmVncm91bmQiCiAgICAgICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgICAgICAge2xpbmsubGFiZWx9CiAgICAgICAgICAgICAgICAgICAgICA8QXJyb3dVcFJpZ2h0IGNsYXNzTmFtZT0ic2l6ZS0zIG9wYWNpdHktMCB0cmFuc2l0aW9uLW9wYWNpdHkgZ3JvdXAtaG92ZXI6b3BhY2l0eS0xMDAiIC8+CiAgICAgICAgICAgICAgICAgICAgPC9MaW5rPgogICAgICAgICAgICAgICAgICA8L2xpPgogICAgICAgICAgICAgICAgKSl9CiAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICApKX0KICAgICAgICA8L2Rpdj4KCiAgICAgICAgPGRpdiBjbGFzc05hbWU9Im10LTE2IGZsZXggZmxleC1jb2wgaXRlbXMtc3RhcnQganVzdGlmeS1iZXR3ZWVuIGdhcC02IGJvcmRlci10IGJvcmRlci1ib3JkZXIgcHQtOCB0ZXh0LXhzIHRleHQtbXV0ZWQtZm9yZWdyb3VuZCBzbTpmbGV4LXJvdyBzbTppdGVtcy1jZW50ZXIiPgogICAgICAgICAgPHA+CiAgICAgICAgICAgICZjb3B5OyB7bmV3IERhdGUoKS5nZXRGdWxsWWVhcigpfSB7bGFiTmFtZUxvbmd9LiBSZXNpZGVudAogICAgICAgICAgICBmZWxsb3dzaGlwcyBhcmUgdGVudXJlLXRyYWNrIG9yIGhvbm9yYXJ5LgogICAgICAgICAgPC9wPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC02IGZvbnQtbW9ubyB0ZXh0LVsxMHB4XSB1cHBlcmNhc2UgdHJhY2tpbmctWzAuMjRlbV0iPgogICAgICAgICAgICA8TGluayBocmVmPSIvdGVybXMiIGNsYXNzTmFtZT0idHJhbnNpdGlvbi1jb2xvcnMgaG92ZXI6dGV4dC1mb3JlZ3JvdW5kIj4KICAgICAgICAgICAgICBUZXJtcwogICAgICAgICAgICA8L0xpbms+CiAgICAgICAgICAgIDxMaW5rIGhyZWY9Ii9wcml2YWN5IiBjbGFzc05hbWU9InRyYW5zaXRpb24tY29sb3JzIGhvdmVyOnRleHQtZm9yZWdyb3VuZCI+CiAgICAgICAgICAgICAgUHJpdmFjeQogICAgICAgICAgICA8L0xpbms+CiAgICAgICAgICAgIDxMaW5rIGhyZWY9Ii9yZXNlYXJjaCIgY2xhc3NOYW1lPSJ0cmFuc2l0aW9uLWNvbG9ycyBob3Zlcjp0ZXh0LWZvcmVncm91bmQiPgogICAgICAgICAgICAgIFByZS1wcmludHMKICAgICAgICAgICAgPC9MaW5rPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9mb290ZXI+CiAgKTsKfQoKLyoqCiAqIEJyYW5kTWFyayDigJQgdGhyZWUgaW50ZXJzZWN0aW5nIGVsbGlwc2VzIGZvcm1pbmcgYSBzaXgtcGV0YWwgcm9zZXR0ZSwKICogdGhlIHZpc3VhbCBzaWduYXR1cmUgb2YgU04tWC4gRHJhd24gaW4gcHVyZSBTVkcgc28gaXQgc2NhbGVzIHdpdGhvdXQKICogcmFzdGVyIGFydGVmYWN0cyBhbmQgYWRvcHRzIHRoZSBicmFuZCBwYWxldHRlIGF1dG9tYXRpY2FsbHkuCiAqLwpleHBvcnQgZnVuY3Rpb24gQnJhbmRNYXJrKHsgY2xhc3NOYW1lID0gIiIgfTogeyBjbGFzc05hbWU/OiBzdHJpbmcgfSkgewogIHJldHVybiAoCiAgICA8c3ZnCiAgICAgIHZpZXdCb3g9IjAgMCAzMiAzMiIKICAgICAgZmlsbD0ibm9uZSIKICAgICAgY2xhc3NOYW1lPXtjbGFzc05hbWV9CiAgICAgIGFyaWEtaGlkZGVuCiAgICAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgID4KICAgICAgPGRlZnM+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJzbngtbWFyayIgeDE9IjAiIHkxPSIwIiB4Mj0iMzIiIHkyPSIzMiI+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wQ29sb3I9InZhcigtLWJyYW5kLTEpIiAvPgogICAgICAgICAgPHN0b3Agb2Zmc2V0PSI1NSUiIHN0b3BDb2xvcj0idmFyKC0tYnJhbmQtMikiIC8+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3BDb2xvcj0idmFyKC0tYnJhbmQtMykiIC8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgPC9kZWZzPgogICAgICA8Y2lyY2xlCiAgICAgICAgY3g9IjE2IgogICAgICAgIGN5PSIxNiIKICAgICAgICByPSIxMSIKICAgICAgICBzdHJva2U9InVybCgjc254LW1hcmspIgogICAgICAgIHN0cm9rZVdpZHRoPSIxLjQiCiAgICAgICAgb3BhY2l0eT0iMC44NSIKICAgICAgLz4KICAgICAgPGVsbGlwc2UKICAgICAgICBjeD0iMTYiCiAgICAgICAgY3k9IjE2IgogICAgICAgIHJ4PSIxMSIKICAgICAgICByeT0iNC4yIgogICAgICAgIHN0cm9rZT0idXJsKCNzbngtbWFyaykiCiAgICAgICAgc3Ryb2tlV2lkdGg9IjEuNCIKICAgICAgICBvcGFjaXR5PSIwLjg1IgogICAgICAgIHRyYW5zZm9ybT0icm90YXRlKDYwIDE2IDE2KSIKICAgICAgLz4KICAgICAgPGVsbGlwc2UKICAgICAgICBjeD0iMTYiCiAgICAgICAgY3k9IjE2IgogICAgICAgIHJ4PSIxMSIKICAgICAgICByeT0iNC4yIgogICAgICAgIHN0cm9rZT0idXJsKCNzbngtbWFyaykiCiAgICAgICAgc3Ryb2tlV2lkdGg9IjEuNCIKICAgICAgICBvcGFjaXR5PSIwLjg1IgogICAgICAgIHRyYW5zZm9ybT0icm90YXRlKC02MCAxNiAxNikiCiAgICAgIC8+CiAgICAgIDxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjIuNCIgZmlsbD0idXJsKCNzbngtbWFyaykiIC8+CiAgICA8L3N2Zz4KICApOwp9
+import Link from "next/link";
+import { Globe, AtSign, Globe2, ArrowUpRight } from "lucide-react";
+import { labName, labNameLong, tagline } from "@/lib/brand";
+
+const columns = [
+  {
+    title: "Institution",
+    links: [
+      { label: "Axes", href: "/#axes" },
+      { label: "Method", href: "/#method" },
+      { label: "Fellowship", href: "/#fellowship" },
+      { label: "Charter", href: "/#method" },
+    ],
+  },
+  {
+    title: "Research",
+    links: [
+      { label: "Papers", href: "/research" },
+      { label: "Instruments", href: "/#indicators" },
+      { label: "Open data", href: "/research" },
+      { label: "Reviews", href: "/research" },
+    ],
+  },
+  {
+    title: "Visit",
+    links: [
+      { label: "Cambridge", href: "/#contact" },
+      { label: "Marfa", href: "/#contact" },
+      { label: "Public lectures", href: "/#indicators" },
+      { label: "Press", href: "/#contact" },
+    ],
+  },
+];
+
+const socials = [
+  { icon: Globe, href: "https://github.com/sndashx", label: "GitHub" },
+  { icon: AtSign, href: "https://twitter.com/sndashx", label: "X" },
+  { icon: Globe2, href: "https://arxiv.org/a/sn-x_1", label: "arXiv" },
+];
+
+export function Footer() {
+  return (
+    <footer className="relative mt-24 border-t border-border">
+      <div className="relative mx-auto max-w-7xl px-6 py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
+          <div>
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 font-semibold tracking-tight"
+            >
+              <BrandMark className="size-7" />
+              <span className="font-display text-lg tracking-tight">{labName}</span>
+            </Link>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              {labNameLong}. {tagline}
+            </p>
+            <div className="mt-7 flex items-center gap-3">
+              {socials.map((s) => (
+                <Link
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={s.label}
+                  className="flex size-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-accent/45 hover:text-foreground"
+                >
+                  <s.icon className="size-4" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {columns.map((col) => (
+            <div key={col.title}>
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                {col.title}
+              </h3>
+              <ul className="mt-5 space-y-3">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="group inline-flex items-center gap-1 text-sm text-foreground/80 transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                      <ArrowUpRight className="size-3 opacity-0 transition-opacity group-hover:opacity-100" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
+          <p>
+            &copy; {new Date().getFullYear()} {labNameLong}. Resident
+            fellowships are tenure-track or honorary.
+          </p>
+          <div className="flex items-center gap-6 font-mono text-[10px] uppercase tracking-[0.24em]">
+            <Link href="/terms" className="transition-colors hover:text-foreground">
+              Terms
+            </Link>
+            <Link href="/privacy" className="transition-colors hover:text-foreground">
+              Privacy
+            </Link>
+            <Link href="/research" className="transition-colors hover:text-foreground">
+              Pre-prints
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/**
+ * BrandMark — three intersecting ellipses forming a six-petal rosette,
+ * the visual signature of SN-X. Drawn in pure SVG so it scales without
+ * raster artefacts and adopts the brand palette automatically.
+ */
+export function BrandMark({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      fill="none"
+      className={className}
+      aria-hidden
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="snx-mark" x1="0" y1="0" x2="32" y2="32">
+          <stop offset="0%" stopColor="var(--brand-1)" />
+          <stop offset="55%" stopColor="var(--brand-2)" />
+          <stop offset="100%" stopColor="var(--brand-3)" />
+        </linearGradient>
+      </defs>
+      <circle
+        cx="16"
+        cy="16"
+        r="11"
+        stroke="url(#snx-mark)"
+        strokeWidth="1.4"
+        opacity="0.85"
+      />
+      <ellipse
+        cx="16"
+        cy="16"
+        rx="11"
+        ry="4.2"
+        stroke="url(#snx-mark)"
+        strokeWidth="1.4"
+        opacity="0.85"
+        transform="rotate(60 16 16)"
+      />
+      <ellipse
+        cx="16"
+        cy="16"
+        rx="11"
+        ry="4.2"
+        stroke="url(#snx-mark)"
+        strokeWidth="1.4"
+        opacity="0.85"
+        transform="rotate(-60 16 16)"
+      />
+      <circle cx="16" cy="16" r="2.4" fill="url(#snx-mark)" />
+    </svg>
+  );
+}
