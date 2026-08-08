@@ -17,9 +17,9 @@
   --color-accent-soft: #e8c89a;
 
   /* ── Type families (CSS variables set by next/font in layout.tsx) ──── */
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
-  --font-mono: var(--font-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-instrument-serif);
+  --font-mono: var(--font-jetbrains-mono);
 
   /* ── Cinematic motion ──────────────────────────────────────────────── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

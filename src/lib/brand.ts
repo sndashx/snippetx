@@ -110,11 +110,11 @@ export const colors = {
 /** next/font CSS variable names wired in src/app/layout.tsx. */
 export const fonts = {
   /** Serif display family — hero, editorial moments. */
-  displayVar: "--font-display",
+  displayVar: "--font-instrument-serif",
   /** Neo-grotesque sans — UI, body. */
-  sansVar: "--font-sans",
+  sansVar: "--font-inter",
   /** Monospace — code, numbers, ticker. */
-  monoVar: "--font-mono",
+  monoVar: "--font-jetbrains-mono",
 } as const
 
 export const social = {
